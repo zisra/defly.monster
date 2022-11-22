@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+
+body {
+  font-family: "Ubuntu", sans-serif;
+  background-color: #eee;
+}
+
+h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: normal;
+  font-size: 40px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  color: #3d5dff;
+  text-decoration: underline;
+}
+
+#feedback-label {
+  display: block;
+}

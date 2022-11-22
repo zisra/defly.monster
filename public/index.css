@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Creepster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+
+body {
+  font-family: "Ubuntu", sans-serif;
+  background-color: #eee;
+}
+
+#title-text {
+  padding-top: 24px;
+  text-align: center;
+  font-size: 50px;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-family: "Bebas Neue", sans-serif;
+}
+
+#defly-text > a,
+#defly-text > a:visited {
+  color: #3d5dff;
+  text-decoration: none;
+}
+
+#defly-text > a:hover {
+  text-decoration: underline;
+}
+
+#monster-text {
+  font-family: "Creepster", cursive;
+  background-color: #eb6123;
+  color: white;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 12px;
+  transform: rotate(5deg);
+  display: inline-block;
+}
+
+#monster-text:hover {
+  animation: flash 0.4s 2;
+}
+
+@keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+#start-learning {
+  margin-top: 12px;
+  text-align: center;
+}
+
+#start-learning > a {
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+}
+
+#start-learning > svg {
+  font-size: 20px;
+  text-decoration: none;
+  margin-bottom: -5px;
+}
+
+#start-learning > a:hover {
+  color: #3d5dff;
+  text-decoration: underline;
+}
+
+.boxes {
+  margin: 40px auto;
+  max-width: 400px;
+  text-align: center;
+}
+
+.box {
+  background-color: #333;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  font-size: 25px;
+}
+
+.box > a {
+  color: black;
+  text-decoration: none;
+  color: #fff;
+}
+
+.box > a:hover {
+  color: black;
+  text-decoration: underline;
+  color: #fff;
+}
+
+#footer {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  margin: 4px;
+  padding: 4px;
+  border-radius: 2px;
+}
+
+#feedback {
+  border-radius: 12px;
+  border: none;
+}
+
+#feedback::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#feedback-input {
+  resize: none;
+}
+
+.discord, .discord:visited {
+  text-decoration: none;
+	color: black;
+	cursor: pointer;
+}
+
+.discord:hover {
+	text-decoration: underline;
+}

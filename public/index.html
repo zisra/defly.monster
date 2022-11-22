@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>defly.io Monster</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1 id="title-text">
+      Unleash your inner
+      <span id="defly-text">
+        <a href="https://defly.io">defly</a>
+      </span>
+      <span id="monster-text">monster</span>
+    </h1>
+    <div id="start-learning">
+      <a href="learn">Start learning</a
+      ><svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10.5858 6.34317L12 4.92896L19.0711 12L12 19.0711L10.5858 17.6569L16.2427 12L10.5858 6.34317Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <nav class="boxes">
+      <div class="box"><a href="articles">Breaking defly.io</a></div>
+      <div class="box"><a href="skins">Skin Collection</a></div>
+      <div class="box"><a href="bot">Discord Bot</a></div>
+      <div class="box"><a href="elites">Elites</a></div>
+			<div class="box"><a href="stats">Stats Viewer</a></div>
+    </nav>
+    <footer id="footer">
+      Made with ❤️ by Isra. <span class="link" id="share-link">Share</span>.
+      <span class="link" id="feedback-link">Feedback</span>. <a  class="discord" href="https://discord.gg/AMyahUvd4Q">Discord</a>
+    </footer>
+    <dialog id="feedback">
+      <form>
+        <div>
+          <div>
+            <label id="feedback-label" for="feedback">Submit feedback</label>
+          </div>
+          <textarea
+            rows="8"
+            cols="40"
+            id="feedback-input"
+            placeholder="Questions, comments, and concerns (20 - 500 characters)"
+          ></textarea>
+        </div>
+        <div>
+          <button type="button" id="cancel-feedback">Cancel</button>
+          <button type="button" id="submit-feedback">Submit</button>
+        </div>
+      </form>
+    </dialog>
+    <script src="index.js"></script>
+  </body>
+</html>

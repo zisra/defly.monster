@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+
+@keyframes rotate {
+  from {
+    transform: rotate(0, 0, 1, -200deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: rotate(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+body {
+  font-family: "Ubuntu", sans-serif;
+  background-color: #eee;
+}
+
+h1 {
+	padding-top: 24px;
+  text-align: center;
+  font-size: 50px;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-family: "Bebas Neue", sans-serif;
+}
+
+#description {
+	text-align: center;
+}
+
+a, a:visited {
+	padding: 8px;
+	margin-top: 20px;
+  color: #3d5dff;
+  text-decoration: none;
+	display: block;
+	font-size: 20px;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.command {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.command-title {
+	background-color: #36393f;
+	border-radius: 4px;
+	color: white;
+	padding: 4px;
+	margin: 4px;
+	width: fit-content;
+}
+
+#logo {
+	text-align: center;
+}
+
+#logo > img {
+	border-radius: 50%;
+	  transition: transform .7s ease-in-out;
+}
+
+#logo > img:hover {
+	    transform: rotate(360deg);
+
+}

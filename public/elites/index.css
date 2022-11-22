@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+body {
+  font-family: "Ubuntu", sans-serif;
+  background-color: #eee;
+  display: flex;
+	justify-content: safe center;
+}
+
+.blue {
+	border-color: #3d5dff;
+}
+
+.dark-green {
+	border-color: #008037;
+}
+
+.red {
+	border-color: #fd3535;
+}
+
+.orange {
+	border-color: #ff8a2f;
+}
+
+.sky-blue {
+	border-color: #55d5ff;
+}
+
+.green {
+	border-color: #18e21f;
+}
+
+.team-box {
+	min-width: 200px;
+	border-radius: 5px;
+	border-style: solid;
+	margin-right: 3px;
+	margin-left: 3px;
+	border-width: 4px;
+	padding: 4px;
+	display: inline-table;
+	height: fit;
+	margin-bottom: 10px;
+}
+
+#container {
+	  margin: 5px;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    text-align: center;
+		flex-shrink: 1
+}
+
+#loading {
+	text-align: center;
+	text-size: 40px;
+}
+
+.team-name {
+	font-size: 30px;
+	font-weight: bold;
+}

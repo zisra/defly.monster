@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Defly.io stats viewer</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="mt-2" id="notifications"></div>
+            <div class="columns is-mobile is-multiline is-centered">
+                <div class="column is-narrow">
+                    <div id="file-block" class="file is-normal is-boxed has-name mt-5">
+                        <label class="file-label">
+                            <input class="file-input" type="file" id="file-input" accept="text/csv">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <?xml
+                                    version="1.0" encoding="UTF-8"?>
+                                    <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000">
+                                        <path d="M6 20h12M12 16V4m0 0l3.5 3.5M12 4L8.5 7.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                </span>
+                            </span>
+                            <span class="file-name" id="file-name">Upload file
+                      </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div id="search-container" class="is-hidden field has-addons m-4">
+                <div class="control is-expanded">
+                    <input oninput="search(event)" id="search-field" class="input" type="text" placeholder="Search for players">
+                </div>
+                <div class="control is-expanded">
+                    <input oninput="search(event)" id="filter-field" class="input" type="text" placeholder="Maximum players to show">
+                </div>
+                <div class="control">
+                    <button class="control button is-link" onclick="saveFile()">Download image</button>
+                </div>
+            </div>
+            <div class="mb-4" id="stats-chart"></div>
+        </div>
+        <script defer src="https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+        <script defer src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
