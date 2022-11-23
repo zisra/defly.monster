@@ -26,7 +26,7 @@ module.exports = {
 				.setLabel('Railway Project')
 				.setStyle(ButtonStyle.Link), 
             new ButtonBuilder()
-				.setURL('https://railway.app/project/' + process.env.RAILWAY_PROJECT_ID + '/service/' + process.env.RAILWAY_DEPLOYMENT_ID)
+				.setURL('https://railway.app/project/' + process.env.RAILWAY_PROJECT_ID + '/service/' + process.env.RAILWAY_SERVICE_ID)
 				.setLabel('Railway Deployment')
 				.setStyle(ButtonStyle.Link),
             new ButtonBuilder()
@@ -34,12 +34,14 @@ module.exports = {
                 .setLabel('Preview Deploy')
 				.setStyle(ButtonStyle.Link),
 		);
+
         const row2 = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
             .setURL(`https://github.com/${process.env.RAILWAY_GIT_REPO_OWNER}/${process.env.RAILWAY_GIT_REPO_NAME}/commit/${process.env.RAILWAY_GIT_COMMIT_SHA}`)
             .setLabel('Current commit')
 			.setStyle(ButtonStyle.Link), 
         )
-		await message.reply({ embeds: [embed], components: [row] });
+		
+		await message.reply({ embeds: [embed], components: [row, row2] });
 	},
 };
