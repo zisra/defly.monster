@@ -80,8 +80,8 @@ client.on('shardError', (error, id) => {
 	});
 });
 
-client.on('shardResume', (id, events) => {
-	Sentry.captureEvent({message: 'Shard resume', event, id });
+client.on('shardResume', (id) => {
+	Sentry.captureEvent({message: 'Shard resume', id });
 	Sentry.configureScope((scope) => {
 		scope.setExtra('discord.js connection', client.isReady());
 	});
