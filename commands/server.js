@@ -10,7 +10,7 @@ module.exports = {
 		const serverRegion = args[0];
 		const serverPort = args[1];
 		if (!serverPort) {
-			await message.reply(
+			return await message.reply(
 				`Something went wrong getting teams. Please try \`${config.PREFIX}server <region (use,usw,eu)> <port (3005,3015,3025)>\``
 			);
 		}
