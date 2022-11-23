@@ -107,7 +107,15 @@ client.on('messageCreate', async (message) => {
 	if (commandFolder.find((i) => i === `${command}.js`)) {
 		const selectedCommand = require(`./commands/${command}.js`);
 		try {
-			selectedCommand.command(message, args, client);
+			if(selectedCommand?.adminOnly){
+				if(process.env.BOT_OWNER === message.author.id){
+					selectedCommand.command(message, args, client);
+				} else {
+					message.react('x');
+				}
+			} else {
+				selectedCommand.command(message, args, client);
+			}
 		} catch (err) {
 			Sentry.captureException(err);
 			await message.reply(
