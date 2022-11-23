@@ -24,6 +24,10 @@ String.prototype.escapeMarkdown = function() {
 
 const { GatewayIntentBits, Partials, AttachmentBuilder, EmbedBuilder } = Discord;
 
+if(process.env.NODE_ENV !== 'production'){
+	require('dotenv').config();
+}
+
 Sentry.init({
 	dsn: process.env.SENTRY_DSN,
 	tracesSampleRate: 1.0,
