@@ -27,11 +27,11 @@ module.exports = {
 				.setStyle(ButtonStyle.Link), 
             new ButtonBuilder()
 				.setURL('https://railway.app/project/' + process.env.RAILWAY_PROJECT_ID + '/service/' + process.env.RAILWAY_SERVICE_ID)
-				.setLabel('Railway Deployment')
+				.setLabel('Railway Service')
 				.setStyle(ButtonStyle.Link),
             new ButtonBuilder()
-                .setURL('https://'+ process.env.RAILWAY_STATIC_URL)
-                .setLabel('Preview Deploy')
+                .setURL('https://railway.app/project/' + process.env.RAILWAY_PROJECT_ID + '/service/' + process.env.RAILWAY_SERVICE_ID + '?id=' + RAILWAY_DEPLOYMENT_ID)
+                .setLabel('Preview Deployment')
 				.setStyle(ButtonStyle.Link),
 		);
 

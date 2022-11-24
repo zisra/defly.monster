@@ -19,12 +19,11 @@ module.exports = {
 		});
 
 		const botCommands = await commands();
-
 		const embed = new EmbedBuilder()
 			.setTitle('Defly Overflow | Commands')
 			.setDescription(
 				botCommands
-					.filter(i=>!i?.adminOnly)
+					.filter(i=>!i.adminOnly)
 					.map(
 						(i) =>
 							`\`d?${i.name}${

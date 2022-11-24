@@ -10,6 +10,7 @@ async function commands(mode) {
 			name: command.replace('.js', ''),
 			arguments: commandData?.arguments ?? null,
 			description: commandData.description,
+			adminOnly: commandData?.adminOnly ?? false,
 		});
 	});
 	return commands;
