@@ -111,7 +111,7 @@ client.on('messageCreate', async (message) => {
 				if(process.env.BOT_OWNER === message.author.id){
 					selectedCommand.command(message, args, client);
 				} else {
-					message.react('x');
+					message.react('\u274C');
 				}
 			} else {
 				selectedCommand.command(message, args, client);

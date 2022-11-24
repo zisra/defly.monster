@@ -121,17 +121,21 @@ function parseFile(fileData) {
   searchField.focus();
 }
 
-fileInput.onchange = () => {
-  if (fileInput.files.length > 0) {
-    fileName.textContent = fileInput.files[0].name;
-    submittedFileName = fileInput.files[0].name;
+function parseInput(input){
+  if (input.files.length > 0) {
+    fileName.textContent = input.files[0].name;
+    submittedFileName = input.files[0].name;
     const reader = new FileReader();
     reader.onload = (e) => {
       fileData = e.target.result;
       parseFile(fileData);
     };
-    reader.readAsText(fileInput.files[0]);
+    reader.readAsText(input.files[0]);
   }
+}
+
+fileInput.onchange = () => {
+  parseInput(fileInput)
 };
 
 fileBlock.ondrop = (e) => {
@@ -172,3 +176,12 @@ window.onkeydown = (e) => {
     searchField.focus();
   }
 }
+
+document.onpaste = (e) => {
+  e.preventDefault();
+  console.log(e)
+  parseInput(e.clipboardData)
+}
+
+
+
