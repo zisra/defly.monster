@@ -41,7 +41,7 @@ module.exports = {
 						'/service/' +
 						process.env.RAILWAY_SERVICE_ID +
 						'?id=' +
-						RAILWAY_DEPLOYMENT_ID
+						process.env.RAILWAY_DEPLOYMENT_ID
 				)
 				.setLabel('Preview Deployment')
 				.setStyle(ButtonStyle.Link)
