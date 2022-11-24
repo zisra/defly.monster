@@ -40,6 +40,7 @@ module.exports = {
             .setURL(`https://github.com/${process.env.RAILWAY_GIT_REPO_OWNER}/${process.env.RAILWAY_GIT_REPO_NAME}/commit/${process.env.RAILWAY_GIT_COMMIT_SHA}`)
             .setLabel('Current commit')
 			.setStyle(ButtonStyle.Link), 
+			
         )
 		
 		await message.reply({ embeds: [embed], components: [row, row2] });

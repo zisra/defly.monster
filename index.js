@@ -201,6 +201,6 @@ app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, 'public/404.html'));
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
 	console.log('Server working');
 });
