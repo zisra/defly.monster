@@ -62,7 +62,7 @@ function getTeams(input) {
 			});
 
 			socket.addEventListener('error', (err) => {
-				reject(err);
+				reject(err.message);
 			});
 
 			let members = [];

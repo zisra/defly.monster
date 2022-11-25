@@ -26,7 +26,7 @@ function generateUpgrades(upgrades, format, density) {
 		upgradeStats.reverse();
 
 		SVG.push(
-			`<svg width="228" height="180" viewBox="0 0 228 180" fill="none" xmlns="http://www.w3.org/2000/svg">`
+			`<svg width="228" height="180" viewBox="0 0 228 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif">`
 		);
 
 		SVG.push(
