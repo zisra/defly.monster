@@ -143,3 +143,12 @@ button {
 .discord:hover {
 	text-decoration: underline;
 }
+
+.beta::after {
+  content: 'Beta';
+  color: #fff;
+  margin-left: 5px;
+  padding: .5vh 1vh;
+  background-color: #3d5dff;
+  border-radius: 1vh;
+}
