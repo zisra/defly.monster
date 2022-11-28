@@ -1,14 +1,16 @@
 ---
 title: Awareness
+tags: 
+    - Hybrid
+    - Tutorials
+author: ANDYMAN
 --- 
-# Awareness
-
 ## Watching for Holes
 You must be watching the map all the time and keeping a close eye on your section for any changes. If you see a part of your base start to disappear you must alert your team. The quicker you catch it the better. If you miss a hole for more than 3 minutes it can become massive and you will have lost a big chunk of area without even knowing. Keep an eye on your map and alert your team so that whoever is digging doesn't get free area from your base.
 
 ## Bridging
 ### Where to bridge
-<img width="200" src="where_to_bridge.png" alt="Where to bridge"/>
+<img width="200" src="img/where_to_bridge.png" alt="Where to bridge"/>
 
 Finding the right spot to start bridging is very important. Below is an example of where you could bridge. The idea is taking a chunk of area from another team by connecting 2 parts of your own base. This can be an effective way of gaining a lot of area in a quick time.
 ### How to bridge safely

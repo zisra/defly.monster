@@ -1,9 +1,10 @@
 ---
 title: Skills and Tricks
+tags: 
+    - Hybrid
+    - Tutorials
+author: ANDYMAN
 ---
-
-# Skills and Tricks
-
 ## Expanding under fire
 
 This is a simple skill which shouldn't really need to be on here, however I see so many players not do this effectively so I felt I should add it. When you there is open territory during a battle you must be expanding towards their border whenever there is an opportunity to do so. The enemies bullets might sometimes move away for a second, and this is when you must take advantage of that small window of opportunity and expand ahead of their fire. However, you must wait for your chance and be patient but ready. Avoiding bullets while expanding is important, which needs practice and experience. This is one of the most important skills for a hybrid and the better you are at it the better hybrid you are.

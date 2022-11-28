@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Defly.io monster | Articles</title>
+  <link rel="stylesheet" href="src/articles.css" />
+
+  <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg">
+  <link rel="icon" type="image/png" href="../favicon/favicon.png">
+
+  <meta name="title" content="Defly.io Monster | Articles">
+  <meta name="description" content="Unleash your inner defly monster!">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Defly.io Monster | Articles">
+  <meta property="og:description" content="Unleash your inner defly monster!">
+  <meta property="og:image" content="favicon/favicon.png">
+</head>
+
+<body>
+  <div class="header">
+    Articles
+  </div>
+  <div class="tag-select"><span class="select-text">Search for tags</span>
+    {{#each tags}}  
+      <span class="tag"><a href="#{{this}}">{{this}}</a></span>
+    {{/each}}
+  </div>
+  <div class="container">
+
+    {{#each articles}}
+      <div class="box">
+        <h2><a class="link" href="./{{title}}">{{title}}</a></h2>{{#each tags}}<span class="tag">{{this}}</span>{{/each}}
+      </div>
+    {{/each}}
+  </div>
+  </div>
+  <script src="src/articles.js"></script>
+</body>
+
+</html>

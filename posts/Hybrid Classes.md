@@ -1,7 +1,11 @@
 ---
 title: Hybrid Classes
+tags: 
+    - Hybrid
+    - Tutorials
+author: ANDYMAN
 ---
-# Standard Hybrid Builds
+## Standard Hybrid Builds
 Here are some of the most commonly used hybrid builds. 
 
 ### Attacking hybrid

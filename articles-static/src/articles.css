@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu&display=swap');
+
+body {
+	font-family: 'Ubuntu', sans-serif;
+	background-color: #eee;
+}
+
+.header {
+	font-family: 'Bebas Neue', sans-serif;
+	font-size: 60px;
+}
+
+.container {
+	margin: 20px auto;
+	width: 80%;
+	display: grid;
+	grid-template-columns: 250px 250px;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+	justify-content: center;
+}
+
+.box {
+	background-color: #333;
+	color: white;
+	font-size: 20px;
+	padding: 20px;
+	border-radius: 10px;
+	overflow: scroll;
+}
+
+.box h2 {
+	font-size: 30px;
+	padding: 0px;
+	margin: 0px;
+	margin-bottom: 10px;
+}
+
+.tag {
+	font-size: 20px;
+	padding: 2px;
+	padding-left: 8px;
+	padding-right: 8px;
+	border: solid 3px;
+	margin-right: 4px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.tag-select {
+	text-align: center;
+	font-size: 20px;
+}
+
+.tag-select .select-text {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.tag-select .tag {
+	padding: 4px;
+}
+
+.close-tag {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+	appearance: auto;
+	margin-left: 2px;
+}
+.close-tag::after {
+    content: "\2715";
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+	display: none;
+}
+
+.tag > a {
+	color:black;
+	text-decoration: none;
+}
