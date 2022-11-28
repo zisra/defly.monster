@@ -1,7 +1,16 @@
+const Response = require('../util/apiResponse.js');
+
 const { eliteTeams } = require('../util/eliteTeams.js');
 
 module.exports = async (req, res) => {
-	const eliteTeamList = await eliteTeams();
+	try {
+		const eliteTeamList = await eliteTeams();
 
-	res.json(eliteTeamList);
+		res.json(eliteTeamList);
+	} catch(err) {
+		new Response(res,{
+			type: 'serverError',
+			err, 
+		})
+	}
 };
