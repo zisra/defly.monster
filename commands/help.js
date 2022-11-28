@@ -20,7 +20,7 @@ module.exports = {
 
 		const botCommands = await commands();
 		const embed = new EmbedBuilder()
-			.setTitle('Defly Overflow | Commands')
+			.setTitle('Defly.io Monster | Commands')
 			.setDescription(
 				botCommands
 					.filter((i) => !i.adminOnly)
