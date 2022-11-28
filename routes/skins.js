@@ -5,6 +5,7 @@ module.exports = async (req, res) => {
 			root: process.cwd(),
 		});
 	} else {
+		res.status(400);
 		res.json({
 			success: false,
 			message: 'No skin ID given',
