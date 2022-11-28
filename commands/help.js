@@ -37,6 +37,10 @@ module.exports = {
 			.setColor(config.EMBED.MAIN);
 		const row = new ActionRowBuilder().addComponents(
 			new ButtonBuilder()
+				.setURL(`https://defly.monster/`)
+				.setLabel('Visit website')
+				.setStyle(ButtonStyle.Link),
+			new ButtonBuilder()
 				.setURL(invite)
 				.setLabel('Invite Bot')
 				.setStyle(ButtonStyle.Link),
