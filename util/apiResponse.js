@@ -42,6 +42,7 @@ function Response(res, {
     type, 
     message, 
     data,
+    err,
 }) {
     if(!res) throw new TypeError('First parameter must be a response object');
     const responseType = errorTypes[type] || errorTypes['serverError'];

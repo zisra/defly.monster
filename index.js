@@ -5,7 +5,6 @@ const path = require('path');
 const Sentry = require('@sentry/node');
 const Discord = require('discord.js');
 const express = require('express');
-const minify = require('express-minify');
 const cors = require('cors');
 
 const config = require('./config.js');
@@ -191,7 +190,6 @@ client.on('interactionCreate', async (interaction) => {
 client.login(process.env.DISCORD_TOKEN);
 
 app.use(express.json());
-app.use(minify());
 app.use(cors());
 app.use(express.static('./public'));
 app.use('/articles', express.static('./articles-static', { extensions: ['html'] }));
