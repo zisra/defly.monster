@@ -3,8 +3,8 @@ const util = require('util');
 const path = require('path');
 
 const Sentry = require('@sentry/node');
-const express = require('express');
 const Discord = require('discord.js');
+const express = require('express');
 const minify = require('express-minify');
 const cors = require('cors');
 
@@ -118,6 +118,7 @@ client.on('messageCreate', async (message) => {
 			}
 		} catch (err) {
 			Sentry.captureException(err);
+			await message.react('\u274C')
 			await message.reply(
 				'Something went wrong with this command. Please try again soon. '
 			);
