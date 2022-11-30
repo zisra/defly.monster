@@ -12,12 +12,19 @@ async function eliteTeams(mode) {
 		red: 9,
 		'sky-blue': 11,
 	};
-	let { data } = await axios.get(
-		`https://docs.google.com/spreadsheets/d/${config.SPREADSHEET_ID}/export?format=csv`
+	let res = await axios.get(
+		`https://docs.google.com/spreadsheets/d/${config.SPREADSHEET_ID}/export?format=csv`, 
+		{
+			responseType: 'text', 
+  			headers: {
+    			'Accept-Encoding': '*'
+  			}
+		}
 	);
 
-	const sheet = Papa.parse(data);
+	const sheet = Papa.parse(res.data);
 	let out = teams;
+
 	sheet.data.splice(0, 4);
 	for (const team in teams) {
 		out[team] = sheet.data

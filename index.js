@@ -11,7 +11,7 @@ const config = require('./config.js');
 const router = require('./router.js');
 const generateArticles = require('./articles.js')
 
-generateArticles()
+generateArticles();
 
 String.prototype.capitalize = function() {
 	return this.charAt(0).toUpperCase() + this.slice(1);
@@ -31,12 +31,6 @@ Sentry.init({
 	dsn: process.env.SENTRY_DSN,
 	tracesSampleRate: 1.0,
 	environment: 'production',
-});
-
-process.on('SIGINT', function() {
-   gracefulShutdown((err) => {
-     process.exit(err ? 1 : 0)
-   });
 });
 
 const app = express();
@@ -93,10 +87,6 @@ client.on('shardResume', (id) => {
 client.on('warn', (warning) => {
 	Sentry.captureEvent({message: 'Warning', warning});
 });
-
-//client.on('debug', (e) => {
-//	console.log(e);
-//});
 
 client.on('messageCreate', async (message) => {
 	if (!message.content.startsWith(config.PREFIX)) return;

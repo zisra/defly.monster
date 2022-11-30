@@ -8,6 +8,7 @@ body {
 .header {
 	font-family: 'Bebas Neue', sans-serif;
 	font-size: 60px;
+	text-align: center;
 }
 
 .container {
