@@ -13,14 +13,7 @@ async function eliteTeams(mode) {
 		'sky-blue': 11,
 	};
 	let res = await axios.get(
-		`https://docs.google.com/spreadsheets/d/${config.SPREADSHEET_ID}/export?format=csv`, 
-		{
-			responseType: 'text', 
-  			headers: {
-    			'Accept-Encoding': '*'
-  			}
-		}
-	);
+		`https://docs.google.com/spreadsheets/d/${config.SPREADSHEET_ID}/export?format=csv`);
 
 	const sheet = Papa.parse(res.data);
 	let out = teams;
