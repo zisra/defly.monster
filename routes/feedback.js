@@ -6,7 +6,7 @@ const { WebhookClient, EmbedBuilder } = require('discord.js');
 module.exports = async (req, res) => {
 	try {
 
-		if(!req.query.feedback ) return Response(res,{
+		if(!req.body.feedback) return Response(res,{
 			type: 'missingParameter',
 			data: 'Missing JSON body feedback parameter'
 		})
