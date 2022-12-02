@@ -14,7 +14,7 @@ function getSkin(skin) {
 	rotors.forEach((rotor) => {
 		finalSkin.images[rotor] = skinData.images[rotor];
 	});
-	fs.writeFileSync(`skins/skin${skin}.txt`, JSON.stringify(finalSkin));
+	fs.writeFileSync(`./src/skins/skin${skin}.txt`, JSON.stringify(finalSkin));
 }
 const originalSkins = {
 	1: {
@@ -510,15 +510,15 @@ function getOGskin(skin) {
 	final.spec.base = file.base;
 	final.images[file.base] =
 		'data:image/png;base64,' +
-		fs.readFileSync(`./images/${file.base}.png`, 'base64');
+		fs.readFileSync(`./src/images/${file.base}.png`, 'base64');
 	final.spec.notint = file.notint;
 	final.images[file.notint] =
 		'data:image/png;base64,' +
-		fs.readFileSync(`./images/${file.notint}.png`, 'base64');
+		fs.readFileSync(`./src/images/${file.notint}.png`, 'base64');
 	file.rotors.forEach((i) => {
 		final.images[i.img] =
 			'data:image/png;base64,' +
-			fs.readFileSync(`./images/${i.img}.png`, 'base64');
+			fs.readFileSync(`./src/images/${i.img}.png`, 'base64');
 		final.spec.rotors.push({
 			...i,
 			visibility: '0',
@@ -531,17 +531,17 @@ function getOGskin(skin) {
 
 	try {
 		const base =
-			fs.readFileSync(`./images/${file.base}.png`, 'base64url') ?? '';
+			fs.readFileSync(`./src/images/${file.base}.png`, 'base64url') ?? '';
 		file.images[file.base] = base;
 		final.images.base = file.base;
 	} catch {}
 	try {
 		const notint =
-			fs.readFileSync(`./images/${file.notint}.png`, 'base64url') ?? '';
+			fs.readFileSync(`./src/images/${file.notint}.png`, 'base64url') ?? '';
 		file.images[file.notint] = notint;
 		final.images.notint = file.notint;
 	} catch {}
-	fs.writeFileSync(`skins/skin${skin}.txt`, JSON.stringify(final));
+	fs.writeFileSync(`./src/skins/skin${skin}.txt`, JSON.stringify(final));
 }
 
 Array.from({ length: 126 }, (_, i) => i + 1).forEach((skin) => {

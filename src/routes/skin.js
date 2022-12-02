@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
 	})
 
 	res.sendFile(`skins/skin${id}.txt`, {
-		root: process.cwd(),
+		root: './src',
 	});
 
 	} catch (err) {

@@ -1,10 +1,9 @@
 const fs = require('fs');
-const path = require('path');
 
 async function commands(mode) {
 	const commands = [];
-	fs.readdirSync(path.join(process.cwd(), 'commands')).forEach((command) => {
-		const commandData = require(path.join(process.cwd(), 'commands', command));
+	fs.readdirSync('./src/commands').forEach((command) => {
+		const commandData = require('../commands/' + command);
 
 		commands.push({
 			name: command.replace('.js', ''),

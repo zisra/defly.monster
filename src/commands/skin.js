@@ -24,7 +24,7 @@ module.exports = {
 					content: `Defly.io skin ID: ${skin}`,
 					files: [
 						{
-							attachment: `./skins/skin${skin}.txt`,
+							attachment: `./src/skins/skin${skin}.txt`,
 							name: `skin${skin}.txt`,
 							description: `Defly.io skin ID: ${skin}`,
 						},

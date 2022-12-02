@@ -44,7 +44,7 @@ function getOGskins() {
 				.toBuffer({ resolveWithObject: true })
 				.then(({ data }) => {
 					fs.writeFileSync(
-						`./images/${Object.keys(JSON.data.frames)[index]}.png`,
+						`./src/images/${Object.keys(JSON.data.frames)[index]}.png`,
 						data
 					);
 				})

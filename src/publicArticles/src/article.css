@@ -35,3 +35,8 @@ img {
 	color:black;
 	text-decoration: none;
 }
+
+.author {
+	font-size: 20px;
+	margin-bottom: 14px;
+}

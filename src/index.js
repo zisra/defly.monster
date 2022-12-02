@@ -9,21 +9,22 @@ const cors = require('cors');
 
 const config = require('./config.js');
 const router = require('./router.js');
-const generateArticles = require('./articles.js')
+const generateArticles = require('./articles.js');
 
 generateArticles();
 
-String.prototype.capitalize = function() {
+String.prototype.capitalize = function () {
 	return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
-String.prototype.escapeMarkdown = function() {
+String.prototype.escapeMarkdown = function () {
 	return Discord.escapeMarkdown(this);
 };
 
-const { GatewayIntentBits, Partials, AttachmentBuilder, EmbedBuilder } = Discord;
+const { GatewayIntentBits, Partials, AttachmentBuilder, EmbedBuilder } =
+	Discord;
 
-if(process.env.NODE_ENV !== 'production'){
+if (process.env.NODE_ENV !== 'production') {
 	require('dotenv').config();
 }
 
@@ -60,44 +61,44 @@ client.on('ready', async (client) => {
 });
 
 client.on('rateLimit', (rateLimit) => {
-	Sentry.captureEvent({message: 'Ratelimit', rateLimit });
+	Sentry.captureEvent({ message: 'Ratelimit', rateLimit });
 });
 
 client.on('shardDisconnect', (event, id) => {
-	Sentry.captureEvent({message: 'Shard disconnect', event, id });
+	Sentry.captureEvent({ message: 'Shard disconnect', event, id });
 	Sentry.configureScope((scope) => {
-	scope.setExtra('discord.js connection', client.isReady());
+		scope.setExtra('discord.js connection', client.isReady());
 	});
 });
 
 client.on('shardError', (error, id) => {
-	Sentry.captureEvent({message: 'shard error', event, id });
+	Sentry.captureEvent({ message: 'shard error', event, id });
 	Sentry.configureScope((scope) => {
-	scope.setExtra('discord.js connection', client.isReady());
+		scope.setExtra('discord.js connection', client.isReady());
 	});
 });
 
 client.on('shardResume', (id) => {
-	Sentry.captureEvent({message: 'Shard resume', id });
+	Sentry.captureEvent({ message: 'Shard resume', id });
 	Sentry.configureScope((scope) => {
 		scope.setExtra('discord.js connection', client.isReady());
 	});
 });
 
 client.on('warn', (warning) => {
-	Sentry.captureEvent({message: 'Warning', warning});
+	Sentry.captureEvent({ message: 'Warning', warning });
 });
 
 client.on('messageCreate', async (message) => {
 	if (!message.content.startsWith(config.PREFIX)) return;
 	const args = message.content.slice(config.PREFIX.length).trim().split(' ');
 	const command = args.shift().toLowerCase();
-	const commandFolder = fs.readdirSync('./commands');
+	const commandFolder = fs.readdirSync('./src/commands');
 	if (commandFolder.find((i) => i === `${command}.js`)) {
 		const selectedCommand = require(`./commands/${command}.js`);
 		try {
-			if(selectedCommand?.adminOnly){
-				if(process.env.BOT_OWNER === message.author.id){
+			if (selectedCommand?.adminOnly) {
+				if (process.env.BOT_OWNER === message.author.id) {
 					selectedCommand.command(message, args, client);
 				} else {
 					message.react('\u274C');
@@ -107,7 +108,7 @@ client.on('messageCreate', async (message) => {
 			}
 		} catch (err) {
 			Sentry.captureException(err);
-			await message.react('\u274C')
+			await message.react('\u274C');
 			await message.reply(
 				'Something went wrong with this command. Please try again soon. '
 			);
@@ -153,7 +154,7 @@ client.on('interactionCreate', async (interaction) => {
 				''
 			);
 			const skinFile = JSON.parse(
-				fs.readFileSync(`./skins/skin${skinId}.txt`, 'utf8')
+				fs.readFileSync(`./src/skins/skin${skinId}.txt`, 'utf8')
 			);
 
 			const skin = Object.keys(skinFile.images).map((key) => {
@@ -181,13 +182,20 @@ client.login(process.env.DISCORD_TOKEN);
 
 app.use(express.json());
 app.use(cors());
-app.use(express.static('./public'));
-app.use('/articles', express.static('./articles-static', { extensions: ['html'] }));
+
+app.use(express.static(__dirname + '/public'));
+app.use(
+	'/articles',
+	express.static(__dirname + '/publicArticles', { extensions: ['html'] })
+);
+
 app.use('/api', router);
 
 app.get('*', (req, res) => {
 	res.status(404);
-	res.sendFile(path.join(__dirname, 'public/404.html'));
+	res.sendFile('./public/404.html', {
+		root: __dirname
+	});
 });
 
 app.listen(process.env.PORT || 3000, () => {
