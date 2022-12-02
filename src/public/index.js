@@ -23,11 +23,6 @@ cancelFeedback.onclick = (e) => {
 
 submitFeedback.onclick = async (e) => {
 	if (feedbackInput.value.length >= 20) {
-		console.log(
-			JSON.stringify({
-				feedback: feedbackInput.value.substring(0, 500),
-			})
-		);
 		submitFeedback.innerHTML = 'Loading...';
 		const data = await fetch('/api/feedback', {
 			method: 'post',
