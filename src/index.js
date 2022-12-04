@@ -6,6 +6,8 @@ const Sentry = require('@sentry/node');
 const Discord = require('discord.js');
 const express = require('express');
 const cors = require('cors');
+const axios = require('axios');
+const session = require('express-session');
 
 const config = require('./config.js');
 const router = require('./router.js');
@@ -180,21 +182,103 @@ client.on('interactionCreate', async (interaction) => {
 
 client.login(process.env.DISCORD_TOKEN);
 
+app.use(
+	session({
+		secret: process.env.CLIENT_SECRET,
+		resave: false,
+		saveUninitialized: true,
+		// cookie: { secure: true },
+	})
+);
+
+app.use('/api/stats', (req, res, next) => {
+	req.guildCount = client.guilds.cache.size;
+	req.guilds = client.guilds.cache.map(guild=> ({
+		available: guild.available, 
+		memberCount: guild.memberCount,
+		owner: guild.ownerId,
+		icon: guild.icon,
+		id: guild.id, 
+		name: guild.name,
+		joinedAt: guild.joinedAt, 
+		createdAt: guild.createdAt,
+	}))
+	req.uptime = client.uptime;
+	req.isReady = client.isReady();
+	
+	next();
+}, router)
+
 app.use(express.json());
 app.use(cors());
-
 app.use(express.static(__dirname + '/public'));
 app.use(
 	'/articles',
 	express.static(__dirname + '/publicArticles', { extensions: ['html'] })
 );
-
 app.use('/api', router);
+
+app.get('/auth', async (req, res) => {
+	const code = req.query.code;
+
+	if (code) {
+		try {
+			const parameters = new URLSearchParams();
+			parameters.append('client_id', process.env.APP_ID);
+			parameters.append('client_secret', process.env.CLIENT_SECRET);
+			parameters.append('grant_type', 'authorization_code');
+			parameters.append('code', code);
+			parameters.append('redirect_uri', 'http://defly.monster/auth/');
+			parameters.append('scope', 'identify');
+
+			const authData = await axios.post(
+				'https://discord.com/api/oauth2/token',
+				parameters,
+				{
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded',
+					},
+				}
+			);
+			const auth = authData.data;
+
+			const userData = await axios.get('https://discord.com/api/users/@me', {
+				headers: {
+					Authorization: `Bearer ${auth.access_token}`,
+				}
+			})
+			const user = userData.data;
+
+			const isAdmin = process.env.ADMINS.split(',').find(usr=> usr === user.id) ? true : false;
+
+			req.session.accessToken = auth.access_token;
+			req.session.refreshToken = auth.refresh_token;
+			req.session.userId = user.id;
+			req.session.username = user.username;
+			req.session.isAdmin = isAdmin;
+
+			res.redirect('/dashboard');
+		} catch (err) {
+			Sentry.captureException(err);
+			console.error(err);
+		}
+	}
+});
+
+app.get('/logout', (req, res) => {
+	req.session.destroy();
+	res.redirect('/dashboard');
+});
+
+app.get('/session', (req, res) => {
+	const {accessToken, refreshToken, userId, username, isAdmin } = req.session;
+	res.json({accessToken, refreshToken, userId, username, isAdmin })
+})
 
 app.get('*', (req, res) => {
 	res.status(404);
 	res.sendFile('./public/404.html', {
-		root: __dirname
+		root: __dirname,
 	});
 });
 

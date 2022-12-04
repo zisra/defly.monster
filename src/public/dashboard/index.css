@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+body {
+	font-family: 'Ubuntu', sans-serif;
+	background-color: #eee;
+}
+
+.button,
+.button:visited {
+	text-align: center;
+	border: none;
+	background-color: #3d5dff;
+	color: white;
+	text-decoration: none;
+	border-radius: 8px;
+	padding: 8px;
+	transition: 0.2s;
+}
+
+.button:hover {
+	filter: brightness(120%);
+}
+
+#login-container {
+	margin-top: 22px;
+	text-align: center;
+	font-size: 20px;
+}
+
+.hidden {
+	display: none;
+}
+
+.user {
+	padding-left: 20px;
+}
+
+#dashboard {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 15px;
+}

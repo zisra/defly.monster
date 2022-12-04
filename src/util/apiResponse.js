@@ -35,6 +35,11 @@ const errorTypes = {
         message: 'Not implemented',
         success: false,
         code: 501, // Not implemented
+    }, 
+    unauthorized: {
+        message: 'Unauthorized',
+        success: false, 
+        code: 401, // Unauthorized
     }
 }
 

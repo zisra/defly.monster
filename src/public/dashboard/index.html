@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defly.io | Dashboard</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg">
+    <link rel="icon" type="image/png" href="../favicon/favicon.png">
+
+    <meta name="title" content="Defly.io | Dashboard">
+    <meta name="description" content="Unleash your inner defly monster!">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Defly.io | Dashboard">
+    <meta property="og:description" content="Unleash your inner defly monster!">
+    <meta property="og:image" content="favicon/favicon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+</head>
+
+<body>
+    <div id="login-container">
+        <a class="button" id="login"
+            href="https://discord.com/api/oauth2/authorize?client_id=883125551139799070&redirect_uri=https%3A%2F%2Fdefly.monster%2Fauth%2F&response_type=code&scope=identify">Log
+            in</a>
+        <a class="button hidden" id="logout" href="/logout">Log out</a>
+        <span class="user" id="user-data"></span>
+    </div>
+    <div id="dashboard">
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

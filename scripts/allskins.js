@@ -3,7 +3,7 @@ const fs = require('fs');
 const sharp = require('sharp');
 
 function getAllSkins() {
-	axios({
+	axios.get({
 		method: 'get',
 		url: 'https://defly.io/img/add-skins.js',
 		responseType: 'stream',
