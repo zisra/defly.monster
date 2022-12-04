@@ -33,7 +33,7 @@ if (process.env.NODE_ENV !== 'production') {
 Sentry.init({
 	dsn: process.env.SENTRY_DSN,
 	tracesSampleRate: 1.0,
-	environment: 'production',
+	environment: process.env.NODE_ENV,
 });
 
 const app = express();
@@ -187,7 +187,7 @@ app.use(
 		secret: process.env.CLIENT_SECRET,
 		resave: false,
 		saveUninitialized: true,
-		// cookie: { secure: true },
+		cookie: { secure: process.env.NODE_ENV === 'production' },
 	})
 );
 
@@ -228,7 +228,7 @@ app.get('/auth', async (req, res) => {
 			parameters.append('client_secret', process.env.CLIENT_SECRET);
 			parameters.append('grant_type', 'authorization_code');
 			parameters.append('code', code);
-			parameters.append('redirect_uri', 'http://defly.monster/auth/');
+			parameters.append('redirect_uri', 'https://defly.monster/auth/');
 			parameters.append('scope', 'identify');
 
 			const authData = await axios.post(
