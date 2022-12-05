@@ -182,32 +182,40 @@ client.on('interactionCreate', async (interaction) => {
 
 client.login(process.env.DISCORD_TOKEN);
 
+const MemoryStore = require('memorystore')(session)
 app.use(
 	session({
 		secret: process.env.CLIENT_SECRET,
 		resave: false,
 		saveUninitialized: true,
+		store: new MemoryStore({
+			checkPeriod: 86400000 
+		  }),
 		cookie: { secure: process.env.NODE_ENV === 'production' },
 	})
 );
 
-app.use('/api/stats', (req, res, next) => {
-	req.guildCount = client.guilds.cache.size;
-	req.guilds = client.guilds.cache.map(guild=> ({
-		available: guild.available, 
-		memberCount: guild.memberCount,
-		owner: guild.ownerId,
-		icon: guild.icon,
-		id: guild.id, 
-		name: guild.name,
-		joinedAt: guild.joinedAt, 
-		createdAt: guild.createdAt,
-	}))
-	req.uptime = client.uptime;
-	req.isReady = client.isReady();
-	
-	next();
-}, router)
+app.use(
+	'/api/stats',
+	(req, res, next) => {
+		req.guildCount = client.guilds.cache.size;
+		req.guilds = client.guilds.cache.map((guild) => ({
+			available: guild.available,
+			memberCount: guild.memberCount,
+			owner: guild.ownerId,
+			icon: guild.icon,
+			id: guild.id,
+			name: guild.name,
+			joinedAt: guild.joinedAt,
+			createdAt: guild.createdAt,
+		}));
+		req.uptime = client.uptime;
+		req.isReady = client.isReady();
+
+		next();
+	},
+	router
+);
 
 app.use(express.json());
 app.use(cors());
@@ -245,11 +253,15 @@ app.get('/auth', async (req, res) => {
 			const userData = await axios.get('https://discord.com/api/users/@me', {
 				headers: {
 					Authorization: `Bearer ${auth.access_token}`,
-				}
-			})
+				},
+			});
 			const user = userData.data;
 
-			const isAdmin = process.env.ADMINS.split(',').find(usr=> usr === user.id) ? true : false;
+			const isAdmin = process.env.ADMINS.split(',').find(
+				(usr) => usr === user.id
+			)
+				? true
+				: false;
 
 			req.session.accessToken = auth.access_token;
 			req.session.refreshToken = auth.refresh_token;
@@ -271,9 +283,9 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/session', (req, res) => {
-	const {accessToken, refreshToken, userId, username, isAdmin } = req.session;
-	res.json({accessToken, refreshToken, userId, username, isAdmin })
-})
+	const { accessToken, refreshToken, userId, username, isAdmin } = req.session;
+	res.json({ accessToken, refreshToken, userId, username, isAdmin });
+});
 
 app.get('*', (req, res) => {
 	res.status(404);
