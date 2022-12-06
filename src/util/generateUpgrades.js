@@ -1,4 +1,5 @@
 const sharp = require('sharp');
+const path = require('path');
 
 function generateUpgrades(upgrades, format, density) {
 	return new Promise(async (resolve, reject) => {
@@ -26,7 +27,7 @@ function generateUpgrades(upgrades, format, density) {
 		upgradeStats.reverse();
 
 		SVG.push(
-			`<svg width="228" height="180" viewBox="0 0 228 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif">`
+			`<svg width="228" height="180" viewBox="0 0 228 180" fill="none" xmlns="http://www.w3.org/2000/svg">`
 		);
 
 		SVG.push(
@@ -126,7 +127,9 @@ function generateUpgrades(upgrades, format, density) {
 		if (format === 'png') {
 			const data = await sharp(
 				Buffer.from(SVG.map((i) => i.replace('\n', '')).join('')),
-				{ density: parseInt(density) || 300 }
+				{
+					density: parseInt(density) || 300,
+				}
 			)
 				.png({ palette: true })
 				.toBuffer();

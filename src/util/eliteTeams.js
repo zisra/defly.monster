@@ -7,9 +7,9 @@ async function eliteTeams(mode) {
 	let teams = {
 		blue: 1,
 		'dark-green': 3,
-		orange: 5,
-		green: 7,
-		red: 9,
+		orange: 7,
+		green: 9,
+		red: 5,
 		'sky-blue': 11,
 	};
 	let res = await axios.get(
