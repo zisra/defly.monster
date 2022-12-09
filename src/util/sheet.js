@@ -29,11 +29,13 @@ module.exports = () => {
 				const { data } = res;
 				const sheetData = data.sheets[0].data[0].rowData.map((row) => {
 					return row.values.map((cell) => {
+						let note = undefined;
+						if(cell.note) note = cell.note.replace(' ', '').split('\n')[0];
+
+						console.log(JSON.stringify(note));
 						return {
 							value: cell.formattedValue,
-							note: cell.note?.includes('\n')
-								? cell.note.split('\n')[0].replace(" ", "")
-								: cell.note,
+							note: note,
 						};
 					});
 				});
