@@ -32,8 +32,8 @@ module.exports = () => {
 						return {
 							value: cell.formattedValue,
 							note: cell.note?.includes('\n')
-								? parseInt(cell.note.split('\n')[0])
-								: parseInt(cell.note),
+								? cell.note.split('\n')[0].replace(" ", "")
+								: cell.note,
 						};
 					});
 				});

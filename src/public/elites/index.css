@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 body {
-  font-family: "Ubuntu", sans-serif;
-  background-color: #eee;
-  display: flex;
+	font-family: 'Ubuntu', sans-serif;
+	background-color: #eee;
+	display: flex;
 	justify-content: safe center;
 }
 
@@ -44,12 +44,12 @@ body {
 }
 
 #container {
-	  margin: 5px;
-    display: flex;
-    flex-direction: row;
-    overflow-x: scroll;
-    text-align: center;
-		flex-shrink: 1
+	margin: 5px;
+	display: flex;
+	flex-direction: row;
+	overflow-x: scroll;
+	text-align: center;
+	flex-shrink: 1;
 }
 
 #loading {
@@ -60,4 +60,14 @@ body {
 .team-name {
 	font-size: 30px;
 	font-weight: bold;
+}
+
+a, a:visited {
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+}
+
+a:hover {
+	text-decoration: underline;
 }

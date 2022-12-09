@@ -1,7 +1,7 @@
 const { EmbedBuilder } = require('discord.js');
 const axios = require('axios');
 
-const { eliteTeams } = require('../util/eliteTeams.js');
+const eliteTeams = require('../util/sheet.js');
 const config = require('../config.js');
 
 module.exports = {
@@ -30,9 +30,13 @@ module.exports = {
 					`https://docs.google.com/spreadsheets/d/${config.SPREADSHEET_ID}/`
 				)
 				.setDescription(
-					`**Captain:** ${eliteTeamList[eliteTeam][0]}
-					**Vice Captain:** ${eliteTeamList[eliteTeam][1]}
-		 ${eliteTeamList[eliteTeam].slice(2).join('\n').escapeMarkdown()}`
+					`**Captain:** ${eliteTeamList[eliteTeam][0].value} <@${eliteTeamList[eliteTeam][0].note}>
+					**Vice Captain:** ${eliteTeamList[eliteTeam][1].value} <@${eliteTeamList[eliteTeam][1].note}>
+		 ${eliteTeamList[eliteTeam]
+				.slice(2)
+				.map((name) => `${name.value} <@${name.note}>`)
+				.join('\n')
+				.escapeMarkdown()}`
 				);
 			await message.reply({ embeds: [embed] });
 		}
