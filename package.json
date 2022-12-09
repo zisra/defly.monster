@@ -6,7 +6,8 @@
 		"start": "node src/index.js",
 		"getskins": "node scripts/getskins.js",
 		"allskins": "node scripts/allskins.js",
-		"singleskin": "node scripts/singleskin.js"
+		"singleskin": "node scripts/singleskin.js",
+		"sheet": "node src/util/sheet.js"
 	},
 	"author": "Isra",
 	"license": "ISC",
@@ -19,6 +20,7 @@
 		"dotenv": "^16.0.3",
 		"express": "^4.17.3",
 		"express-session": "^1.17.3",
+		"googleapis": "^109.0.1",
 		"gray-matter": "^4.0.3",
 		"handlebars": "^4.7.7",
 		"marked": "^4.2.1",

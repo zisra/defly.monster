@@ -11,7 +11,7 @@ These two features help you for doing transitions between stances and to give yo
 
 In visibility, the editor allows you to:
 - Make one image visible while moving, while still or in both stances
- - Creating transitions
+- Creating transitions
 
 If you want your rotors to still show up when idle and moving, make the value of visibility 0. If you don't want this, then you'll choose between 1 and 2, so the rotor you chose will only show up in one stage, depending on what you want to do with your skin animation. For making it visible while moving choose 1, and for making it visible while still make it 2.
 

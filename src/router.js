@@ -9,5 +9,6 @@ api.get('/commands', require('./routes/commands.js'));
 api.get('/skin', require('./routes/skin.js'));
 api.get('/articles', require('./routes/articles.js'));
 api.get('/stats', require('./routes/stats.js'));
+api.get('/eliteTeams/v2', require('./routes/eliteTeamsV2.js'));
 
 module.exports = api;
