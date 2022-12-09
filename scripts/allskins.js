@@ -3,14 +3,15 @@ const fs = require('fs');
 const sharp = require('sharp');
 
 function getAllSkins() {
-	axios.get({
-		method: 'get',
-		url: 'https://defly.io/img/add-skins.js',
-		responseType: 'stream',
-	}).then(function (response) {
-		response.data.pipe(fs.createWriteStream('allskins.txt'));
-	});
+	axios
+		.get('https://defly.io/img/add-skins.js', {
+			responseType: 'stream',
+		})
+		.then((response) => {
+			response.data.pipe(fs.createWriteStream('allskins.txt'));
+		});
 }
+
 function getOGskins() {
 	const baseURL = 'https://defly.io/img/';
 

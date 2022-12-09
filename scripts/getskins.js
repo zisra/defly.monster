@@ -1,3 +1,4 @@
+const config = require('./src/config.js');
 const fs = require('fs');
 
 const skinData = JSON.parse(fs.readFileSync('./allskins.txt', 'utf8'));
@@ -544,8 +545,8 @@ function getOGskin(skin) {
 	fs.writeFileSync(`./src/skins/skin${skin}.txt`, JSON.stringify(final));
 }
 
-Array.from({ length: 126 }, (_, i) => i + 1).forEach((skin) => {
-	if (skin < 26) {
+Array.from({ length: config.MAX_SKINS }, (_, i) => i + 1).forEach((skin) => {
+	if (skin <= 26) {
 		getOGskin(skin);
 	} else {
 		getSkin(skin);

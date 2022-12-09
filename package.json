@@ -6,7 +6,6 @@
 		"start": "node src/index.js",
 		"getskins": "node scripts/getskins.js",
 		"allskins": "node scripts/allskins.js",
-		"singleskin": "node scripts/singleskin.js",
 		"sheet": "node src/util/sheet.js"
 	},
 	"author": "Isra",
