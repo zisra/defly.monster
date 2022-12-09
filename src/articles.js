@@ -1,7 +1,6 @@
 const marked = require('marked');
 const grayMatter = require('gray-matter');
 const { compile } = require('handlebars');
-const sanitize = require('sanitize-html');
 
 const fs = require('fs');
 
@@ -21,7 +20,7 @@ function generateArticles() {
 			title: article.data.title,
 			tags: article.data.tags,
 			author: article.data.author,
-			content: sanitize(marked.parse(article.content)),
+			content: marked.parse(article.content),
 			markdown: article.content,
 		};
 

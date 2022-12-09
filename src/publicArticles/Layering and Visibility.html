@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Defly.io monster | Layering and Visibility</title>
+  <link rel="stylesheet" href="src/article.css" />
+
+  <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg">
+  <link rel="icon" type="image/png" href="../favicon/favicon.png">
+
+  <meta name="title" content="Defly.io Monster | Layering and Visibility">
+  <meta name="description" content="Unleash your inner defly monster!">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Defly.io Monster | Layering and Visibility">
+  <meta property="og:description" content="Unleash your inner defly monster!">
+  <meta property="og:image" content="favicon/favicon.png">
+</head>
+
+<body>
+  <h1 class="title">Layering and Visibility</h1>
+  <div class="author">By Hyperion</div>
+  <div class="tags">
+      <span class="tag"><a href="./#Design">Design</a></span>
+      <span class="tag"><a href="./#Skins">Skins</a></span>
+  </div>
+  <div id="container">
+    <p>While making a skin, the editor has these feature to keep your rotors organized: Layering and Visibility</p>
+<p>These two features help you for doing transitions between stances and to give your skin the right volume.</p>
+<p>In visibility, the editor allows you to:</p>
+<ul>
+<li>Make one image visible while moving, while still or in both stances</li>
+<li>Creating transitions</li>
+</ul>
+<p>If you want your rotors to still show up when idle and moving, make the value of visibility 0. If you don&#39;t want this, then you&#39;ll choose between 1 and 2, so the rotor you chose will only show up in one stage, depending on what you want to do with your skin animation. For making it visible while moving choose 1, and for making it visible while still make it 2.</p>
+<p>Always make sure the rotors gets a number here, if you leave it blank it will automatically change to 0</p>
+<p>Another important step to make sure your rotors are well organized is the Layering of the rotors. When uploading rotors, the editor allows you to choose in which layer one rotor will be, either in the highest layers or in the lowest one. If you want your rotor in the lowest layer, make the value 0. From that, choose ahigher* number for the other rotors so they appear on the highest layers.</p>
+<p>If you choose a value similar to one from another rotor, the highest one in the order of rotors will be over the other one.</p>
+<p>Both Layering and Visibility are important at the final touches of your skin. Sometimes the rotors look well placed once moving but seems different when  idle because one rotor disappeared or a new one is there. Although visibility doesn&#39;t affect the layering, always check it before using the skin to avoid these troubles. 
+For example, this is an image from the rotors of Golden Claw. </p>
+<p><img src="img/visibility_common_mistakes.png" alt="Visibility common mistakes"></p>
+<ul>
+<li>The blue part is a tinted fade in the back I want to only show up when moving, so I chose the lowest layer and the value of visibility 1 (visible when moving).</li>
+<li>The red part is a No Tint that I want it to show up every time, so it is on the top layer and has 0 as their visibility value (all the time)</li>
+<li>The green parts are other rotors, like body parts, tinted stuff and different fades, so they have a different layer each between 0 to 10, but I chose their visibility value to be 2 so that they all are visible once staying still, making a transition effect.</li>
+</ul>
+
+  </div>
+</body>
+
+</html>

@@ -32,6 +32,5 @@ You want to be making sure that when you are destroying a tower you want to be s
 ## Tower Priority
 Tower priority is all about which tower has the most connections to it, a tower with a higher number of connections will be harder for the target to defend and therefore be more likely to get you a kill. Targeting these towers at the right time to trouble your target can be incredibly powerful. When shooting these high priority towers make sure to be shooting them in a direction that is threatening your target.
 
-### Key
+## Key
 <img width="200" src="img/key.png" alt="Where to bridge (example)"/>
-

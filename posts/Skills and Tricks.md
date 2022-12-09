@@ -12,7 +12,7 @@ This is a simple skill which shouldn't really need to be on here, however I see 
 ## Bullet stacking
 This is a very common skill these days which all hybrids must know. To Bullet Stack you move away from your target in the opposite direction. You then start firing bullets as you move towards your target. The aim is to get your bullets close together so that whoever is defending cannot repair quick enough and is caught off guard. The more Player Speed you have the more effective this skill is, however it is still effective at 0 player speed.
 
-## Finger dancing
+## Fingerdancing
 Building and shooting at the same time is an extremely useful skill which will help defend area as well as speed things up. To do this you must alternate your clicks. Press left click to shoot and then right click to build. You must press them quick enough so that you shoot as if you were holding left click down but you will also be builder. This skill is all about finding the right rhythm to alternate your clicks. You must alternate quick enough so that you shoot at full reload but slow enough so that you can do it for a long period of time and not get worn out. Doing this correctly for a long period of time is hard and takes a lot of practice to get right. This skill is mostly useful when clearing out area and splitting it up.
 
 ## Target switching

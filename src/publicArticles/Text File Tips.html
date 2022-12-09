@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Defly.io monster | Skin File Tips</title>
+  <link rel="stylesheet" href="src/article.css" />
+
+  <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg">
+  <link rel="icon" type="image/png" href="../favicon/favicon.png">
+
+  <meta name="title" content="Defly.io Monster | Skin File Tips">
+  <meta name="description" content="Unleash your inner defly monster!">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Defly.io Monster | Skin File Tips">
+  <meta property="og:description" content="Unleash your inner defly monster!">
+  <meta property="og:image" content="favicon/favicon.png">
+</head>
+
+<body>
+  <h1 class="title">Skin File Tips</h1>
+  <div class="author">By Risky Player 13</div>
+  <div class="tags">
+      <span class="tag"><a href="./#Design">Design</a></span>
+      <span class="tag"><a href="./#Skins">Skins</a></span>
+  </div>
+  <div id="container">
+    <p>There are mostly no major limitations to want you can upload to the skin editor except for the file size especially if you are making skins just for the fun of it. This being said, some people might have other things in mind like game performance or asking the developer to add the skin to the game.</p>
+<p>If you want your skin to have a good chance of being added to the game, you definitely want to minimize the text file size of your skin since when a skin is added to the game, it increases the initial loading time of the game when you press Play button, and Defly&#39;s Developer cares about this.</p>
+<p>Another thing to note is unnecessary layers (rotors). Each layer that is added to skin affects game&#39;s performance so you might want keep the number of your layers as low as possible.</p>
+<p>Here are some tips for reducing text file size:</p>
+<ul>
+<li><p>My guess about optimal text file size is something about 25kbs. It&#39;s just a guess based on the reconstruction of the default skin using the PNG files in the skin design channel of the main server (and some other skins). Try to get your text file size to something about that.</p>
+</li>
+<li><p>It is stated in the main server&#39;s skin design that the PNG file should be 256x256. This obviously affects the file size a lot, but the thing is that your PNG file doesn&#39;t necessarily need to be 256x256, you see a lot PNG files used in the game that are larger than that. But more importantly, your PNG file can be smaller than 256x256. This is especially useful if you are struggling to lower your file size; and also have this in mind that there are scaling options in the skin editor that can resize your original PNG file so they would look as if they were 256x256 (with less quality).</p>
+</li>
+<li><p>Changing The bit depth of your PNG file can help a lot in reducing file size. Usually the bit depth of PNG files is set to RGBA8 (Red, Green, Blue, Alpha (transparency)) or RGBA16. The thing is that most of your PNG files for skin editor will be black and white and will be later tinted by the game. So you can use other bit depths that make your PNG file appear black and white like GrayAlpha8 to reduce your PNG file size.
+I doubt that this will be ever the case but if your PNG file doesn&#39;t have any transparent areas, you can remove the Alpha too.
+Bit depth setting is usually available when you are saving or exporting your PNG file.</p>
+</li>
+</ul>
+
+  </div>
+</body>
+
+</html>
