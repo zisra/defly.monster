@@ -40,7 +40,7 @@ module.exports.EXCUSES = [
 	''
 ];
 
-module.exports.MAX_SKINS = 136;
+module.exports.MAX_SKINS = 137;
 
 module.exports.REGION_LIST = [
 	{ region: 'EU1', ws: 'eu1-1', alias: 'eu' },
