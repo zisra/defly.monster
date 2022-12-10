@@ -40,3 +40,28 @@ body {
 	text-align: center;
 	font-size: 15px;
 }
+
+table {
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+
+td,
+th {
+	text-align: left;
+	padding: 4px;
+}
+
+a, a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}

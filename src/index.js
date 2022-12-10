@@ -1,3 +1,5 @@
+// https://discord.com/api/oauth2/authorize?client_id=883125551139799070&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2F&response_type=code&scope=identify
+
 const fs = require('fs');
 const util = require('util');
 const path = require('path');
@@ -182,16 +184,19 @@ client.on('interactionCreate', async (interaction) => {
 
 client.login(process.env.DISCORD_TOKEN);
 
-const MemoryStore = require('memorystore')(session)
+const MemoryStore = require('memorystore')(session);
 app.use(
 	session({
 		secret: process.env.CLIENT_SECRET,
 		resave: false,
 		saveUninitialized: true,
 		store: new MemoryStore({
-			checkPeriod: 86400000 
-		  }),
-		cookie: { secure: process.env.NODE_ENV === 'production' },
+			checkPeriod: 86400000,
+		}),
+		cookie: {
+			secure: process.env.NODE_ENV === 'production',
+			domain: process.env.NODE_ENV === 'production' ? 'defly.monster' : null,
+		},
 	})
 );
 
@@ -236,7 +241,12 @@ app.get('/auth', async (req, res) => {
 			parameters.append('client_secret', process.env.CLIENT_SECRET);
 			parameters.append('grant_type', 'authorization_code');
 			parameters.append('code', code);
-			parameters.append('redirect_uri', 'https://defly.monster/auth/');
+			parameters.append(
+				'redirect_uri',
+				process.env.NODE_ENV === 'production'
+					? 'https://defly.monster/auth/'
+					: 'http://localhost:3000/auth/'
+			);
 			parameters.append('scope', 'identify');
 
 			const authData = await axios.post(
