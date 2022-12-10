@@ -30,11 +30,11 @@ module.exports = {
 					`https://docs.google.com/spreadsheets/d/${config.SPREADSHEET_ID}/`
 				)
 				.setDescription(
-					`**Captain:** ${eliteTeamList[eliteTeam][0].value} <@${eliteTeamList[eliteTeam][0].note}>
-					**Vice Captain:** ${eliteTeamList[eliteTeam][1].value} <@${eliteTeamList[eliteTeam][1].note}>
+					`**Captain:** [${eliteTeamList[eliteTeam][0].value}](https://discord.com/users/${eliteTeamList[eliteTeam][0].note})
+					**Vice Captain:** [${eliteTeamList[eliteTeam][1].value}](https://discord.com/users/${eliteTeamList[eliteTeam][1].note})
 		 ${eliteTeamList[eliteTeam]
 				.slice(2)
-				.map((name) => `${name.value} <@${name.note}>`)
+				.map((name) => `[${name.value}](https://discord.com/users/${name.note})`)
 				.join('\n')
 				.escapeMarkdown()}`
 				);

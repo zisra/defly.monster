@@ -32,7 +32,6 @@ module.exports = () => {
 						let note = undefined;
 						if(cell.note) note = cell.note.replace(' ', '').split('\n')[0];
 
-						console.log(JSON.stringify(note));
 						return {
 							value: cell.formattedValue,
 							note: note,
