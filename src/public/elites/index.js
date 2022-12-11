@@ -5,7 +5,7 @@ String.prototype.capitalize = function() {
 const container = document.getElementById('container');
 
 window.onload = async () => {
-	const data = await fetch('/api/eliteTeams/v2');
+	const data = await fetch('/api/eliteTeams/');
 	const res = await data.json();
 	let teamBoxes = []
 
