@@ -185,7 +185,7 @@ client.on('interactionCreate', async (interaction) => {
 
 client.login(process.env.DISCORD_TOKEN);
 
-if (processs.env.NODE_ENV == 'production') {
+if (process.env.NODE_ENV == 'production') {
 	app.set('trust proxy', 1);
 }
 
