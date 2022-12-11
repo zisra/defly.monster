@@ -6,7 +6,7 @@ const dashboard = document.getElementById('dashboard');
 
 window.onload = async () => {
 	const relativeTime = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
-	const data = await fetch('/session');
+	const data = await fetch('/api/session');
 	const res = await data.json();
 	if (res.accessToken) {
 		login.classList.add('hidden');
@@ -43,7 +43,11 @@ window.onload = async () => {
 				.map((guild) => {
 					return `
 				<tr>
-					<td><img src="${guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`: 'https://cdn.discordapp.com/embed/avatars/1.png'}" width="30px;"</td> 
+					<td><img src="${
+						guild.icon
+							? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`
+							: 'https://cdn.discordapp.com/embed/avatars/1.png'
+					}" width="30px;"</td> 
 					<td>${guild.name}</td>
 					<td>${guild.memberCount}</td>
 					<td><a href="https://discord.com/channels/${guild.id}">${guild.id}</a></td>

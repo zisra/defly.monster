@@ -7,9 +7,9 @@ module.exports = async (req, res) => {
 		const commandList = await commands();
 		res.json(commandList.filter((i) => !i.adminOnly));
 	} catch (err) {
-		new Response(res,{
+		new Response(res, {
 			type: 'serverError',
-			err, 
-		})
+			err,
+		});
 	}
 };

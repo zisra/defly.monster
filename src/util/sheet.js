@@ -30,7 +30,7 @@ module.exports = () => {
 				const sheetData = data.sheets[0].data[0].rowData.map((row) => {
 					return row.values.map((cell) => {
 						let note = undefined;
-						if(cell.note) note = cell.note.replace(' ', '').split('\n')[0];
+						if (cell.note) note = cell.note.replace(' ', '').split('\n')[0];
 
 						return {
 							value: cell.formattedValue,

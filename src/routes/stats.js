@@ -1,14 +1,13 @@
 const Response = require('../util/apiResponse.js');
 
-
 module.exports = async (req, res) => {
-	if(req.session.isAdmin){
+	if (req.session.isAdmin) {
 		try {
 			const response = {
 				guildCount: req.guildCount,
 				guilds: req.guilds,
 				uptime: req.uptime,
-				isReady: req.isReady, 
+				isReady: req.isReady,
 			};
 			res.json(response);
 		} catch (err) {
@@ -20,6 +19,6 @@ module.exports = async (req, res) => {
 	} else {
 		return Response(res, {
 			type: 'unauthorized',
-		})
+		});
 	}
 };

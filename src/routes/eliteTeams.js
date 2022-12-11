@@ -7,10 +7,10 @@ module.exports = async (req, res) => {
 		const eliteTeamList = await eliteTeams();
 
 		res.json(eliteTeamList);
-	} catch(err) {
-		new Response(res,{
+	} catch (err) {
+		new Response(res, {
 			type: 'serverError',
-			err, 
-		})
+			err,
+		});
 	}
 };

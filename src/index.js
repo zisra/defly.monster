@@ -1,4 +1,4 @@
-// https://discord.com/api/oauth2/authorize?client_id=883125551139799070&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2F&response_type=code&scope=identify
+// https://discord.com/api/oauth2/authorize?client_id=883125551139799070&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2F&response_type=code&scope=identify
 
 const fs = require('fs');
 const util = require('util');
@@ -190,6 +190,7 @@ if (process.env.NODE_ENV == 'production') {
 }
 
 const MemoryStore = memoryStore(session);
+
 app.use(
 	session({
 		secret: process.env.CLIENT_SECRET,
@@ -201,6 +202,7 @@ app.use(
 		cookie: {
 			secure: process.env.NODE_ENV === 'production',
 			domain: process.env.NODE_ENV === 'production' ? 'defly.monster' : null,
+			maxAge: 1000 * 60 * 60 * 24, // One day
 		},
 	})
 );
@@ -234,73 +236,8 @@ app.use(
 	'/articles',
 	express.static(__dirname + '/publicArticles', { extensions: ['html'] })
 );
+
 app.use('/api', router);
-
-app.get('/auth', async (req, res) => {
-	const code = req.query.code;
-
-	if (code) {
-		try {
-			const parameters = new URLSearchParams();
-			parameters.append('client_id', process.env.APP_ID);
-			parameters.append('client_secret', process.env.CLIENT_SECRET);
-			parameters.append('grant_type', 'authorization_code');
-			parameters.append('code', code);
-			parameters.append(
-				'redirect_uri',
-				process.env.NODE_ENV === 'production'
-					? 'https://defly.monster/auth/'
-					: 'http://localhost:3000/auth/'
-			);
-			parameters.append('scope', 'identify');
-
-			const authData = await axios.post(
-				'https://discord.com/api/oauth2/token',
-				parameters,
-				{
-					headers: {
-						'Content-Type': 'application/x-www-form-urlencoded',
-					},
-				}
-			);
-			const auth = authData.data;
-
-			const userData = await axios.get('https://discord.com/api/users/@me', {
-				headers: {
-					Authorization: `Bearer ${auth.access_token}`,
-				},
-			});
-			const user = userData.data;
-
-			const isAdmin = process.env.ADMINS.split(',').find(
-				(usr) => usr === user.id
-			)
-				? true
-				: false;
-
-			req.session.accessToken = auth.access_token;
-			req.session.refreshToken = auth.refresh_token;
-			req.session.userId = user.id;
-			req.session.username = user.username;
-			req.session.isAdmin = isAdmin;
-
-			res.redirect('/dashboard');
-		} catch (err) {
-			Sentry.captureException(err);
-			console.error(err);
-		}
-	}
-});
-
-app.get('/logout', (req, res) => {
-	req.session.destroy();
-	res.redirect('/dashboard');
-});
-
-app.get('/session', (req, res) => {
-	const { accessToken, refreshToken, userId, username, isAdmin } = req.session;
-	res.json({ accessToken, refreshToken, userId, username, isAdmin });
-});
 
 app.get('*', (req, res) => {
 	res.status(404);

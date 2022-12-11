@@ -37,7 +37,7 @@ module.exports.EXCUSES = [
 	'Weird how I died, there must be a bug in the game',
 	"Not to make any excuses, but I'm pretty sure I got killed by a hacker.",
 	'Oof, that was my clone.',
-	''
+	'',
 ];
 
 module.exports.MAX_SKINS = 137;
@@ -97,15 +97,7 @@ module.exports.EMBED = {
 	SUCCESS: '3fa577',
 	WARNING: 'fbab18',
 	ERROR: 'f04747',
-	MAIN: 'f659ff'
-}
+	MAIN: 'f659ff',
+};
 
-module.exports.TIME_FORMATS = [
-	't',
-	'T',
-	'd',
-	'D',
-	'f',
-	'F',
-	'R'
-]
+module.exports.TIME_FORMATS = ['t', 'T', 'd', 'D', 'f', 'F', 'R'];
