@@ -1,5 +1,5 @@
-module.exports.PREFIX = 'd?';
-module.exports.TEAM_EMOJIS = {
+exports.PREFIX = 'd?';
+exports.TEAM_EMOJIS = {
 	blue: '884904847118323722',
 	'dark-green': '884904846887649291',
 	orange: '884904847067979837',
@@ -8,12 +8,12 @@ module.exports.TEAM_EMOJIS = {
 	green: '735889328261169253',
 };
 
-module.exports.UPGRADES = {
+exports.UPGRADES = {
 	ON: '<:upg_on:948707185716772874>',
 	OFF: '<:upg_off:948707185771294771>',
 };
 
-module.exports.EXCUSES = [
+exports.EXCUSES = [
 	'I swear it was lag!',
 	'Dang, why is my ping so high?',
 	'Why do people have to kill me when I get a disconnect?',
@@ -37,19 +37,18 @@ module.exports.EXCUSES = [
 	'Weird how I died, there must be a bug in the game',
 	"Not to make any excuses, but I'm pretty sure I got killed by a hacker.",
 	'Oof, that was my clone.',
-	'',
 ];
 
-module.exports.MAX_SKINS = 137;
+exports.MAX_SKINS = 137;
 
-module.exports.REGION_LIST = [
+exports.REGION_LIST = [
 	{ region: 'EU1', ws: 'eu1-1', alias: 'eu' },
 	{ region: 'USE1', ws: 'use4', alias: 'use' },
 	{ region: 'USW1', ws: 'usw4', alias: 'usw' },
 	{ region: 'TR', ws: 'use5', alias: 'tr' },
 ];
 
-module.exports.TEAM_COLORS = {
+exports.TEAM_COLORS = {
 	2: { color: 'Blue', hex: '3d5dff' },
 	3: { color: 'Red', hex: 'fd3535' },
 	4: { color: 'Dark Green', hex: '008037' },
@@ -60,7 +59,7 @@ module.exports.TEAM_COLORS = {
 	9: { color: 'Pink', hex: 'f659ff' },
 };
 
-module.exports.ELITE_TEAM_NAMES = [
+exports.ELITE_TEAM_NAMES = [
 	'blue',
 	'dark-green',
 	'orange',
@@ -69,7 +68,7 @@ module.exports.ELITE_TEAM_NAMES = [
 	'sky-blue',
 ];
 
-module.exports.ELITE_TEAMS = {
+exports.ELITE_TEAMS = {
 	blue: {
 		color: '3d5dff',
 	},
@@ -89,15 +88,27 @@ module.exports.ELITE_TEAMS = {
 		color: '55d5ff',
 	},
 };
-module.exports.SPREADSHEET_ID = '1b2z_lTIPEVhabnP73Mir3ttOZlqgEoLV9mLE1T-m1Y4';
 
-module.exports.SUPPORT_GUILD = 'AMyahUvd4Q';
+exports.SUPPORT_GUILD = 'AMyahUvd4Q';
 
-module.exports.EMBED = {
+exports.EMBED = {
 	SUCCESS: '3fa577',
 	WARNING: 'fbab18',
 	ERROR: 'f04747',
 	MAIN: 'f659ff',
 };
 
-module.exports.TIME_FORMATS = ['t', 'T', 'd', 'D', 'f', 'F', 'R'];
+exports.TIME_FORMATS = ['t', 'T', 'd', 'D', 'f', 'F', 'R'];
+
+exports.SPREADSHEET_TEAMS = {
+	1: 'blue',
+	3: 'dark-green',
+	7: 'orange',
+	9: 'green',
+	5: 'red',
+	11: 'sky-blue',
+};
+
+exports.SPREADSHEET_RANGE = 'Season 07!A5:L24';
+
+exports.SPREADSHEET_ID = '1b2z_lTIPEVhabnP73Mir3ttOZlqgEoLV9mLE1T-m1Y4';

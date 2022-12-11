@@ -10,6 +10,7 @@ api.get('/commands', require('./routes/commands.js'));
 api.get('/skin', require('./routes/skin.js'));
 api.get('/articles', require('./routes/articles.js'));
 api.get('/stats', require('./routes/stats.js'));
+api.get('/server', require('./routes/server.js'));
 
 // Session routes
 api.get('/auth', require('./routes/auth.js'));

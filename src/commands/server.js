@@ -1,5 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const Sentry = require('@sentry/node');
+
 const config = require('../config.js');
 const { getTeams } = require('../util/getTeams.js');
 
@@ -9,7 +10,7 @@ module.exports = {
 	command: async (message, args, client) => {
 		const serverRegion = args[0];
 		const serverPort = args[1];
-		if (!serverPort) {
+		if (!serverPort || !serverRegion) {
 			return await message.reply(
 				`Something went wrong getting teams. Please try \`${config.PREFIX}server <region (use,usw,eu)> <port (3005,3015,3025)>\``
 			);

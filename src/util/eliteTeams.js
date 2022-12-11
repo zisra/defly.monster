@@ -1,26 +1,18 @@
 const { google } = require('googleapis');
-
-const spreadsheetId = '1b2z_lTIPEVhabnP73Mir3ttOZlqgEoLV9mLE1T-m1Y4';
-const sheets = google.sheets({
-	version: 'v4',
-	auth: 'AIzaSyD7AYBC7iKFp8pDknLFky0Ytrl5ZTwgixU',
-});
-const range = 'Season 07!A5:L24';
-const teams = {
-	1: 'blue',
-	3: 'dark-green',
-	7: 'orange',
-	9: 'green',
-	5: 'red',
-	11: 'sky-blue',
-};
+const config = require('../config.js');
 
 async function eliteTeams() {
 	return new Promise(function (resolve, reject) {
+
+		const sheets = google.sheets({
+			version: 'v4',
+			auth: process.env.GOOGLE_API_KEY,
+		});
+
 		sheets.spreadsheets.get(
 			{
-				spreadsheetId,
-				ranges: [range],
+				spreadsheetId: config.SPREADSHEET_ID,
+				ranges: [config.SPREADSHEET_RANGE],
 				includeGridData: true,
 			},
 			(err, res) => {
@@ -50,8 +42,8 @@ async function eliteTeams() {
 
 				sheetData.forEach((row) => {
 					for (cell in row) {
-						if (teams[cell]) {
-							output[teams[cell]].push(row[cell]);
+						if (config.SPREADSHEET_TEAMS[cell]) {
+							output[config.SPREADSHEET_TEAMS[cell]].push(row[cell]);
 						}
 					}
 				});

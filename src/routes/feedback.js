@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
 		if (!req.body.feedback)
 			return Response(res, {
 				type: 'missingParameter',
-				data: 'Missing JSON body feedback parameter',
+				data: 'Missing feedback JSON body parameter',
 			});
 
 		if (!req.body.feedback < 20)

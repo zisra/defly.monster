@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
 		if (!id)
 			return Response(res, {
 				type: 'missingParameter',
-				data: 'Missing query ID parameter',
+				data: 'Missing ID query parameter',
 			});
 
 		if (parseInt(id < 1))

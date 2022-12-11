@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
 		if (!build)
 			return Response(res, {
 				type: 'missingParameter',
-				data: 'Missing query build parameter',
+				data: 'Missing build query parameter',
 			});
 
 		if (build.length !== 7)

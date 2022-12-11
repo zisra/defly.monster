@@ -2,7 +2,7 @@ const WebSocket = require('ws');
 const config = require('../config.js');
 
 function getTeams(input) {
-	const promise = new Promise((resolve, reject) => {
+	return new Promise((resolve, reject) => {
 		const gamesPlayed = 0;
 		const username = 'Player';
 		const skin = 1;
@@ -93,7 +93,7 @@ function getTeams(input) {
 					});
 				} else if (code === 35) {
 					const results = [];
-					// const teamSize = message.getUint8(1);
+					const maxSize = message.getUint8(1);
 					const teamCount = message.getUint8(2);
 
 					let offset = 3;
@@ -125,6 +125,7 @@ function getTeams(input) {
 						const result = {
 							teamID,
 							mapPercent,
+							maxSize,
 							available,
 							players,
 						};
@@ -152,7 +153,6 @@ function getTeams(input) {
 
 		join();
 	});
-	return promise;
 }
 
 exports.getTeams = getTeams;
