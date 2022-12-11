@@ -10,6 +10,7 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 const session = require('express-session');
+const memoryStore = require('memorystore');
 
 const config = require('./config.js');
 const router = require('./router.js');
@@ -184,7 +185,11 @@ client.on('interactionCreate', async (interaction) => {
 
 client.login(process.env.DISCORD_TOKEN);
 
-const MemoryStore = require('memorystore')(session);
+if (processs.env.NODE_ENV == 'production') {
+	app.set('trust proxy', 1);
+}
+
+const MemoryStore = memoryStore(session);
 app.use(
 	session({
 		secret: process.env.CLIENT_SECRET,
