@@ -5,8 +5,7 @@
 	"scripts": {
 		"start": "node src/index.js",
 		"getskins": "node scripts/getskins.js",
-		"allskins": "node scripts/allskins.js",
-		"sheet": "node src/util/sheet.js"
+		"allskins": "node scripts/allskins.js"
 	},
 	"author": "Isra",
 	"license": "ISC",
