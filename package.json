@@ -22,7 +22,6 @@
 		"handlebars": "^4.7.7",
 		"marked": "^4.2.1",
 		"memorystore": "^1.6.7",
-		"papaparse": "^5.3.2",
 		"ws": "^8.8.1"
 	},
 	"devDependencies": {
