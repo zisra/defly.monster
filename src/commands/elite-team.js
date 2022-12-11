@@ -1,7 +1,7 @@
 const { EmbedBuilder } = require('discord.js');
 const axios = require('axios');
 
-const eliteTeams = require('../util/sheet.js');
+const eliteTeams = require('../util/eliteTeams.js');
 const config = require('../config.js');
 
 module.exports = {
