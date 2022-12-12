@@ -39,7 +39,7 @@ exports.EXCUSES = [
 	'Oof, that was my clone.',
 ];
 
-exports.MAX_SKINS = 137;
+exports.MAX_SKINS = 136;
 
 exports.REGION_LIST = [
 	{ region: 'EU1', ws: 'eu1-1', alias: 'eu' },

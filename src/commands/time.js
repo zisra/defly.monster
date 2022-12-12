@@ -27,7 +27,7 @@ module.exports = {
 
 				await message.reply({ embeds: [embed] });
 			} catch (err) {
-				console.log(err);
+				console.error(err);
 				await message.reply(
 					'Date could not be parsed. View a list of supported date formats: <https://github.com/kensnyder/any-date-parser#exhaustive-list-of-date-formats>'
 				);

@@ -21,8 +21,6 @@ module.exports = async (req, res) => {
 	try {
 		serverRes = await getTeams({ region, port });
 
-		console.log(serverRes);
-
 		res.json(serverRes);
 	} catch (err) {
 		new Response(res, {
