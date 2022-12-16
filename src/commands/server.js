@@ -10,7 +10,7 @@ module.exports = {
 	description: 'Get the teams and their players for the specified server',
 	interaction: new SlashCommandBuilder()
 		.setName('server')
-		.setDescription('Gets a random badge for premium users')
+		.setDescription('Get the teams and their players for the specified server')
 		.addStringOption((option) =>
 			option
 				.setName('region')

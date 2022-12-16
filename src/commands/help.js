@@ -9,6 +9,7 @@ const {
 
 const config = require('../config.js');
 const { commands } = require('../util/commands.js');
+const e = require('express');
 
 module.exports = {
 	arguments: false,
@@ -23,22 +24,39 @@ module.exports = {
 		});
 
 		const botCommands = await commands();
-		const embed = new EmbedBuilder()
-			.setTitle('Defly.io Monster | Commands')
-			.setDescription(
-				botCommands
-					.filter((i) => !i.adminOnly)
-					.map(
-						(i) =>
-							`\`d?${i.name}${
-								i.arguments
-									? ' ' + i.arguments.map((i) => `<${i}>`).join(' ')
-									: ''
-							}\`: ${i.description}`
-					)
-					.join('\n')
-			)
-			.setColor(config.EMBED.MAIN);
+		let embed;
+
+		if (!message.interaction) {
+			embed = new EmbedBuilder()
+				.setTitle('Defly.io Monster | Commands')
+				.setDescription(
+					botCommands
+						.filter((i) => !i.adminOnly)
+						.map(
+							(i) =>
+								`\`d?${i.name}${
+									i.arguments
+										? ' ' + i.arguments.map((i) => `<${i}>`).join(' ')
+										: ''
+								}\`: ${i.description}`
+						)
+						.join('\n')
+				)
+				.setColor(config.EMBED.MAIN);
+		} else {
+			embed = new EmbedBuilder()
+				.setTitle('Defly.io Monster | Commands')
+				.setDescription(
+					client.application.commands.cache
+						.map(
+							(i) =>
+								`</${i.name}:${i.id}>: i.description
+								`
+						)
+						.join('\n')
+				)
+				.setColor(config.EMBED.MAIN);
+		}
 		const row = new ActionRowBuilder().addComponents(
 			new ButtonBuilder()
 				.setURL(`https://defly.monster/`)
