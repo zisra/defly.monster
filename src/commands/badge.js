@@ -12,6 +12,8 @@ module.exports = {
 				.setName('badge')
 				.setDescription('The badge to search for')
 				.setRequired(true)
+				.setMinValue(1)
+				.setMaxValue(47)
 		),
 	command: async (message, args, client) => {
 		const badge = message.interaction ? args.badge : args[0];

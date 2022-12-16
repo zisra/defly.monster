@@ -15,11 +15,13 @@ module.exports = {
 	interaction: new SlashCommandBuilder()
 		.setName('skin')
 		.setDescription('Sends the file for any current in-game skin')
-		.addStringOption((option) =>
+		.addIntegerOption((option) =>
 			option
 				.setName('id')
 				.setDescription('The skin ID to use')
 				.setRequired(true)
+				.setMinValue(1)
+				.setMaxValue(config.MAX_SKINS)
 		),
 	command: async (message, args, client) => {
 		const skin = message.interaction ? args.id : args[0];

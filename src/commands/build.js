@@ -13,11 +13,13 @@ module.exports = {
 	interaction: new SlashCommandBuilder()
 		.setName('build')
 		.setDescription('Gets a list of all badges for premium user')
-		.addNumberOption((option) =>
+		.addStringOption((option) =>
 			option
 				.setName('build')
 				.setDescription('The number combination to use for the image')
 				.setRequired(true)
+				.setMaxLength(7)
+				.setMinLength(7)
 		),
 	command: async (message, args, client) => {
 		const build = message.interaction ? args.build : args[0];

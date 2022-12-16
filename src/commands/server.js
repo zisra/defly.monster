@@ -14,10 +14,10 @@ module.exports = {
 		.addStringOption((option) =>
 			option
 				.setName('region')
-				.setDescription('Server region (use, usw, eu)')
+				.setDescription('Server region (use, usw, eu, tr)')
 				.setRequired(true)
 		)
-		.addStringOption((option) =>
+		.addIntegerOption((option) =>
 			option
 				.setName('port')
 				.setDescription('Server port (3005, 3015...)')
