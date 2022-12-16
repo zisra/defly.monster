@@ -4,16 +4,20 @@ const {
 	EmbedBuilder,
 	PermissionsBitField,
 	ButtonStyle,
+	SlashCommandBuilder,
 } = require('discord.js');
 const config = require('../config.js');
 
 module.exports = {
 	arguments: false,
 	description: 'Basic information & credits regarding the bot',
+	interaction: new SlashCommandBuilder()
+		.setName('about')
+		.setDescription('Basic information & credits regarding the bot'),
 	command: async (message, args, client) => {
 		const invite = client.generateInvite({
 			permissions: PermissionsBitField.Flags.Administrator,
-			scopes: ['bot'],
+			scopes: ['bot', 'applications.commands'],
 		});
 		const embed = new EmbedBuilder()
 			.setColor(config.EMBED.MAIN)

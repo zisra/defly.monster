@@ -4,6 +4,7 @@ const {
 	ButtonBuilder,
 	ButtonStyle,
 	PermissionsBitField,
+	SlashCommandBuilder,
 } = require('discord.js');
 
 const config = require('../config.js');
@@ -12,10 +13,13 @@ const { commands } = require('../util/commands.js');
 module.exports = {
 	arguments: false,
 	description: 'Gets a list of all commands',
+	interaction: new SlashCommandBuilder()
+		.setName('help')
+		.setDescription('Gets a list of all commands'),
 	command: async (message, args, client) => {
 		const invite = client.generateInvite({
 			permissions: PermissionsBitField.Flags.Administrator,
-			scopes: ['bot'],
+			scopes: ['bot', 'applications.commands'],
 		});
 
 		const botCommands = await commands();

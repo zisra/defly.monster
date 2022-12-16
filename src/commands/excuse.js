@@ -1,10 +1,13 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const config = require('../config.js');
 
 module.exports = {
 	arguments: false,
 	description:
-		'You died in defly.io and need something to cover up your shame? This command has you covered, because it gives you a random excuse for your comfort!',
+		'Make an excuse for your embarrassing death',
+	interaction: new SlashCommandBuilder()
+		.setName('excuse')
+		.setDescription('Make an excuse for your embarrassing death'),
 	command: async (message, args, client) => {
 		const excuse =
 			config.EXCUSES[Math.floor(Math.random() * config.EXCUSES.length)];

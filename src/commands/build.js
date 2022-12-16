@@ -1,4 +1,8 @@
-const { EmbedBuilder, AttachmentBuilder } = require('discord.js');
+const {
+	EmbedBuilder,
+	AttachmentBuilder,
+	SlashCommandBuilder,
+} = require('discord.js');
 
 const { generateUpgrades } = require('../util/generateUpgrades.js');
 const config = require('../config.js');
@@ -6,27 +10,43 @@ const config = require('../config.js');
 module.exports = {
 	arguments: ['build'],
 	description: 'Sends a graphic for any chosen build',
+	interaction: new SlashCommandBuilder()
+		.setName('build')
+		.setDescription('Gets a list of all badges for premium user')
+		.addNumberOption((option) =>
+			option
+				.setName('build')
+				.setDescription('The number combination to use for the image')
+				.setRequired(true)
+		),
 	command: async (message, args, client) => {
-		let added = args[0].split('');
+		const build = message.interaction ? args.build : args[0];
+
+		let added = build.split('');
+
 		if (
-			args[0].length !== 7 ||
+			build.length !== 7 ||
 			added.reduce((a, b) => parseInt(a) + parseInt(b), 0) !== 32 ||
-			!args[0]
+			!build
 		) {
-			message.reply('Please enter a valid build. Example: 4727048');
-		} else {
-			const upgrades = await generateUpgrades(args[0], 'png');
-
-			const file = new AttachmentBuilder(upgrades.data, {
-				name: 'upgrades.png',
+			return message.reply({
+				content:
+					'Please enter a valid build that adds up to 32. Example: 8888000',
+				ephemeral: true,
 			});
-
-			const embed = new EmbedBuilder()
-				.setTitle(args[0])
-				.setImage('attachment://upgrades.png')
-				.setColor(config.EMBED.MAIN);
-
-			message.reply({ embeds: [embed], files: [file] });
 		}
+
+		const upgrades = await generateUpgrades(build, 'png');
+
+		const file = new AttachmentBuilder(upgrades.data, {
+			name: 'upgrades.png',
+		});
+
+		const embed = new EmbedBuilder()
+			.setTitle(build)
+			.setImage('attachment://upgrades.png')
+			.setColor(config.EMBED.MAIN);
+
+		message.reply({ embeds: [embed], files: [file] });
 	},
 };

@@ -4,6 +4,7 @@ const {
 	EmbedBuilder,
 	PermissionsBitField,
 	ButtonStyle,
+	SlashCommandBuilder
 } = require('discord.js');
 const config = require('../config.js');
 

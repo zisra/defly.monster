@@ -15,6 +15,7 @@ const memoryStore = require('memorystore');
 const config = require('./config.js');
 const router = require('./router.js');
 const generateArticles = require('./articles.js');
+const e = require('express');
 
 generateArticles();
 
@@ -69,22 +70,8 @@ client.on('rateLimit', (rateLimit) => {
 	Sentry.captureEvent({ message: 'Ratelimit', rateLimit });
 });
 
-client.on('shardDisconnect', (event, id) => {
-	Sentry.captureEvent({ message: 'Shard disconnect', event, id });
-	Sentry.configureScope((scope) => {
-		scope.setExtra('discord.js connection', client.isReady());
-	});
-});
-
 client.on('shardError', (error, id) => {
 	Sentry.captureEvent({ message: 'shard error', event, id });
-	Sentry.configureScope((scope) => {
-		scope.setExtra('discord.js connection', client.isReady());
-	});
-});
-
-client.on('shardResume', (id) => {
-	Sentry.captureEvent({ message: 'Shard resume', id });
 	Sentry.configureScope((scope) => {
 		scope.setExtra('discord.js connection', client.isReady());
 	});
@@ -97,6 +84,7 @@ client.on('warn', (warning) => {
 client.on('messageCreate', async (message) => {
 	if (!message.content.startsWith(config.PREFIX)) return;
 	const args = message.content.slice(config.PREFIX.length).trim().split(' ');
+
 	const command = args.shift().toLowerCase();
 	const commandFolder = fs.readdirSync('./src/commands');
 	if (commandFolder.find((i) => i === `${command}.js`)) {
@@ -115,7 +103,7 @@ client.on('messageCreate', async (message) => {
 			Sentry.captureException(err);
 			await message.react('\u274C');
 			await message.reply(
-				'Something went wrong with this command. Please try again soon. '
+				'Something went wrong with this command. Please try again soon. If you need a list of commands, run `d?help`'
 			);
 		}
 	} else if (command === 'eval' && message.author.id == process.env.BOT_OWNER) {
@@ -150,36 +138,65 @@ client.on('messageCreate', async (message) => {
 });
 
 client.on('interactionCreate', async (interaction) => {
-	if (!interaction.isButton()) return;
+	if (interaction.isChatInputCommand()) {
+		const command = interaction.commandName;
+		const commandFolder = fs.readdirSync('./src/commands');
+		let args = {};
+		interaction.options.data.forEach((arg) => {
+			args[arg.name] = arg.value.toString();
+		});
 
-	try {
-		if (interaction.customId === 'getimages') {
-			const skinId = interaction.message.content.replace(
-				'Defly.io skin ID: ',
-				''
-			);
-			const skinFile = JSON.parse(
-				fs.readFileSync(`./src/skins/skin${skinId}.txt`, 'utf8')
-			);
-
-			const skin = Object.keys(skinFile.images).map((key) => {
-				return {
-					file: skinFile.images[key].split(',')[1],
-					name: key,
-				};
-			});
-			await interaction.reply({
-				ephemeral: true,
-				files: skin.map(
-					(i) =>
-						new AttachmentBuilder(Buffer.from(i.file, 'base64'), {
-							name: `${i.name}.png`,
-						})
-				),
-			});
+		if (commandFolder.find((i) => i === `${command}.js`)) {
+			const selectedCommand = require(`./commands/${command}.js`);
+			try {
+				interaction.interaction = true;
+				if (selectedCommand.adminOnly) return;
+				if (selectedCommand.seperateCommandTypes) {
+					selectedCommand.interactionCommand(interaction, client);
+				} else {
+					selectedCommand.command(interaction, args, client);
+				}
+			} catch (err) {
+				console.log(err);
+				Sentry.captureException(err);
+				await interaction.reply({
+					content:
+						'Something went wrong with this command. Please try again soon. If you need a list of commands, run </help:1053166812231123051>.',
+					ephemeral: true,
+				});
+			}
 		}
-	} catch (err) {
-		Sentry.captureException(err);
+	} else if (interaction.isButton()) {
+		try {
+			if (interaction.customId === 'getimages') {
+				const skinId = interaction.message.content.replace(
+					'Defly.io skin ID: ',
+					''
+				);
+				const skinFile = JSON.parse(
+					fs.readFileSync(`./src/skins/skin${skinId}.txt`, 'utf8')
+				);
+
+				const skin = Object.keys(skinFile.images).map((key) => {
+					return {
+						file: skinFile.images[key].split(',')[1],
+						name: key,
+					};
+				});
+				await interaction.reply({
+					ephemeral: true,
+					files: skin.map(
+						(i) =>
+							new AttachmentBuilder(Buffer.from(i.file, 'base64'), {
+								name: `${i.name}.png`,
+							})
+					),
+				});
+			}
+		} catch (err) {
+			console.error(err);
+			Sentry.captureException(err);
+		}
 	}
 });
 

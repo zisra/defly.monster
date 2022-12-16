@@ -1,9 +1,12 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const config = require('../config.js');
 
 module.exports = {
 	arguments: false,
 	description: 'Gets a list of all badges for premium user',
+	interaction: new SlashCommandBuilder()
+		.setName('badges')
+		.setDescription('Gets a list of all badges for premium user'),
 	command: async (message, args, client) => {
 		const embed = new EmbedBuilder()
 			.setTitle('Defly.io badges')

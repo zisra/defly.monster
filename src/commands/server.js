@@ -1,4 +1,5 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
+
 const Sentry = require('@sentry/node');
 
 const config = require('../config.js');
@@ -7,13 +8,29 @@ const { getTeams } = require('../util/getTeams.js');
 module.exports = {
 	arguments: ['region (use,usw,eu)', 'port (3005,3015,3025)'],
 	description: 'Get the teams and their players for the specified server',
+	interaction: new SlashCommandBuilder()
+		.setName('server')
+		.setDescription('Gets a random badge for premium users')
+		.addStringOption((option) =>
+			option
+				.setName('region')
+				.setDescription('Server region (use, usw, eu)')
+				.setRequired(true)
+		)
+		.addStringOption((option) =>
+			option
+				.setName('port')
+				.setDescription('Server port (3005, 3015...)')
+				.setRequired(true)
+		),
 	command: async (message, args, client) => {
-		const serverRegion = args[0];
-		const serverPort = args[1];
+		const serverRegion = message.interaction ? args.region : args[0];
+		const serverPort = message.interaction ? args.port : args[1];
 		if (!serverPort || !serverRegion) {
-			return await message.reply(
-				`Something went wrong getting teams. Please try \`${config.PREFIX}server <region (use,usw,eu)> <port (3005,3015,3025)>\``
-			);
+			return message.reply({
+				content: `Something went wrong getting teams. Please try \`${config.PREFIX}server <region (use,usw,eu)> <port (3005,3015,3025)>\``,
+				ephemeral: true,
+			});
 		}
 
 		try {
@@ -23,9 +40,10 @@ module.exports = {
 			});
 		} catch (err) {
 			Sentry.captureException(err);
-			return message.reply(
-				`Something went wrong getting teams. Please try \`${config.PREFIX}server <region (use,usw,eu)> <port (3005,3015,3025)>\``
-			);
+			return message.reply({
+				content: `Something went wrong getting teams. Please try \`${config.PREFIX}server <region (use,usw,eu)> <port (3005,3015,3025)>\``,
+				ephemeral: true,
+			});
 		}
 		const defuseMode = serverPort.endsWith('2');
 		const embed = new EmbedBuilder()
