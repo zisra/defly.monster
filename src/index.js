@@ -64,6 +64,7 @@ client.on('ready', async (client) => {
 	Sentry.configureScope((scope) => {
 		scope.setExtra('discord.js connection', true);
 	});
+	client.application.commands.fetch();
 });
 
 client.on('rateLimit', (rateLimit) => {

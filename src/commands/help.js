@@ -48,11 +48,7 @@ module.exports = {
 				.setTitle('Defly.io Monster | Commands')
 				.setDescription(
 					client.application.commands.cache
-						.map(
-							(i) =>
-								`</${i.name}:${i.id}>: i.description
-								`
-						)
+						.map((i) => `</${i.name}:${i.id}>: ${i.description}`)
 						.join('\n')
 				)
 				.setColor(config.EMBED.MAIN);
