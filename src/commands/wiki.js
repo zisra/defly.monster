@@ -24,19 +24,23 @@ module.exports = {
 				ephemeral: true,
 			});
 		}
-		const title = args.join(' ');
 		try {
 			const res = await axios.get('https://deflyio.fandom.com/wiki/' + name);
 			if (res.status == 200) {
 				await message.reply('https://deflyio.fandom.com/wiki/' + name);
 			} else {
 				await message.reply(
-					'Article not found. You can find one at <https://deflyio.fandom.com>'
+					{
+						content: 'Article not found. You can find one at <https://deflyio.fandom.com>',
+						ephemeral: true,
+					}
 				);
 			}
 		} catch (err) {
-			await message.reply(
-				'Article not found. You can find one at <https://deflyio.fandom.com>'
+			await message.reply({
+				content: 'Article not found. You can find one at <https://deflyio.fandom.com>',
+				ephemeral: true,
+			}
 			);
 		}
 	},

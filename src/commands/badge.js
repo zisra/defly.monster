@@ -16,7 +16,12 @@ module.exports = {
 	command: async (message, args, client) => {
 		const badge = message.interaction ? args.badge : args[0];
 
-		if (!badge || parseInt(badge) < 1 || parseInt(badge) > 47) {
+		if (
+			!badge ||
+			parseInt(badge) < 1 ||
+			parseInt(badge) > 47 ||
+			!parseInt(badge)
+		) {
 			return message.reply({
 				content: 'Please select a badge number: 1 - 47',
 				ephemeral: true,

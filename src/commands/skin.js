@@ -7,6 +7,7 @@ const {
 const Sentry = require('@sentry/node');
 
 const config = require('../config.js');
+const fs = require('fs');
 
 module.exports = {
 	arguments: ['skin-id'],
@@ -22,6 +23,12 @@ module.exports = {
 		),
 	command: async (message, args, client) => {
 		const skin = message.interaction ? args.id : args[0];
+		if (!fs.existsSync(`./src/skins/skin${skin}.txt'`)) {
+			return message.reply({
+				ephemeral: true,
+				content: `Please provide a valid skin ID: 26-${config.MAX_SKINS}\nYou can get the skin ID here:** <https://docs.google.com/spreadsheets/d/${config.SPREADSHEET_ID}/edit#gid=757313197> **`,
+			});
+		}
 
 		if (!skin || parseInt(skin) > config.MAX_SKINS) {
 			return message.reply({
