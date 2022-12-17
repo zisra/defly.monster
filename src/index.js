@@ -15,7 +15,6 @@ const memoryStore = require('memorystore');
 const config = require('./config.js');
 const router = require('./router.js');
 const generateArticles = require('./articles.js');
-const e = require('express');
 
 generateArticles();
 

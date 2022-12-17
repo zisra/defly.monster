@@ -1,4 +1,11 @@
-const { EmbedBuilder, time, SlashCommandBuilder } = require('discord.js');
+const {
+	EmbedBuilder,
+	time,
+	SlashCommandBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
+	ButtonStyle,
+} = require('discord.js');
 const config = require('../config.js');
 const dateParser = require('any-date-parser');
 
@@ -19,14 +26,20 @@ module.exports = {
 		),
 	command: async (message, args, client) => {
 		const date = message.interaction ? args.input : args.join(' ');
-
+		const row = new ActionRowBuilder().addComponents(
+			new ButtonBuilder()
+				.setLabel('Supported formats')
+				.setStyle(ButtonStyle.Link)
+				.setURL(
+					'https://github.com/kensnyder/any-date-parser#exhaustive-list-of-date-formats'
+				)
+		);
 		if (!date) {
 			return await message.reply({
-				content: 'Date could not be parsed. View a list of supported date formats: <https://github.com/kensnyder/any-date-parser#exhaustive-list-of-date-formats>', 
+				content: 'Date could not be parsed',
 				ephemeral: true,
-			}
-				
-			);
+				components: [row],
+			});
 		}
 		try {
 			const outDate = dateParser.fromString(date);
@@ -43,13 +56,11 @@ module.exports = {
 
 			await message.reply({ embeds: [embed] });
 		} catch (err) {
-			console.error(err);
 			await message.reply({
-				content: 'Date could not be parsed. View a list of supported date formats: <https://github.com/kensnyder/any-date-parser#exhaustive-list-of-date-formats>', 
+				content: 'Date could not be parsed',
 				ephemeral: true,
-			}
-				
-			);
+				components: [row],
+			});
 		}
 	},
 };

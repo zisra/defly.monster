@@ -3,7 +3,6 @@ const config = require('../config.js');
 
 async function eliteTeams() {
 	return new Promise(function (resolve, reject) {
-
 		const sheets = google.sheets({
 			version: 'v4',
 			auth: process.env.GOOGLE_API_KEY,

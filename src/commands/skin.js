@@ -26,10 +26,14 @@ module.exports = {
 	command: async (message, args, client) => {
 		const skin = message.interaction ? args.id : args[0];
 
-		if (!parseInt(skin) || parseInt(skin) > config.MAX_SKINS || parseInt(skin) < 1) {
+		if (
+			!parseInt(skin) ||
+			parseInt(skin) > config.MAX_SKINS ||
+			parseInt(skin) < 1
+		) {
 			return message.reply({
 				ephemeral: true,
-				content: `Please provide a valid skin ID: 26-${config.MAX_SKINS}\nYou can get the skin ID here:** <https://docs.google.com/spreadsheets/d/${config.SPREADSHEET_ID}/edit#gid=757313197> **`,
+				content: `Please provide a valid skin ID: 26-${config.MAX_SKINS}\nYou can get the skin ID here:** <https://docs.google.com/spreadsheets/d/1RWiaX_GJjaO9f9FyA78wD-ETSEL3_7Kbmexg5xBQ-ZA/edit#gid=757313197> **`,
 			});
 		}
 		try {
@@ -37,7 +41,13 @@ module.exports = {
 				new ButtonBuilder()
 					.setCustomId('getimages')
 					.setLabel('Get images')
-					.setStyle(ButtonStyle.Primary)
+					.setStyle(ButtonStyle.Primary),
+				new ButtonBuilder()
+					.setLabel('All skins')
+					.setStyle(ButtonStyle.Link)
+					.setURL(
+						'https://docs.google.com/spreadsheets/d/1RWiaX_GJjaO9f9FyA78wD-ETSEL3_7Kbmexg5xBQ-ZA/edit#gid=757313197'
+					)
 			);
 			message.reply({
 				content: `Defly.io skin ID: ${skin}`,

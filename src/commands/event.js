@@ -16,7 +16,12 @@ module.exports = {
 		} else {
 			const embed = new EmbedBuilder()
 				.setDescription(serverRes.event.details)
-				.setTitle(`${serverRes.event.title} | ${time(new Date(serverRes.event.date), 'R')}`)
+				.setTitle(
+					`${serverRes.event.title} | ${time(
+						new Date(serverRes.event.date),
+						'R'
+					)}`
+				)
 				.setTimestamp(new Date(serverRes.event.date))
 				.setColor(config.EMBED.MAIN);
 			await message.reply({ embeds: [embed] });

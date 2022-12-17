@@ -1,5 +1,10 @@
 const axios = require('axios');
-const { SlashCommandBuilder } = require('discord.js');
+const {
+	SlashCommandBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
+	ButtonStyle,
+} = require('discord.js');
 
 const config = require('../config.js');
 
@@ -17,11 +22,19 @@ module.exports = {
 		),
 	command: async (message, args, client) => {
 		const name = message.interaction ? args.name : args.join(' ');
+
+		const row = new ActionRowBuilder().addComponents(
+			new ButtonBuilder()
+				.setLabel('Supported formats')
+				.setStyle(ButtonStyle.Link)
+				.setURL('https://deflyio.fandom.com/')
+		);
+
 		if (!name) {
 			return await message.reply({
-				content:
-					'Please type in the title of a defly.io wiki article at <https://deflyio.fandom.com>',
+				content: 'Article not found.',
 				ephemeral: true,
+				components: [row],
 			});
 		}
 		try {
@@ -29,19 +42,18 @@ module.exports = {
 			if (res.status == 200) {
 				await message.reply('https://deflyio.fandom.com/wiki/' + name);
 			} else {
-				await message.reply(
-					{
-						content: 'Article not found. You can find one at <https://deflyio.fandom.com>',
-						ephemeral: true,
-					}
-				);
+				await message.reply({
+					content: 'Article not found.',
+					components: [row],
+					ephemeral: true,
+				});
 			}
 		} catch (err) {
 			await message.reply({
-				content: 'Article not found. You can find one at <https://deflyio.fandom.com>',
+				content: 'Article not found.',
+				components: [row],
 				ephemeral: true,
-			}
-			);
+			});
 		}
 	},
 };

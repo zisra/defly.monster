@@ -28,7 +28,7 @@ module.exports = {
 		const serverPort = message.interaction ? args.port : args[1];
 		if (!serverPort || !serverRegion) {
 			return message.reply({
-				content: `Something went wrong getting teams. Please try \`${config.PREFIX}server <region (use,usw,eu)> <port (3005,3015,3025)>\``,
+				content: `Something went wrong getting teams. Please try a region of use, usw, eu, or tr (tournament) and a valid port (3005, 30015, etc.)`,
 				ephemeral: true,
 			});
 		}
@@ -41,7 +41,7 @@ module.exports = {
 		} catch (err) {
 			Sentry.captureException(err);
 			return message.reply({
-				content: `Something went wrong getting teams. Please try \`${config.PREFIX}server <region (use,usw,eu)> <port (3005,3015,3025)>\``,
+				content: `Something went wrong getting teams. Please try a region of use, usw, eu, or tr (tournament) and a valid port (3005, 30015, etc.)`,
 				ephemeral: true,
 			});
 		}
