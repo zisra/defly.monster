@@ -25,7 +25,7 @@ module.exports = {
 
 		const row = new ActionRowBuilder().addComponents(
 			new ButtonBuilder()
-				.setLabel('Supported formats')
+				.setLabel('Wiki fandom')
 				.setStyle(ButtonStyle.Link)
 				.setURL('https://deflyio.fandom.com/')
 		);

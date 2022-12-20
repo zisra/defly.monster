@@ -31,9 +31,18 @@ module.exports = {
 			parseInt(skin) > config.MAX_SKINS ||
 			parseInt(skin) < 1
 		) {
+			const row = new ActionRowBuilder().addComponents(
+				new ButtonBuilder()
+					.setLabel('Skin IDs')
+					.setStyle(ButtonStyle.Link)
+					.setURL(
+						'https://docs.google.com/spreadsheets/d/1RWiaX_GJjaO9f9FyA78wD-ETSEL3_7Kbmexg5xBQ-ZA/edit#gid=757313197'
+					)
+			);
 			return message.reply({
 				ephemeral: true,
-				content: `Please provide a valid skin ID: 26-${config.MAX_SKINS}\nYou can get the skin ID here:** <https://docs.google.com/spreadsheets/d/1RWiaX_GJjaO9f9FyA78wD-ETSEL3_7Kbmexg5xBQ-ZA/edit#gid=757313197> **`,
+				content: `Please provide a valid skin ID: 26-${config.MAX_SKINS}.`,
+				components: [row],
 			});
 		}
 		try {

@@ -1,4 +1,10 @@
-const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
+const {
+	EmbedBuilder,
+	SlashCommandBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
+	ButtonStyle,
+} = require('discord.js');
 const axios = require('axios');
 
 const { eliteTeams } = require('../util/eliteTeams.js');
@@ -15,17 +21,30 @@ module.exports = {
 				.setName('team')
 				.setDescription('The elite team to show info about')
 				.setRequired(true)
+				.addChoices(
+					...config.ELITE_TEAM_NAMES.map((team) => ({
+						name: team.replace('-', ' ').capitalize(),
+						value: team,
+					}))
+				)
 		),
 	command: async (message, args, client) => {
+		const row = new ActionRowBuilder().addComponents(
+			new ButtonBuilder()
+				.setURL(
+					`https://docs.google.com/spreadsheets/d/${config.SPREADSHEET_ID}/`
+				)
+				.setLabel('Source')
+				.setStyle(ButtonStyle.Link)
+		);
 		const team = message.interaction ? args.team : args[0];
 
 		if (!team || !config.ELITE_TEAM_NAMES.includes(team)) {
 			return message.reply({
 				content: `Please select an elite team: ${config.ELITE_TEAM_NAMES.join(
 					', '
-				)}. Source: <https://docs.google.com/spreadsheets/d/${
-					config.SPREADSHEET_ID
-				}/>`,
+				)}.`,
+				components: [row],
 				ephemeral: true,
 			});
 		}
@@ -37,9 +56,6 @@ module.exports = {
 				`https://cdn.discordapp.com/emojis/${config.TEAM_EMOJIS[team]}.png`
 			)
 			.setTitle(`${team.replace('-', ' ').capitalize()}`)
-			.setURL(
-				`https://docs.google.com/spreadsheets/d/${config.SPREADSHEET_ID}/`
-			)
 			.setDescription(
 				`**Captain:** [${teamList[team][0].value}](https://discord.com/users/${
 					teamList[team][0].note
@@ -55,6 +71,6 @@ module.exports = {
 				.join('\n')
 				.escapeMarkdown()}`
 			);
-		await message.reply({ embeds: [embed] });
+		await message.reply({ embeds: [embed], components: [row] });
 	},
 };

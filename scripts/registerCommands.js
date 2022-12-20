@@ -5,6 +5,10 @@ if (process.env.NODE_ENV !== 'production') {
 	require('dotenv').config();
 }
 
+String.prototype.capitalize = function () {
+	return this.charAt(0).toUpperCase() + this.slice(1);
+};
+
 const commands = [];
 
 const commandFiles = fs
