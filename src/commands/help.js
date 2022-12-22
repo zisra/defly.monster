@@ -3,7 +3,6 @@ const {
 	ActionRowBuilder,
 	ButtonBuilder,
 	ButtonStyle,
-	PermissionsBitField,
 	SlashCommandBuilder,
 } = require('discord.js');
 
@@ -18,11 +17,6 @@ module.exports = {
 		.setName('help')
 		.setDescription('Gets a list of all commands'),
 	command: async (message, args, client) => {
-		const invite = client.generateInvite({
-			permissions: PermissionsBitField.Flags.Administrator,
-			scopes: ['bot', 'applications.commands'],
-		});
-
 		const botCommands = await commands();
 		let embed;
 
@@ -59,7 +53,7 @@ module.exports = {
 				.setLabel('Visit website')
 				.setStyle(ButtonStyle.Link),
 			new ButtonBuilder()
-				.setURL(invite)
+				.setURL(config.INVITE_URL)
 				.setLabel('Invite Bot')
 				.setStyle(ButtonStyle.Link),
 			new ButtonBuilder()
