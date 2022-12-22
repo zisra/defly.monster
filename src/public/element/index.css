@@ -1,0 +1,41 @@
+body {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.output {
+    margin-top: 12px;
+}
+
+button {
+	text-align: center;
+	border: none;
+	background-color: #3d5dff;
+	color: white;
+	text-decoration: none;
+	border-radius: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+	padding-left: 8px;
+    padding-right: 8px;
+	transition: 0.2s;
+    margin-left: 5px;
+}
+
+select, input {
+    border-radius: 8px;
+    background-color: white;
+    border: solid #3d5dff 3px;
+}
+
+button:hover {
+	filter: brightness(120%);
+}
+
+input, button, select {
+    font-size: 16px;
+}
+
+.hidden {
+    display: none;
+}
