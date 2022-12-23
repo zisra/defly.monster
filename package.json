@@ -11,6 +11,7 @@
 	"author": "Isra",
 	"license": "ISC",
 	"dependencies": {
+		"@resvg/resvg-js": "^2.2.0",
 		"@sentry/node": "^7.26.0",
 		"any-date-parser": "^1.5.3",
 		"axios": "^1.1.2",

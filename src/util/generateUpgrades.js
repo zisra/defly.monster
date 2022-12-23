@@ -1,7 +1,7 @@
-const sharp = require('sharp');
+const { Resvg } = require('@resvg/resvg-js')
 const path = require('path');
 
-function generateUpgrades(upgrades, format, density) {
+function generateUpgrades(upgrades, format, height) {
 	return new Promise(async (resolve, reject) => {
 		let SVG = [];
 
@@ -125,14 +125,28 @@ function generateUpgrades(upgrades, format, density) {
 		SVG.push(`</svg>`);
 
 		if (format === 'png') {
-			const data = await sharp(
-				Buffer.from(SVG.map((i) => i.replace('\n', '')).join('')),
-				{
-					density: parseInt(density) || 300,
-				}
-			)
-				.png({ palette: true })
-				.toBuffer();
+			const resvg = new Resvg(SVG.map((i) => i.replace('\n', '')).join(''), {
+				font: {
+					fontFiles: ['./Arial.ttf'], 
+					loadSystemFonts: false,
+					defaultFontFamily: 'Arial',
+				  },
+				  fitTo: {
+					mode: 'height',
+					value: parseInt(height) || 1200,
+				  },
+			})
+			const pngData = resvg.render()
+			const data = pngData.asPng()
+
+			// const data = await sharp(
+			// 	Buffer.from(SVG.map((i) => i.replace('\n', '')).join('')),
+			// 	{
+			// 		density: parseInt(density) || 300,
+			// 	}
+			// )
+			// 	.png({ palette: true })
+			// 	.toBuffer();
 			resolve({ data, format: 'png' });
 		} else {
 			resolve({

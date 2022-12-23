@@ -23,16 +23,16 @@ module.exports = async (req, res) => {
 				data: 'Build must add up to 32',
 			});
 
-		if (parseInt(req.query.ppi) > 500)
+		if (parseInt(req.query.height) > 1200)
 			return Response(res, {
 				type: 'invalidParameter',
-				data: 'ppi may not be greater than 500',
+				data: 'height may not be greater than 1200',
 			});
 
 		const upgrades = await generateUpgrades(
 			build,
 			req.query.format ?? 'svg',
-			req.query.ppi
+			req.query.height
 		);
 		if (upgrades.format === 'svg') {
 			res.setHeader('Content-Type', 'image/svg+xml');
