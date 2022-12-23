@@ -12,7 +12,7 @@ module.exports = {
 	arguments: false,
 	guildOnly: true,
 	description:
-		"Adds an upcoming defly.io tournament to the current server's events.",
+		"Adds an upcoming defly.io tournament to the current server's events",
 	interaction: new SlashCommandBuilder()
 		.setName('post-event')
 		.setDescription(
@@ -21,17 +21,17 @@ module.exports = {
 		.setDMPermission(false),
 	command: async (message, args, client) => {
 		if (!message.guild.features.includes(GuildFeature.Community)) {
-			return message.reply(
-				'This guild is not a community, and therefore I cannot set events. ',
-				{
-					ephemeral: true,
-				}
-			);
+			return message.reply({
+				content:
+					'This guild is not a community, and therefore I cannot set events.',
+				ephemeral: true,
+			});
 		}
 		if (
 			!message.member.permissions.has(PermissionsBitField.Flags.ManageEvents)
 		) {
-			return message.reply('You do not have permissions to manage events', {
+			return message.reply({
+				content: 'You do not have permissions to manage events',
 				ephemeral: true,
 			});
 		}
@@ -41,14 +41,16 @@ module.exports = {
 				PermissionsBitField.Flags.ManageEvents
 			)
 		) {
-			return message.reply('I do not have permissions to manage events.', {
+			return message.reply({
+				content: 'I do not have permissions to manage events.',
 				ephemeral: true,
 			});
 		}
 
 		const { event } = await getServers(1);
 		if (new Date() - new Date(event.ts) > 0) {
-			return message.reply('Event already occured.', {
+			return message.reply({
+				content: 'Event already occured.',
 				ephemeral: true,
 			});
 		}
