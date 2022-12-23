@@ -3,18 +3,22 @@ const {
 	GuildScheduledEventPrivacyLevel,
 	GuildFeature,
 	PermissionsBitField,
-	SlashCommandBuilder
+	SlashCommandBuilder,
 } = require('discord.js');
 const config = require('../config.js');
 const { getServers } = require('../util/getServers.js');
 
 module.exports = {
 	arguments: false,
+	guildOnly: true,
 	description:
 		"Adds an upcoming defly.io tournament to the current server's events.",
 	interaction: new SlashCommandBuilder()
 		.setName('post-event')
-		.setDescription("Adds an upcoming defly.io tournament to the current server's events"),
+		.setDescription(
+			"Adds an upcoming defly.io tournament to the current server's events"
+		)
+		.setDMPermission(false),
 	command: async (message, args, client) => {
 		if (!message.guild.features.includes(GuildFeature.Community)) {
 			return message.reply(

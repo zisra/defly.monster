@@ -82,8 +82,8 @@ client.on('warn', (warning) => {
 });
 
 client.on('messageCreate', async (message) => {
-	if (message.channel === config.ELITE_CHANGES_CHANNEL) {
-		message.crosspost()
+	if (message.channel.id == config.ELITE_CHANGES_CHANNEL && message.webhookId) {
+		message.crosspost();
 	}
 
 	if (!message.content.startsWith(config.PREFIX)) return;
@@ -94,6 +94,7 @@ client.on('messageCreate', async (message) => {
 	if (commandFolder.find((i) => i === `${command}.js`)) {
 		const selectedCommand = require(`./commands/${command}.js`);
 		try {
+			if (selectedCommand.guildOnly && !message.guild) return;
 			if (selectedCommand?.adminOnly) {
 				if (process.env.BOT_OWNER === message.author.id) {
 					selectedCommand.command(message, args, client);
