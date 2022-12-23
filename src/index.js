@@ -82,6 +82,10 @@ client.on('warn', (warning) => {
 });
 
 client.on('messageCreate', async (message) => {
+	if (message.channel === config.ELITE_CHANGES_CHANNEL) {
+		message.crosspost()
+	}
+
 	if (!message.content.startsWith(config.PREFIX)) return;
 	const args = message.content.slice(config.PREFIX.length).trim().split(' ');
 

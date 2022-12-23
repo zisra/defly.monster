@@ -114,3 +114,5 @@ exports.SPREADSHEET_ID = '1b2z_lTIPEVhabnP73Mir3ttOZlqgEoLV9mLE1T-m1Y4';
 
 exports.INVITE_URL =
 	'https://discord.com/api/oauth2/authorize?client_id=883125551139799070&permissions=8858758209&scope=bot%20applications.commands';
+
+exports.ELITE_CHANGES_CHANNEL = 1055715651311915008;
