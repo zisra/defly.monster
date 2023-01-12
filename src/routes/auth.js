@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
 					? 'https://defly.monster/api/auth/'
 					: 'http://localhost:3000/api/auth/'
 			);
-			parameters.append('scope', 'identify');
+			parameters.append('scope', 'identity');
 
 			const authData = await axios.post(
 				'https://discord.com/api/oauth2/token',

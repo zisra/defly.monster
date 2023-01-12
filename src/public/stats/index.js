@@ -106,7 +106,14 @@ function generateTable(stats) {
 
 function parseCSV(fileData) {
 	let stats = fileData.split('\n').map((line) => {
-		return line.replace('\r', '').split(',');
+		if (line.length) {
+			return line
+				.replace('\r', '')
+				.match(/"[^"]*"|[^,]+/gm)
+				.map((i) => i.replaceAll(`"`, ''));
+		} else {
+			return null;
+		}
 	});
 	stats.shift();
 	stats.pop();
