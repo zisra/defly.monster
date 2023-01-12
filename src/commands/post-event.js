@@ -74,12 +74,13 @@ module.exports = {
 					location: 'https://defly.io/',
 				},
 			});
+
+			await message.reply(`Event posted: ${discordEvent}`);
 		} catch (err) {
 			console.log(err);
 			await message.reply('Event failed', {
 				ephemeral: true,
 			});
 		}
-		await message.reply(`Event: ${discordEvent}`);
 	},
 };
