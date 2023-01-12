@@ -182,9 +182,3 @@ window.onkeydown = (e) => {
 		searchField.focus();
 	}
 };
-
-document.onpaste = (e) => {
-	e.preventDefault();
-	console.log(e);
-	parseInput(e.clipboardData);
-};
