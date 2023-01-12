@@ -28,33 +28,25 @@ window.onload = async () => {
 			);
 			output.push('<b>Total guilds:</b> ' + stats.guildCount);
 
-			output.push(`<table>
-			<tr>
-			  <th></th>
-			  <th>Name</td>
-			  <th>Members</td>
-			  <th>Guild</td>
-			  <th>Owner</td>			  
-			  <th>Age</td>
-			  <th>Joined at</td>
-			</tr>
+			output.push(`<table><tr><th></th><th>Name</td><th>Members</td><th>Guild</td><th>Owner</td><th>Age</td><th>Joined at</td></tr>
 			${stats.guilds
 				.sort((a, b) => b.memberCount - a.memberCount)
 				.map((guild) => {
-					return `
-				<tr>
-					<td><img src="${
+					return `<tr><td><img src="${
 						guild.icon
 							? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`
 							: 'https://cdn.discordapp.com/embed/avatars/1.png'
-					}" width="30px;"</td> 
-					<td>${guild.name}</td>
-					<td>${guild.memberCount}</td>
-					<td><a href="https://discord.com/channels/${guild.id}">${guild.id}</a></td>
-					<td><a href="https://discord.com/users/${guild.owner}">${guild.owner}</a></td>
-					<td>${new Date(guild.createdAt).toLocaleDateString()}</td>
-					<td>${new Date(guild.joinedAt).toLocaleDateString()}</td>
-				</tr>`;
+					}" width="30px;"</td><td>${guild.name}</td><td>${
+						guild.memberCount
+					}</td><td><a href="https://discord.com/channels/${guild.id}">${
+						guild.id
+					}</a></td><td><a href="https://discord.com/users/${guild.owner}">${
+						guild.owner
+					}</a></td><td>${new Date(
+						guild.createdAt
+					).toLocaleDateString()}</td><td>${new Date(
+						guild.joinedAt
+					).toLocaleDateString()}</td></tr>`;
 				})
 				.join('')}
 		  </table>`);

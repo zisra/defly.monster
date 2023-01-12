@@ -70,21 +70,7 @@ function sanitize(string) {
 }
 
 function generateTable(stats) {
-	return `
-      <table class="table sortable" id="table">
-        <thead>
-          <tr>
-          <th>Nickname</th>
-          <th>Dots destroyed</th>
-          <th>Kills</th>
-          <th>Max level</th>
-          <th>Plays</th>
-          <th>Highest area</th>
-          <th>Highest score</th>
-          <th>Playtime</th>
-          <th>Kills/plays</th>
-          <th>Kills-plays</th>
-        <tbody>
+	return `<table class="table sortable" id="table"><thead><tr><th>Nickname</th><th>Dots destroyed</th><th>Kills</th><th>Max level</th><th>Plays</th><th>Highest area</th><th>Highest score</th><th>Playtime</th><th>Kills/plays</th><th>Kills-plays</th><tbody>
               ${stats
 								.map((row) => {
 									const nickname = row[0];
@@ -96,12 +82,7 @@ function generateTable(stats) {
 										})
 										.join('')}</tr>`;
 								})
-								.join('')}
-            </tbody>
-          </tr>
-        </thead>
-      </table>
-      `;
+								.join('')}</tbody></tr></thead></table>`;
 }
 
 function parseCSV(fileData) {
