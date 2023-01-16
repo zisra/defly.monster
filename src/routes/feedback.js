@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
 				data: 'Missing feedback JSON body parameter',
 			});
 
-		if (!req.body.feedback < 20)
+		if (req.body.feedback.length < 20)
 			return Response(res, {
 				type: 'invalidParameter',
 				data: 'Feedback parameter must be at least 20 characters',
