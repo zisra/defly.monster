@@ -6,6 +6,7 @@ const searchField = document.querySelector('#search-field');
 const filterField = document.getElementById('filter-field');
 const searchContainer = document.querySelector('#search-container');
 const notifications = document.querySelector('#notifications');
+const statistics = document.querySelector('#statistics');
 
 const replaceCharacters = {
 	'&': '&amp;',
@@ -21,7 +22,7 @@ let submittedFileName;
 
 function search(e) {
 	e.preventDefault();
-	let stats = parseCSV(fileData);
+	let { stats } = parseCSV(fileData);
 	const filterCount = filterField.value;
 	const searchData = searchField.value;
 	statsChart.innerHTML = generateTable(
@@ -59,7 +60,6 @@ function downloadURI(uri, name) {
 function saveFile() {
 	html2canvas(document.getElementById('table')).then((canvas) => {
 		const dataUrl = canvas.toDataURL('png');
-		const win = window.open(dataUrl);
 		downloadURI(dataUrl, `${submittedFileName.replace('.csv', '.png')}`);
 	});
 }
@@ -70,19 +70,63 @@ function sanitize(string) {
 }
 
 function generateTable(stats) {
-	return `<table class="table sortable" id="table"><thead><tr><th>Nickname</th><th>Dots destroyed</th><th>Kills</th><th>Max level</th><th>Plays</th><th>Highest area</th><th>Highest score</th><th>Playtime</th><th>Kills/plays</th><th>Kills-plays</th><tbody>
-              ${stats
-								.map((row) => {
-									const nickname = row[0];
-									row.shift();
-									return `<tr tabindex="0"><th>${nickname}</th>${row
-										.map((cell) => {
-											cell = cell.includes(':') ? cell : parseFloat(cell);
-											return `<td>${cell}</td>`;
-										})
-										.join('')}</tr>`;
-								})
-								.join('')}</tbody></tr></thead></table>`;
+	return (
+		'<table class="table sortable" id="table"><thead><tr><th>Nickname</th><th>Dots destroyed</th><th>Kills</th><th>Max level</th><th>Plays</th><th>Highest area</th><th>Highest score</th><th>Playtime</th><th>Kills/plays</th><th>Kills-plays</th><tbody>' +
+		stats
+			.map((row) => {
+				const nickname = row[0];
+				row.shift();
+				return `<tr tabindex="0"><th>${nickname}</th>${row
+					.map((cell) => {
+						cell = cell.includes(':') ? cell : parseFloat(cell);
+						return `<td>${cell}</td>`;
+					})
+					.join('')}</tr>`;
+			})
+			.join('') +
+		'</tbody></tr></thead></table>'
+	);
+}
+
+function generateStatistics(stats) {
+	/*
+		totalDotsDestroyed,
+		totalKills,
+		totalDeaths,
+		totalArea,
+		totalScore,
+		playerCount
+	*/
+	return `<div class="columns is-centered has-text-centered">
+	<div class="column is-one-third box has-background-info m-2 has-text-white">
+	  <div class="has-text-weight-bold">Total dots destroyed</div>
+	  <div>${stats.totalDotsDestroyed}</div>
+	</div>
+	<div class="column is-one-third box has-background-info m-2 has-text-white">
+	  <div class="has-text-weight-bold">Total kills</div>
+	  <div>${stats.totalKills}</div>
+	</div>
+  </div>
+  <div class="columns is-centered has-text-centered">
+	<div class="column is-one-third box has-background-info m-2 has-text-white">
+	  <div class="has-text-weight-bold">Total deaths</div>
+	  <div>${stats.totalDeaths}</div>
+	</div>
+	<div class="column is-one-third box has-background-info m-2 has-text-white">
+	  <div class="has-text-weight-bold">Total area</div>
+	  <div>${parseInt(stats.totalArea)}</div>
+	</div>
+  </div>
+  <div class="columns is-centered has-text-centered">
+	<div class="column is-one-third box has-background-info m-2 has-text-white">
+	  <div class="has-text-weight-bold">Total score</div>
+	  <div>${stats.totalScore}</div>
+	</div>
+	<div class="column is-one-third box has-background-info m-2 has-text-white">
+	  <div class="has-text-weight-bold">Total players</div>
+	  <div>${stats.playerCount}</div>
+	</div>
+  </div>`;
 }
 
 function parseCSV(fileData) {
@@ -98,12 +142,34 @@ function parseCSV(fileData) {
 	});
 	stats.shift();
 	stats.pop();
-	return stats;
+
+	const totalDotsDestroyed = stats
+		.map((a) => parseInt(a[1]))
+		.reduce((a, b) => a + b);
+	const totalKills = stats.map((a) => parseInt(a[2])).reduce((a, b) => a + b);
+	const totalDeaths = stats
+		.map((a) => parseInt(a[4]) - 1)
+		.reduce((a, b) => a + b);
+	const totalArea = stats.map((a) => parseFloat(a[5])).reduce((a, b) => a + b);
+	const totalScore = stats.map((a) => parseInt(a[6])).reduce((a, b) => a + b);
+	const playerCount = stats.length;
+
+	return {
+		totalDotsDestroyed,
+		totalKills,
+		totalDeaths,
+		totalArea,
+		totalScore,
+		playerCount,
+		stats,
+	};
 }
 
 function parseFile(fileData) {
 	let stats = parseCSV(fileData);
-	statsChart.innerHTML = generateTable(stats);
+	statsChart.innerHTML = generateTable(stats.stats);
+	statistics.innerHTML = generateStatistics(stats);
+
 	sorttable.makeSortable(document.getElementById('table'));
 	searchContainer.classList.remove('is-hidden');
 	searchField.focus();

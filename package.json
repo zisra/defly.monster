@@ -4,9 +4,10 @@
 	"main": "src/index.js",
 	"scripts": {
 		"start": "node src/index.js",
-		"getskins": "node scripts/getskins.js",
-		"allskins": "node scripts/allskins.js",
-		"registercommands": "node scripts/registerCommands.js"
+		"updateTeams": "node scripts/updateTeams.js",
+		"getSkins": "node scripts/getskins.js",
+		"allSkins": "node scripts/allskins.js",
+		"registerCommands": "node scripts/registerCommands.js"
 	},
 	"author": "Isra",
 	"license": "ISC",
@@ -20,7 +21,7 @@
 		"discord.js": "^14.7.1",
 		"express": "^4.18.2",
 		"express-session": "^1.17.3",
-		"googleapis": "^109.0.1",
+		"googleapis": "^110.0.0",
 		"gray-matter": "^4.0.3",
 		"handlebars": "^4.7.7",
 		"marked": "^4.2.4",
