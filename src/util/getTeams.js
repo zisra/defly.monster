@@ -1,4 +1,5 @@
 const WebSocket = require('ws');
+const axios = require('axios');
 const config = require('../config.js');
 
 function getTeams(input) {
@@ -41,12 +42,11 @@ function getTeams(input) {
 
 			socket.binaryType = 'arraybuffer';
 			socket.addEventListener('open', async (e) => {
-				let data = await fetch(
+				let sessionData = await axios(
 					'https://s.defly.io/?r=USE1&m=1&u=Player&fu=Player'
 				);
-				let sessionData = await data.text();
 
-				const session = sessionData.split(' ')[1];
+				const session = sessionData.data.split(' ')[1];
 				let socketBuffer = new DataView(
 					new ArrayBuffer(
 						2 + 2 * username.length + 1 + 2 * session.length + 4 + 4
