@@ -101,6 +101,7 @@ function getTeams(input) {
 					tourneyTeams = readString(message, 1).replace(/ +/g, '').split('-');
 				} else if (code === 59) {
 					const teamNames = readString(message, 1).split(';');
+					console.log(teamNames);
 					teamNames.forEach((team) => {
 						tourneyTeams[teamNames.indexOf(team)] = team;
 					});
