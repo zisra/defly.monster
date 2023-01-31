@@ -40,13 +40,18 @@ function getTeams(input) {
 			});
 
 			socket.binaryType = 'arraybuffer';
-			socket.addEventListener('open', (e) => {
-				const session = '',
-					socketBuffer = new DataView(
-						new ArrayBuffer(
-							2 + 2 * username.length + 1 + 2 * session.length + 4 + 4
-						)
-					);
+			socket.addEventListener('open', async (e) => {
+				let data = await fetch(
+					'https://s.defly.io/?r=USE1&m=1&u=Player&fu=Player'
+				);
+				let sessionData = await data.text();
+
+				const session = sessionData.split(' ')[1];
+				let socketBuffer = new DataView(
+					new ArrayBuffer(
+						2 + 2 * username.length + 1 + 2 * session.length + 4 + 4
+					)
+				);
 				socketBuffer.setUint8(0, 1);
 				writeString(socketBuffer, 1, username);
 				writeString(socketBuffer, 2 + 2 * username.length, session);

@@ -46,6 +46,7 @@ module.exports = {
 			});
 		}
 		const defuseMode = serverPort.endsWith('2');
+
 		const embed = new EmbedBuilder()
 			.setColor(config.EMBED.MAIN)
 			.setTitle(`${serverRegion.toUpperCase()} ${serverPort}`)
