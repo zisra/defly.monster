@@ -29,4 +29,3 @@ module.exports = async (req, res) => {
 		});
 	}
 };
-// getTeams({region:'use', port: 3005}).then(console.log)
