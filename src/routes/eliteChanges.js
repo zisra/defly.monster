@@ -42,7 +42,7 @@ module.exports = async (req, res) => {
 				message: 'No changes',
 			});
 		}
-		
+
 		const webhook = new WebhookClient({
 			url: process.env.ELITE_CHANGES_WEBHOOK,
 		});
@@ -60,7 +60,7 @@ module.exports = async (req, res) => {
 		});
 
 		await webhook.send({
-			embeds,
+			embeds: embeds.slice(0, 10),
 		});
 
 		res.json(changes);
