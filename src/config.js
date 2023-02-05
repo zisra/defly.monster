@@ -109,7 +109,7 @@ exports.SPREADSHEET_TEAMS = {
 	11: 'sky-blue',
 };
 
-exports.SPREADSHEET_RANGE = 'Season 07!A5:L24';
+exports.SPREADSHEET_RANGE = 'FUTURE Season 08!A5:L24';
 exports.SPREADSHEET_ID = '1b2z_lTIPEVhabnP73Mir3ttOZlqgEoLV9mLE1T-m1Y4';
 
 exports.INVITE_URL =

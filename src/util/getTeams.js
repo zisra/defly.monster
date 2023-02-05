@@ -71,7 +71,8 @@ function getTeams(input) {
 			});
 
 			let members = [];
-			let tourneyTeams = [];
+			let tourneyTeams = {};
+			let teamIDs = [];
 			socket.addEventListener('message', (event) => {
 				const message = new DataView(event.data);
 				const code = message.getUint8(0);
@@ -98,12 +99,12 @@ function getTeams(input) {
 						currentBadge,
 					});
 				} else if (code === 57) {
-					tourneyTeams = readString(message, 1).replace(/ +/g, '').split('-');
+					teamIDs = readString(message, 1).replace(/ +/g, '').split('-');
 				} else if (code === 59) {
 					const teamNames = readString(message, 1).split(';');
-					console.log(teamNames);
-					teamNames.forEach((team) => {
-						tourneyTeams[teamNames.indexOf(team)] = team;
+
+					teamIDs.forEach((teamID, index) => {
+						tourneyTeams[teamID] = teamNames[teamID];
 					});
 				} else if (code === 35) {
 					const results = [];
@@ -156,7 +157,7 @@ function getTeams(input) {
 
 					results.forEach((i) => {
 						i.team = config.TEAM_COLORS[i.teamID];
-						if (tourneyTeams.length) {
+						if (tourneyTeams !== {}) {
 							i.team.color = tourneyTeams[i.teamID];
 							i.team.hex = config.TEAM_COLORS[i.teamID].hex;
 						}
