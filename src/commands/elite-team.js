@@ -5,7 +5,6 @@ const {
 	ButtonBuilder,
 	ButtonStyle,
 } = require('discord.js');
-const axios = require('axios');
 
 const { eliteTeams } = require('../util/eliteTeams.js');
 const config = require('../config.js');

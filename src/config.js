@@ -42,10 +42,18 @@ exports.EXCUSES = [
 exports.MAX_SKINS = 136;
 
 exports.REGION_LIST = [
-	{ region: 'EU1', ws: 'eu1-1', alias: 'eu' },
-	{ region: 'USE1', ws: 'use4', alias: 'use' },
-	{ region: 'USW1', ws: 'usw4', alias: 'usw' },
-	{ region: 'TR', ws: 'use5', alias: 'tr' },
+	{ region: 'EU1', ws: 'eu1-1', alias: 'eu', name: 'Europe', working: false },
+	{ region: 'USE1', ws: 'use4', alias: 'use', name: 'US East', working: true },
+	{ region: 'USW1', ws: 'usw4', alias: 'usw', name: 'US West', working: false },
+	{ region: 'TR', ws: 'use5', alias: 'tr', name: 'Tournament', working: true },
+	{ region: 'TOK1', ws: 'tok1', alias: 'asia', name: 'Asia', working: true },
+	{
+		region: 'AU',
+		ws: 'au2',
+		alias: 'au',
+		name: 'Australia',
+		working: true,
+	},
 ];
 
 exports.TEAM_COLORS = {

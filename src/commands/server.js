@@ -14,14 +14,66 @@ module.exports = {
 		.addStringOption((option) =>
 			option
 				.setName('region')
-				.setDescription('Server region (use, usw, eu, tr)')
+				.setDescription('Server region')
 				.setRequired(true)
+				.addChoices(
+					...config.REGION_LIST.map((region) => ({
+						name: `${region.name}${region.working ? '' : ' (not working)'}`,
+						value: region.alias,
+					}))
+				)
 		)
 		.addIntegerOption((option) =>
 			option
 				.setName('port')
-				.setDescription('Server port (3005, 3015...)')
+				.setDescription('Server port')
 				.setRequired(true)
+				.addChoices(
+					{
+						name: '3005 (Teams)',
+						value: 3005,
+					},
+					{
+						name: '3015 (Teams)',
+						value: 3015,
+					},
+					{
+						name: '3025 (Teams)',
+						value: 3025,
+					},
+					{
+						name: '3035 (Teams)',
+						value: 3035,
+					},
+					{
+						name: '3045 (Teams)',
+						value: 3045,
+					},
+					{
+						name: '3002 (Defuse)',
+						value: 3002,
+					},
+					{
+						name: '3012 (Defuse)',
+						value: 3012,
+					},
+					{
+						name: '3022 (Defuse)',
+						value: 3022,
+					},
+					{
+						name: '3032 (Defuse)',
+						value: 3032,
+					},
+					{
+						name: '3042 (Defuse)',
+						value: 3042,
+					},
+					{
+						name: '3009 (Tournament)',
+						value: 3009,
+					}
+				)
 		),
 	command: async (message, args, client) => {
 		const serverRegion = message.interaction ? args.region : args[0];
