@@ -157,10 +157,10 @@ function getTeams(input) {
 
 					results.forEach((i) => {
 						i.team = config.TEAM_COLORS[i.teamID];
-						if (tourneyTeams !== {}) {
-							i.team.color = tourneyTeams[i.teamID];
-							i.team.hex = config.TEAM_COLORS[i.teamID].hex;
-						}
+						// if (tourneyTeams !== {}) {
+						// 	i.team.color = tourneyTeams[i.teamID];
+						//	i.team.hex = config.TEAM_COLORS[i.teamID].hex;
+						// }
 						i.team.ID = i.teamID;
 						delete i.teamID;
 					});
