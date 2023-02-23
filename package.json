@@ -5,8 +5,8 @@
 	"scripts": {
 		"start": "node src/index.js",
 		"updateTeams": "node scripts/updateTeams.js",
-		"getSkins": "node scripts/getskins.js",
-		"allSkins": "node scripts/allskins.js",
+		"getSkins": "node scripts/getSkins.js",
+		"allSkins": "node scripts/allSkins.js",
 		"registerCommands": "node scripts/registerCommands.js"
 	},
 	"author": "Isra",
