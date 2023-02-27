@@ -31,6 +31,7 @@ function getTeams(input) {
 			return {
 				ws: `wss://${address.ws}.defly.io/${input.port}`,
 				region: address.region,
+				
 			};
 		}
 
@@ -43,7 +44,7 @@ function getTeams(input) {
 			socket.binaryType = 'arraybuffer';
 			socket.addEventListener('open', async (e) => {
 				let sessionData = await axios(
-					'https://s.defly.io/?r=USE1&m=1&u=Player&fu=Player'
+					`https://s.defly.io/?r=${regionFromInput.region}&m=1&u=Player&fu=Player`
 				);
 
 				const session = sessionData.data.split(' ')[1];

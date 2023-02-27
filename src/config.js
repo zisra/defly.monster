@@ -42,11 +42,9 @@ exports.EXCUSES = [
 exports.MAX_SKINS = 136;
 
 exports.REGION_LIST = [
-	{ region: 'EU1', ws: 'eu1-1', alias: 'eu', name: 'Europe', working: false },
 	{ region: 'USE1', ws: 'use4', alias: 'use', name: 'US East', working: true },
-	{ region: 'USW1', ws: 'usw4', alias: 'usw', name: 'US West', working: false },
-	{ region: 'TR', ws: 'use5', alias: 'tr', name: 'Tournament', working: true },
-	{ region: 'TOK1', ws: 'tok1', alias: 'asia', name: 'Asia', working: true },
+	{ region: 'EU1', ws: 'eu1-1', alias: 'eu', name: 'Europe', working: true },
+	// { region: 'TOK1', ws: 'tok2', alias: 'asia', name: 'Asia East', working: true },
 	{
 		region: 'AU',
 		ws: 'au2',
@@ -54,6 +52,22 @@ exports.REGION_LIST = [
 		name: 'Australia',
 		working: true,
 	},
+	{ region: 'TR', ws: 'use5', alias: 'tr', name: 'Tournament', working: true },
+	{ region: 'USW1', ws: 'usw4', alias: 'usw', name: 'US West', working: false },
+];
+
+exports.PORT_LIST = [
+	{ port: 3005, mode: 'Teams' },
+	{ port: 3015, mode: 'Teams' },
+	{ port: 3025, mode: 'Teams' },
+	{ port: 3035, mode: 'Teams' },
+	{ port: 3045, mode: 'Teams' },
+	{ port: 3002, mode: 'Defuse' },
+	{ port: 3012, mode: 'Defuse' },
+	{ port: 3022, mode: 'Defuse' },
+	{ port: 3032, mode: 'Defuse' },
+	{ port: 3042, mode: 'Defuse' },
+	{ port: 3009, mode: 'Tournament' },
 ];
 
 exports.TEAM_COLORS = {
