@@ -138,3 +138,5 @@ exports.INVITE_URL =
 	'https://discord.com/api/oauth2/authorize?client_id=883125551139799070&permissions=8858758209&scope=bot%20applications.commands';
 
 exports.ELITE_CHANGES_CHANNEL = 1055715651311915008;
+
+exports.CLOUDFLARE_WORKER_URL = 'https://defly-websocket.isra.workers.dev/';

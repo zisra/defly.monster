@@ -1,9 +1,9 @@
 const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 
 const Sentry = require('@sentry/node');
+const axios = require('axios');
 
 const config = require('../config.js');
-const { getTeams } = require('../util/getTeams.js');
 
 module.exports = {
 	arguments: ['region (use, usw, eu)', 'port (3005,3015,3025)'],
@@ -46,10 +46,14 @@ module.exports = {
 		}
 
 		try {
-			serverRes = await getTeams({
-				region: serverRegion,
-				port: serverPort,
+			let { data } = await axios.get(config.CLOUDFLARE_WORKER_URL, {
+				params: {
+					region: serverRegion,
+					port: serverPort,
+				},
 			});
+
+			serverRes = data;
 		} catch (err) {
 			Sentry.captureException(err);
 			return message.reply({
