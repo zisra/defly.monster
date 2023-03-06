@@ -1,14 +1,5 @@
 const PREFIX = 'd?';
 
-const TEAM_EMOJIS = {
-	blue: '884904847118323722',
-	'dark-green': '884904846887649291',
-	orange: '884904847067979837',
-	red: '884904847160246332',
-	'sky-blue': '884904847038615592',
-	green: '735889328261169253',
-};
-
 const UPGRADES = {
 	ON: '<:upg_on:948707185716772874>',
 	OFF: '<:upg_off:948707185771294771>',
@@ -82,35 +73,44 @@ const TEAM_COLORS = {
 	9: { color: 'Pink', hex: 'f659ff' },
 };
 
-const ELITE_TEAM_NAMES = [
-	'blue',
-	'dark-green',
-	'orange',
-	'green',
-	'red',
-	'sky-blue',
-];
-
 const ELITE_TEAMS = {
-	blue: {
-		color: '3d5dff',
+	lime: {
+		spreadsheetId: 1,
+		color: '93fe00',
+		emoji: '735889328160374876',
 	},
 	'dark-green': {
+		spreadsheetId: 3,
 		color: '008037',
-	},
-	orange: {
-		color: 'ff8a2a',
-	},
-	green: {
-		color: '18e21f',
+		emoji: '884904846887649291',
 	},
 	red: {
+		spreadsheetId: 5,
 		color: 'fd3535',
+		emoji: '884904847160246332',
+	},
+	orange: {
+		spreadsheetId: 7,
+		color: 'ff8a2a',
+		emoji: '884904847067979837',
+	},
+	purple: {
+		spreadsheetId: 9,
+		color: '924bff',
+		emoji: '735889328479404034',
 	},
 	'sky-blue': {
+		spreadsheetId: 11,
 		color: '55d5ff',
+		emoji: '884904847038615592',
 	},
 };
+
+// get the team ids from the spreadsheet ids
+const ELITE_TEAM_IDS = Object.keys(ELITE_TEAMS).reduce((acc, key) => {
+	acc[ELITE_TEAMS[key].spreadsheetId] = key;
+	return acc;
+}, {});
 
 const SUPPORT_GUILD = 'AMyahUvd4Q';
 
@@ -123,16 +123,7 @@ const EMBED = {
 
 const TIME_FORMATS = ['t', 'T', 'd', 'D', 'f', 'F', 'R'];
 
-const SPREADSHEET_TEAMS = {
-	1: 'blue',
-	3: 'dark-green',
-	7: 'orange',
-	9: 'green',
-	5: 'red',
-	11: 'sky-blue',
-};
-
-const SPREADSHEET_RANGE = 'FUTURE Season 08!A5:L24';
+const SPREADSHEET_RANGE = 'FUTURE Season 08!A5:L20';
 const SPREADSHEET_ID = '1b2z_lTIPEVhabnP73Mir3ttOZlqgEoLV9mLE1T-m1Y4';
 const INVITE_URL =
 	'https://discord.com/api/oauth2/authorize?client_id=883125551139799070&permissions=8858758209&scope=bot%20applications.commands';
@@ -141,19 +132,17 @@ const CLOUDFLARE_WORKER_URL = 'https://defly-websocket.isra.workers.dev/';
 
 export default {
 	PREFIX,
-	TEAM_EMOJIS,
 	UPGRADES,
 	EXCUSES,
 	MAX_SKINS,
 	REGION_LIST,
 	PORT_LIST,
 	TEAM_COLORS,
-	ELITE_TEAM_NAMES,
 	ELITE_TEAMS,
+	ELITE_TEAM_IDS,
 	SUPPORT_GUILD,
 	EMBED,
 	TIME_FORMATS,
-	SPREADSHEET_TEAMS,
 	SPREADSHEET_RANGE,
 	SPREADSHEET_ID,
 	INVITE_URL,

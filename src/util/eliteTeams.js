@@ -31,18 +31,18 @@ export async function eliteTeams() {
 				});
 
 				let output = {
-					blue: [],
+					lime: [],
 					'dark-green': [],
-					orange: [],
-					green: [],
 					red: [],
+					orange: [],
+					purple: [],
 					'sky-blue': [],
 				};
 
 				sheetData.forEach((row) => {
 					for (let cell in row) {
-						if (config.SPREADSHEET_TEAMS[cell]) {
-							output[config.SPREADSHEET_TEAMS[cell]].push(row[cell]);
+						if (config.ELITE_TEAM_IDS[cell]) {
+								output[config.ELITE_TEAM_IDS[cell]].push(row[cell]);
 						}
 					}
 				});

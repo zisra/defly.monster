@@ -1,9 +1,9 @@
 import {
-    EmbedBuilder,
-    SlashCommandBuilder,
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle,
+	EmbedBuilder,
+	SlashCommandBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
+	ButtonStyle,
 } from 'discord.js';
 
 import { eliteTeams } from '../util/eliteTeams.js';
@@ -21,7 +21,7 @@ export default {
 				.setDescription('The elite team to show info about')
 				.setRequired(true)
 				.addChoices(
-					...config.ELITE_TEAM_NAMES.map((team) => ({
+					...Object.keys(config.ELITE_TEAMS).map((team) => ({
 						name: team.replace('-', ' ').capitalize(),
 						value: team,
 					}))
@@ -38,11 +38,11 @@ export default {
 		);
 		const team = message.interaction ? args.team : args[0];
 
-		if (!team || !config.ELITE_TEAM_NAMES.includes(team)) {
+		if (!team || !config.ELITE_TEAMS[team]) {
 			return message.reply({
-				content: `Please select an elite team: ${config.ELITE_TEAM_NAMES.join(
-					', '
-				)}.`,
+				content: `Please select an elite team: ${Object.keys(
+					config.ELITE_TEAMS
+				).join(', ')}.`,
 				components: [row],
 				ephemeral: true,
 			});
@@ -52,16 +52,16 @@ export default {
 		const embed = new EmbedBuilder()
 			.setColor(config.ELITE_TEAMS[team].color)
 			.setThumbnail(
-				`https://cdn.discordapp.com/emojis/${config.TEAM_EMOJIS[team]}.png`
+				`https://cdn.discordapp.com/emojis/${config.ELITE_TEAMS[team].emoji}.png`
 			)
 			.setTitle(`${team.replace('-', ' ').capitalize()}`)
 			.setDescription(
-				`**Captain:** [${teamList[team][0].value}](https://discord.com/users/${
-					teamList[team][0].note
-				})
-					**Vice Captain:** [${teamList[team][1].value}](https://discord.com/users/${
-					teamList[team][1].note
-				})
+				`**Captain:** [${
+					teamList[team][0]?.value ?? 'N/A'
+				}](https://discord.com/users/${teamList[team][0]?.note ?? ''})
+					**Vice Captain:** [${
+						teamList[team][1]?.value ?? 'N/A'
+					}](https://discord.com/users/${teamList[team][1]?.note ?? ''})
 		 ${teamList[team]
 				.slice(2)
 				.map(

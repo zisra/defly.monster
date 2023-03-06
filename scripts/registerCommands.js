@@ -1,8 +1,9 @@
 import { REST, Routes } from 'discord.js';
 import fs from 'fs';
+import dotenv from 'dotenv';
 
 if (process.env.NODE_ENV !== 'production') {
-	require('dotenv').config();
+	dotenv.config();
 }
 
 String.prototype.capitalize = function () {
@@ -16,7 +17,7 @@ const commandFiles = fs
 	.filter((file) => file.endsWith('.js'));
 
 for (const file of commandFiles) {
-	const command = require(`../src/commands/${file}`);
+	const { default: command } = await import(`../src/commands/${file}`);
 	if (!command.adminOnly) {
 		commands.push(command.interaction.toJSON());
 	}

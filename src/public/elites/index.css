@@ -6,8 +6,8 @@ body {
 	justify-content: safe center;
 }
 
-.blue {
-	border-color: #3d5dff;
+.lime {
+	border-color: #93fe00;
 }
 
 .dark-green {
@@ -26,8 +26,8 @@ body {
 	border-color: #55d5ff;
 }
 
-.green {
-	border-color: #18e21f;
+.purple {
+	border-color: #924bff;
 }
 
 .team-box {
@@ -62,7 +62,8 @@ body {
 	font-weight: bold;
 }
 
-a, a:visited {
+a,
+a:visited {
 	text-decoration: none;
 	color: black;
 	cursor: pointer;
