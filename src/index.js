@@ -155,7 +155,9 @@ client.on('interactionCreate', async (interaction) => {
 		});
 
 		if (commandFolder.find((i) => i === `${command}.js`)) {
-			const selectedCommand = require(`./commands/${command}.js`);
+			const { default: selectedCommand } = await import(
+				`./commands/${command}.js`
+			);
 			try {
 				interaction.interaction = true;
 				if (selectedCommand.adminOnly) return;
