@@ -1,6 +1,6 @@
-const axios = require('axios');
-const fs = require('fs');
-const sharp = require('sharp');
+import axios from 'axios';
+import fs from 'fs';
+import sharp from 'sharp';
 
 function getAllSkins() {
 	axios

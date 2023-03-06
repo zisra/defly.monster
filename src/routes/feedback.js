@@ -1,9 +1,8 @@
-const Response = require('../util/apiResponse.js');
-const config = require('../config.js');
+import Response from '../util/apiResponse.js';
+import config from '../config.js';
+import { WebhookClient, EmbedBuilder, escapeMarkdown } from 'discord.js';
 
-const { WebhookClient, EmbedBuilder, escapeMarkdown } = require('discord.js');
-
-module.exports = async (req, res) => {
+export default async (req, res) => {
 	try {
 		if (!req.body.feedback)
 			return Response(res, {

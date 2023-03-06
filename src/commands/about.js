@@ -1,13 +1,14 @@
-const {
-	ButtonBuilder,
-	ActionRowBuilder,
-	EmbedBuilder,
-	ButtonStyle,
-	SlashCommandBuilder,
-} = require('discord.js');
-const config = require('../config.js');
+import {
+    ButtonBuilder,
+    ActionRowBuilder,
+    EmbedBuilder,
+    ButtonStyle,
+    SlashCommandBuilder,
+} from 'discord.js';
 
-module.exports = {
+import config from '../config.js';
+
+export default {
 	arguments: false,
 	description: 'Basic information & credits regarding the bot',
 	interaction: new SlashCommandBuilder()

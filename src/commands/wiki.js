@@ -1,14 +1,8 @@
-const axios = require('axios');
-const {
-	SlashCommandBuilder,
-	ActionRowBuilder,
-	ButtonBuilder,
-	ButtonStyle,
-} = require('discord.js');
+import axios from 'axios';
+import { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
+import config from '../config.js';
 
-const config = require('../config.js');
-
-module.exports = {
+export default {
 	arguments: ['article-name'],
 	description: 'Gets a given wiki article from the defly.io wiki',
 	interaction: new SlashCommandBuilder()

@@ -9,6 +9,7 @@
 		"allSkins": "node scripts/allSkins.js",
 		"registerCommands": "node scripts/registerCommands.js"
 	},
+	"type": "module",
 	"author": "Isra",
 	"license": "ISC",
 	"dependencies": {

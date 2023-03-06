@@ -1,7 +1,7 @@
-const { Resvg } = require('@resvg/resvg-js');
-const path = require('path');
+import { Resvg } from '@resvg/resvg-js';
+import path from 'path';
 
-function generateUpgrades(upgrades, format, height) {
+export function generateUpgrades(upgrades, format, height) {
 	return new Promise(async (resolve, reject) => {
 		let SVG = [];
 
@@ -148,4 +148,3 @@ function generateUpgrades(upgrades, format, height) {
 		}
 	});
 }
-exports.generateUpgrades = generateUpgrades;

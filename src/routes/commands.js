@@ -1,8 +1,7 @@
-const Response = require('../util/apiResponse.js');
+import Response from '../util/apiResponse.js';
+import { commands } from '../util/commands.js';
 
-const { commands } = require('../util/commands.js');
-
-module.exports = async (req, res) => {
+export default async (req, res) => {
 	try {
 		const commandList = await commands();
 		res.json(commandList.filter((i) => !i.adminOnly));

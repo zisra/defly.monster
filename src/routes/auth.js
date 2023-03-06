@@ -1,7 +1,7 @@
-const axios = require('axios');
-const Response = require('../util/apiResponse.js');
+import axios from 'axios';
+import Response from '../util/apiResponse.js';
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
 	const code = req.query.code;
 
 	if (code) {

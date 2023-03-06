@@ -1,7 +1,7 @@
-const { generateUpgrades } = require('../util/generateUpgrades.js');
-const Response = require('../util/apiResponse.js');
+import { generateUpgrades } from '../util/generateUpgrades.js';
+import Response from '../util/apiResponse.js';
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
 	try {
 		const build = req.query.build;
 

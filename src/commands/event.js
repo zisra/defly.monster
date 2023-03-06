@@ -1,9 +1,8 @@
-const { EmbedBuilder, SlashCommandBuilder, time } = require('discord.js');
+import { EmbedBuilder, SlashCommandBuilder, time } from 'discord.js';
+import config from '../config.js';
+import { getServers } from '../util/getServers.js';
 
-const config = require('../config.js');
-const { getServers } = require('../util/getServers.js');
-
-module.exports = {
+export default {
 	arguments: false,
 	description: 'Find out what tournaments are coming up',
 	interaction: new SlashCommandBuilder()

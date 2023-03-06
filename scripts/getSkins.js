@@ -1,5 +1,5 @@
-const config = require('./src/config.js');
-const fs = require('fs');
+import config from './src/config.js';
+import fs from 'fs';
 
 const skinData = JSON.parse(fs.readFileSync('./allskins.txt', 'utf8'));
 function getSkin(skin) {

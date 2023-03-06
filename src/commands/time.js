@@ -1,15 +1,16 @@
-const {
-	EmbedBuilder,
-	time,
-	SlashCommandBuilder,
-	ActionRowBuilder,
-	ButtonBuilder,
-	ButtonStyle,
-} = require('discord.js');
-const config = require('../config.js');
-const dateParser = require('any-date-parser');
+import {
+    EmbedBuilder,
+    time,
+    SlashCommandBuilder,
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle,
+} from 'discord.js';
 
-module.exports = {
+import config from '../config.js';
+import dateParser from 'any-date-parser';
+
+export default {
 	arguments: false,
 	description:
 		'Sends the Discord timestamp for any given date. Useful for tournament dates. Defaults UTC.',

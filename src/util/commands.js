@@ -1,18 +1,20 @@
-const fs = require('fs');
+import fs from 'fs';
 
-async function commands(mode) {
+export async function commands(mode) {
 	const commands = [];
-	fs.readdirSync('./src/commands').forEach((command) => {
-		const commandData = require('../commands/' + command);
+	const commandFiles = fs.readdirSync('./src/commands');
+
+	// convert to .map with promise.all
+	for (const file of commandFiles) {
+		const { default: commandData } = await import('../commands/' + file);
 
 		commands.push({
-			name: command.replace('.js', ''),
+			name: file.replace('.js', ''),
 			arguments: commandData?.arguments ?? null,
 			description: commandData.description,
 			adminOnly: commandData?.adminOnly ?? false,
 		});
-	});
+	}
+
 	return commands;
 }
-
-exports.commands = commands;

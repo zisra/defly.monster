@@ -1,6 +1,6 @@
-const axios = require('axios');
+import axios from 'axios';
 
-async function getServers(mode) {
+export async function getServers(mode) {
 	let res = await axios.get('https://s.defly.io/servers?m=' + mode);
 	if (typeof res.data === 'string') {
 		const servers = res.data.split('event=');
@@ -14,4 +14,3 @@ async function getServers(mode) {
 		};
 	}
 }
-exports.getServers = getServers;

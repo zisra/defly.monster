@@ -1,14 +1,15 @@
-const {
-	GuildScheduledEventEntityType,
-	GuildScheduledEventPrivacyLevel,
-	GuildFeature,
-	PermissionsBitField,
-	SlashCommandBuilder,
-} = require('discord.js');
-const config = require('../config.js');
-const { getServers } = require('../util/getServers.js');
+import {
+    GuildScheduledEventEntityType,
+    GuildScheduledEventPrivacyLevel,
+    GuildFeature,
+    PermissionsBitField,
+    SlashCommandBuilder,
+} from 'discord.js';
 
-module.exports = {
+import config from '../config.js';
+import { getServers } from '../util/getServers.js';
+
+export default {
 	arguments: false,
 	guildOnly: true,
 	description:

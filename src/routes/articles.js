@@ -1,6 +1,6 @@
-const Response = require('../util/apiResponse.js');
+import Response from '../util/apiResponse.js';
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
 	try {
 		res.sendFile('articles.json', {
 			root: './src',

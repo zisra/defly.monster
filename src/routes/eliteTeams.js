@@ -1,6 +1,5 @@
-const Response = require('../util/apiResponse.js');
-
-const { eliteTeams } = require('../util/eliteTeams.js');
+import Response from '../util/apiResponse.js';
+import { eliteTeams } from '../util/eliteTeams.js';
 
 function convertTeams(teams) {
 	let output = {};
@@ -14,7 +13,7 @@ function convertTeams(teams) {
 	return output;
 }
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
 	try {
 		let eliteTeamList = await eliteTeams();
 

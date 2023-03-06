@@ -1,15 +1,9 @@
-const {
-	ActionRowBuilder,
-	ButtonBuilder,
-	ButtonStyle,
-	SlashCommandBuilder,
-} = require('discord.js');
-const Sentry = require('@sentry/node');
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder } from 'discord.js';
+import Sentry from '@sentry/node';
+import config from '../config.js';
+import fs from 'fs';
 
-const config = require('../config.js');
-const fs = require('fs');
-
-module.exports = {
+export default {
 	arguments: ['skin-id'],
 	description: 'Sends the file for any current in-game skin',
 	interaction: new SlashCommandBuilder()

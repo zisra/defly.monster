@@ -1,10 +1,8 @@
-const { eliteTeams } = require('../util/eliteTeams.js');
-const config = require('../config.js');
-
-const { WebhookClient, EmbedBuilder } = require('discord.js');
-const deepDiff = require('deep-diff-pizza');
-
-const fs = require('fs');
+import { eliteTeams } from '../util/eliteTeams.js';
+import config from '../config.js';
+import { WebhookClient, EmbedBuilder } from 'discord.js';
+import deepDiff from 'deep-diff-pizza';
+import fs from 'fs';
 
 function convertTeams(teams) {
 	let output = {};
@@ -18,7 +16,7 @@ function convertTeams(teams) {
 	return output;
 }
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
 	const teamList = convertTeams(await eliteTeams());
 
 	const previousTeamList = JSON.parse(

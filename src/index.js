@@ -1,20 +1,20 @@
 // https://discord.com/api/oauth2/authorize?client_id=883125551139799070&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2F&response_type=code&scope=identify
 
-const fs = require('fs');
-const util = require('util');
-const path = require('path');
+import fs from 'node:fs';
 
-const Sentry = require('@sentry/node');
-const Discord = require('discord.js');
-const express = require('express');
-const cors = require('cors');
-const axios = require('axios');
-const session = require('express-session');
-const memoryStore = require('memorystore');
-
-const config = require('./config.js');
-const router = require('./router.js');
-const generateArticles = require('./articles.js');
+import util from 'node:util';
+import path from 'node:path';
+import Sentry from '@sentry/node';
+import Discord from 'discord.js';
+import express from 'express';
+import cors from 'cors';
+import axios from 'axios';
+import session from 'express-session';
+import memoryStore from 'memorystore';
+import config from './config.js';
+import router from './router.js';
+import generateArticles from './articles.js';
+import dotenv from 'dotenv';
 
 generateArticles();
 
@@ -30,7 +30,7 @@ const { GatewayIntentBits, Partials, AttachmentBuilder, EmbedBuilder } =
 	Discord;
 
 if (process.env.NODE_ENV !== 'production') {
-	require('dotenv').config();
+	dotenv.config();
 }
 
 Sentry.init({
@@ -92,7 +92,9 @@ client.on('messageCreate', async (message) => {
 	const command = args.shift().toLowerCase();
 	const commandFolder = fs.readdirSync('./src/commands');
 	if (commandFolder.find((i) => i === `${command}.js`)) {
-		const selectedCommand = require(`./commands/${command}.js`);
+		const { default: selectedCommand } = await import(
+			`./commands/${command}.js`
+		);
 		try {
 			if (selectedCommand.guildOnly && !message.guild) return;
 			if (selectedCommand?.adminOnly) {
@@ -105,6 +107,7 @@ client.on('messageCreate', async (message) => {
 				selectedCommand.command(message, args, client);
 			}
 		} catch (err) {
+			console.error(err);
 			Sentry.captureException(err);
 			await message.react('\u274C');
 			await message.reply(
@@ -253,18 +256,25 @@ app.use(
 
 app.use(express.json());
 app.use(cors());
-app.use(express.static(__dirname + '/public'));
+app.use(
+	express.static('./src/public', {
+		root: process.cwd(),
+	})
+);
 app.use(
 	'/articles',
-	express.static(__dirname + '/publicArticles', { extensions: ['html'] })
+	express.static('./src/publicArticles', {
+		extensions: ['html'],
+		root: process.cwd(),
+	})
 );
 
 app.use('/api', router);
 
 app.get('*', (req, res) => {
 	res.status(404);
-	res.sendFile('./public/404.html', {
-		root: __dirname,
+	res.sendFile('./src/public/404.html', {
+		root: process.cwd(),
 	});
 });
 

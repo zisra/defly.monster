@@ -1,4 +1,4 @@
-const Sentry = require('@sentry/node');
+import Sentry from '@sentry/node';
 
 const errorTypes = {
 	success: {
@@ -43,7 +43,7 @@ const errorTypes = {
 	},
 };
 
-function Response(res, { type, message, data, err }) {
+export default function Response(res, { type, message, data, err }) {
 	if (!res) throw new TypeError('First parameter must be a response object');
 	const responseType = errorTypes[type] || errorTypes['serverError'];
 	res.status(responseType.code).json({
@@ -58,5 +58,3 @@ function Response(res, { type, message, data, err }) {
 		Sentry.captureException(err);
 	}
 }
-
-module.exports = Response;

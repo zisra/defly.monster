@@ -1,14 +1,15 @@
-const {
-	ButtonBuilder,
-	ActionRowBuilder,
-	EmbedBuilder,
-	PermissionsBitField,
-	ButtonStyle,
-	SlashCommandBuilder,
-} = require('discord.js');
-const config = require('../config.js');
+import {
+    ButtonBuilder,
+    ActionRowBuilder,
+    EmbedBuilder,
+    PermissionsBitField,
+    ButtonStyle,
+    SlashCommandBuilder,
+} from 'discord.js';
 
-module.exports = {
+import config from '../config.js';
+
+export default {
 	arguments: false,
 	description: 'Get deploy info',
 	adminOnly: true,

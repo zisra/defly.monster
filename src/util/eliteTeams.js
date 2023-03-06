@@ -1,7 +1,7 @@
-const { google } = require('googleapis');
-const config = require('../config.js');
+import { google } from 'googleapis';
+import config from '../config.js';
 
-async function eliteTeams() {
+export async function eliteTeams() {
 	return new Promise(function (resolve, reject) {
 		const sheets = google.sheets({
 			version: 'v4',
@@ -40,7 +40,7 @@ async function eliteTeams() {
 				};
 
 				sheetData.forEach((row) => {
-					for (cell in row) {
+					for (let cell in row) {
 						if (config.SPREADSHEET_TEAMS[cell]) {
 							output[config.SPREADSHEET_TEAMS[cell]].push(row[cell]);
 						}
@@ -58,5 +58,3 @@ async function eliteTeams() {
 		);
 	});
 }
-
-exports.eliteTeams = eliteTeams;

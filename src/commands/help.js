@@ -1,16 +1,15 @@
-const {
+import {
 	EmbedBuilder,
 	ActionRowBuilder,
 	ButtonBuilder,
 	ButtonStyle,
 	SlashCommandBuilder,
-} = require('discord.js');
+} from 'discord.js';
 
-const config = require('../config.js');
-const { commands } = require('../util/commands.js');
-const e = require('express');
+import config from '../config.js';
+import { commands } from '../util/commands.js';
 
-module.exports = {
+export default {
 	arguments: false,
 	description: 'Gets a list of all commands',
 	interaction: new SlashCommandBuilder()

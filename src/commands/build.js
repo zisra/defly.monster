@@ -1,13 +1,8 @@
-const {
-	EmbedBuilder,
-	AttachmentBuilder,
-	SlashCommandBuilder,
-} = require('discord.js');
+import { EmbedBuilder, AttachmentBuilder, SlashCommandBuilder } from 'discord.js';
+import { generateUpgrades } from '../util/generateUpgrades.js';
+import config from '../config.js';
 
-const { generateUpgrades } = require('../util/generateUpgrades.js');
-const config = require('../config.js');
-
-module.exports = {
+export default {
 	arguments: ['build'],
 	description: 'Sends a graphic for any chosen build',
 	interaction: new SlashCommandBuilder()

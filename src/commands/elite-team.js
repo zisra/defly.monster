@@ -1,15 +1,15 @@
-const {
-	EmbedBuilder,
-	SlashCommandBuilder,
-	ActionRowBuilder,
-	ButtonBuilder,
-	ButtonStyle,
-} = require('discord.js');
+import {
+    EmbedBuilder,
+    SlashCommandBuilder,
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle,
+} from 'discord.js';
 
-const { eliteTeams } = require('../util/eliteTeams.js');
-const config = require('../config.js');
+import { eliteTeams } from '../util/eliteTeams.js';
+import config from '../config.js';
 
-module.exports = {
+export default {
 	arguments: ['team'],
 	description: 'Gets info on a given elite team',
 	interaction: new SlashCommandBuilder()

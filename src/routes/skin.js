@@ -1,7 +1,7 @@
-const config = require('../config.js');
-const Response = require('../util/apiResponse.js');
+import config from '../config.js';
+import Response from '../util/apiResponse.js';
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
 	try {
 		const id = req.query.id;
 

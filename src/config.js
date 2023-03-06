@@ -1,5 +1,6 @@
-exports.PREFIX = 'd?';
-exports.TEAM_EMOJIS = {
+const PREFIX = 'd?';
+
+const TEAM_EMOJIS = {
 	blue: '884904847118323722',
 	'dark-green': '884904846887649291',
 	orange: '884904847067979837',
@@ -8,12 +9,12 @@ exports.TEAM_EMOJIS = {
 	green: '735889328261169253',
 };
 
-exports.UPGRADES = {
+const UPGRADES = {
 	ON: '<:upg_on:948707185716772874>',
 	OFF: '<:upg_off:948707185771294771>',
 };
 
-exports.EXCUSES = [
+const EXCUSES = [
 	'I swear it was lag!',
 	'Dang, why is my ping so high?',
 	'Why do people have to kill me when I get a disconnect?',
@@ -39,10 +40,11 @@ exports.EXCUSES = [
 	'Oof, that was my clone.',
 ];
 
-exports.MAX_SKINS = 136;
+const MAX_SKINS = 136;
 
-exports.REGION_LIST = [
+const REGION_LIST = [
 	{ region: 'USE1', ws: 'use4', alias: 'use', name: 'US East', working: true },
+	{ region: 'USW1', ws: 'usw4', alias: 'usw', name: 'US West', working: true },
 	{ region: 'EU1', ws: 'eu1-1', alias: 'eu', name: 'Europe', working: true },
 	// { region: 'TOK1', ws: 'tok2', alias: 'asia', name: 'Asia East', working: true },
 	{
@@ -53,10 +55,9 @@ exports.REGION_LIST = [
 		working: true,
 	},
 	{ region: 'TR', ws: 'use5', alias: 'tr', name: 'Tournament', working: true },
-	{ region: 'USW1', ws: 'usw4', alias: 'usw', name: 'US West', working: false },
 ];
 
-exports.PORT_LIST = [
+const PORT_LIST = [
 	{ port: 3005, mode: 'Teams' },
 	{ port: 3015, mode: 'Teams' },
 	{ port: 3025, mode: 'Teams' },
@@ -70,7 +71,7 @@ exports.PORT_LIST = [
 	{ port: 3009, mode: 'Tournament' },
 ];
 
-exports.TEAM_COLORS = {
+const TEAM_COLORS = {
 	2: { color: 'Blue', hex: '3d5dff' },
 	3: { color: 'Red', hex: 'fd3535' },
 	4: { color: 'Dark Green', hex: '008037' },
@@ -81,7 +82,7 @@ exports.TEAM_COLORS = {
 	9: { color: 'Pink', hex: 'f659ff' },
 };
 
-exports.ELITE_TEAM_NAMES = [
+const ELITE_TEAM_NAMES = [
 	'blue',
 	'dark-green',
 	'orange',
@@ -90,7 +91,7 @@ exports.ELITE_TEAM_NAMES = [
 	'sky-blue',
 ];
 
-exports.ELITE_TEAMS = {
+const ELITE_TEAMS = {
 	blue: {
 		color: '3d5dff',
 	},
@@ -111,18 +112,18 @@ exports.ELITE_TEAMS = {
 	},
 };
 
-exports.SUPPORT_GUILD = 'AMyahUvd4Q';
+const SUPPORT_GUILD = 'AMyahUvd4Q';
 
-exports.EMBED = {
+const EMBED = {
 	SUCCESS: '3fa577',
 	WARNING: 'fbab18',
 	ERROR: 'f04747',
 	MAIN: 'f659ff',
 };
 
-exports.TIME_FORMATS = ['t', 'T', 'd', 'D', 'f', 'F', 'R'];
+const TIME_FORMATS = ['t', 'T', 'd', 'D', 'f', 'F', 'R'];
 
-exports.SPREADSHEET_TEAMS = {
+const SPREADSHEET_TEAMS = {
 	1: 'blue',
 	3: 'dark-green',
 	7: 'orange',
@@ -131,12 +132,31 @@ exports.SPREADSHEET_TEAMS = {
 	11: 'sky-blue',
 };
 
-exports.SPREADSHEET_RANGE = 'FUTURE Season 08!A5:L24';
-exports.SPREADSHEET_ID = '1b2z_lTIPEVhabnP73Mir3ttOZlqgEoLV9mLE1T-m1Y4';
-
-exports.INVITE_URL =
+const SPREADSHEET_RANGE = 'FUTURE Season 08!A5:L24';
+const SPREADSHEET_ID = '1b2z_lTIPEVhabnP73Mir3ttOZlqgEoLV9mLE1T-m1Y4';
+const INVITE_URL =
 	'https://discord.com/api/oauth2/authorize?client_id=883125551139799070&permissions=8858758209&scope=bot%20applications.commands';
+const ELITE_CHANGES_CHANNEL = 1055715651311915008;
+const CLOUDFLARE_WORKER_URL = 'https://defly-websocket.isra.workers.dev/';
 
-exports.ELITE_CHANGES_CHANNEL = 1055715651311915008;
-
-exports.CLOUDFLARE_WORKER_URL = 'https://defly-websocket.isra.workers.dev/';
+export default {
+	PREFIX,
+	TEAM_EMOJIS,
+	UPGRADES,
+	EXCUSES,
+	MAX_SKINS,
+	REGION_LIST,
+	PORT_LIST,
+	TEAM_COLORS,
+	ELITE_TEAM_NAMES,
+	ELITE_TEAMS,
+	SUPPORT_GUILD,
+	EMBED,
+	TIME_FORMATS,
+	SPREADSHEET_TEAMS,
+	SPREADSHEET_RANGE,
+	SPREADSHEET_ID,
+	INVITE_URL,
+	ELITE_CHANGES_CHANNEL,
+	CLOUDFLARE_WORKER_URL,
+};

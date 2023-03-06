@@ -1,7 +1,7 @@
-const config = require('../config.js');
-const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
+import config from '../config.js';
+import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 
-module.exports = {
+export default {
 	arguments: false,
 	description: 'Gets a random badge for premium users',
 	interaction: new SlashCommandBuilder()

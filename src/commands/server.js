@@ -1,11 +1,9 @@
-const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
+import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import Sentry from '@sentry/node';
+import axios from 'axios';
+import config from '../config.js';
 
-const Sentry = require('@sentry/node');
-const axios = require('axios');
-
-const config = require('../config.js');
-
-module.exports = {
+export default {
 	arguments: ['region (use, usw, eu)', 'port (3005,3015,3025)'],
 	description: 'Get the teams and their players for the specified server',
 	interaction: new SlashCommandBuilder()
@@ -38,6 +36,8 @@ module.exports = {
 	command: async (message, args, client) => {
 		const serverRegion = message.interaction ? args.region : args[0];
 		const serverPort = message.interaction ? args.port : args[1];
+		let serverRes;
+
 		if (!serverPort || !serverRegion) {
 			return message.reply({
 				content: `Something went wrong getting teams`,
@@ -55,6 +55,7 @@ module.exports = {
 
 			serverRes = data;
 		} catch (err) {
+			console.error(err);
 			Sentry.captureException(err);
 			return message.reply({
 				content: `Something went wrong getting teams`,

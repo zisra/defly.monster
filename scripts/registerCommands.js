@@ -1,5 +1,5 @@
-const { REST, Routes } = require('discord.js');
-const fs = require('fs');
+import { REST, Routes } from 'discord.js';
+import fs from 'fs';
 
 if (process.env.NODE_ENV !== 'production') {
 	require('dotenv').config();
