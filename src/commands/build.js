@@ -1,4 +1,8 @@
-import { EmbedBuilder, AttachmentBuilder, SlashCommandBuilder } from 'discord.js';
+import {
+	EmbedBuilder,
+	AttachmentBuilder,
+	SlashCommandBuilder,
+} from 'discord.js';
 import { generateUpgrades } from '../util/generateUpgrades.js';
 import config from '../config.js';
 

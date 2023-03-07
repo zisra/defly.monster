@@ -3,8 +3,7 @@ import config from '../config.js';
 
 export default {
 	arguments: false,
-	description:
-		'Make an excuse for your embarrassing death',
+	description: 'Make an excuse for your embarrassing death',
 	interaction: new SlashCommandBuilder()
 		.setName('excuse')
 		.setDescription('Make an excuse for your embarrassing death'),

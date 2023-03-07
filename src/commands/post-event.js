@@ -1,9 +1,9 @@
 import {
-    GuildScheduledEventEntityType,
-    GuildScheduledEventPrivacyLevel,
-    GuildFeature,
-    PermissionsBitField,
-    SlashCommandBuilder,
+	GuildScheduledEventEntityType,
+	GuildScheduledEventPrivacyLevel,
+	GuildFeature,
+	PermissionsBitField,
+	SlashCommandBuilder,
 } from 'discord.js';
 
 import config from '../config.js';

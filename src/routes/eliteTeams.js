@@ -20,7 +20,7 @@ export default async (req, res) => {
 		if (req.query.version == 2) {
 			eliteTeamList = convertTeams(eliteTeamList);
 		}
-		
+
 		res.json(eliteTeamList);
 	} catch (err) {
 		new Response(res, {

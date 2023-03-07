@@ -125,7 +125,7 @@ window.onload = async () => {
 			element.add(new Option(el));
 		});
 	generateButton.onclick = () => {
-        outputContainer.classList.remove('hidden');
+		outputContainer.classList.remove('hidden');
 		const name = document.getElementById('element').value;
 		const atomicNumber = res.find((el) => el.name == name).atomicNumber;
 

@@ -42,7 +42,7 @@ export async function eliteTeams() {
 				sheetData.forEach((row) => {
 					for (let cell in row) {
 						if (config.ELITE_TEAM_IDS[cell]) {
-								output[config.ELITE_TEAM_IDS[cell]].push(row[cell]);
+							output[config.ELITE_TEAM_IDS[cell]].push(row[cell]);
 						}
 					}
 				});

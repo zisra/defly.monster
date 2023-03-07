@@ -1,10 +1,10 @@
 import {
-    ButtonBuilder,
-    ActionRowBuilder,
-    EmbedBuilder,
-    PermissionsBitField,
-    ButtonStyle,
-    SlashCommandBuilder,
+	ButtonBuilder,
+	ActionRowBuilder,
+	EmbedBuilder,
+	PermissionsBitField,
+	ButtonStyle,
+	SlashCommandBuilder,
 } from 'discord.js';
 
 import config from '../config.js';

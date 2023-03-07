@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
+import {
+	SlashCommandBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
+	ButtonStyle,
+} from 'discord.js';
 import config from '../config.js';
 
 export default {
