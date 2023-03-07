@@ -1,6 +1,8 @@
-import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import { EmbedBuilder, SlashCommandBuilder, escapeMarkdown } from 'discord.js';
 import Sentry from '@sentry/node';
 import axios from 'axios';
+
+import { escapeEmojis } from '../util/escapeEmojis.js';
 import config from '../config.js';
 
 export default {
@@ -85,7 +87,7 @@ export default {
 								? u.players
 										.map(
 											(e) =>
-												e.name +
+												escapeEmojis(escapeMarkdown(e.name)) +
 												' ' +
 												(e.badge
 													? client.guilds.cache

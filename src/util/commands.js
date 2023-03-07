@@ -1,10 +1,9 @@
-import fs from 'fs';
+import fs from 'node:fs';
 
 export async function commands(mode) {
 	const commands = [];
 	const commandFiles = fs.readdirSync('./src/commands');
 
-	// convert to .map with promise.all
 	for (const file of commandFiles) {
 		const { default: commandData } = await import('../commands/' + file);
 

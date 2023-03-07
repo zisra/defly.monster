@@ -4,9 +4,11 @@ import {
 	ActionRowBuilder,
 	ButtonBuilder,
 	ButtonStyle,
+	escapeMarkdown,
 } from 'discord.js';
 
 import { eliteTeams } from '../util/eliteTeams.js';
+import { escapeEmojis } from '../util/escapeEmojis.js';
 import config from '../config.js';
 
 export default {
@@ -56,19 +58,21 @@ export default {
 			)
 			.setTitle(`${team.replace('-', ' ').capitalize()}`)
 			.setDescription(
-				`**Captain:** [${
-					teamList[team][0]?.value ?? 'N/A'
-				}](https://discord.com/users/${teamList[team][0]?.note ?? ''})
-					**Vice Captain:** [${
-						teamList[team][1]?.value ?? 'N/A'
-					}](https://discord.com/users/${teamList[team][1]?.note ?? ''})
+				`**Captain:** [${escapeEmojis(
+					escapeMarkdown(teamList[team][0]?.value ?? 'N/A')
+				)}](https://discord.com/users/${teamList[team][0]?.note ?? ''})
+					**Vice Captain:** [${escapeEmojis(
+						escapeMarkdown(teamList[team][1]?.value ?? 'N/A')
+					)}](https://discord.com/users/${teamList[team][1]?.note ?? ''})
 		 ${teamList[team]
 				.slice(2)
 				.map(
-					(name) => `[${name.value}](https://discord.com/users/${name.note})`
+					(name) =>
+						`[${escapeEmojis(
+							escapeMarkdown(name.value)
+						)}](https://discord.com/users/${name.note})`
 				)
-				.join('\n')
-				.escapeMarkdown()}`
+				.join('\n')}`
 			);
 		await message.reply({ embeds: [embed], components: [row] });
 	},

@@ -6,7 +6,6 @@ import {
 } from 'discord.js';
 import Sentry from '@sentry/node';
 import config from '../config.js';
-import fs from 'fs';
 
 export default {
 	arguments: ['skin-id'],

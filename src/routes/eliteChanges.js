@@ -2,7 +2,7 @@ import { eliteTeams } from '../util/eliteTeams.js';
 import config from '../config.js';
 import { WebhookClient, EmbedBuilder } from 'discord.js';
 import deepDiff from 'deep-diff-pizza';
-import fs from 'fs';
+import fs from 'node:fs';
 
 function convertTeams(teams) {
 	let output = {};

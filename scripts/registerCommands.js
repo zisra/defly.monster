@@ -1,5 +1,5 @@
 import { REST, Routes } from 'discord.js';
-import fs from 'fs';
+import fs from 'node:fs';
 import dotenv from 'dotenv';
 
 if (process.env.NODE_ENV !== 'production') {

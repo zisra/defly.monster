@@ -6,7 +6,6 @@ import {
 	SlashCommandBuilder,
 } from 'discord.js';
 
-import config from '../config.js';
 import { getServers } from '../util/getServers.js';
 
 export default {

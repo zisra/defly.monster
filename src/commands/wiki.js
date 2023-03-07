@@ -5,7 +5,6 @@ import {
 	ButtonBuilder,
 	ButtonStyle,
 } from 'discord.js';
-import config from '../config.js';
 
 export default {
 	arguments: ['article-name'],

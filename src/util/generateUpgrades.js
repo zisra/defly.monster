@@ -1,5 +1,4 @@
 import { Resvg } from '@resvg/resvg-js';
-import path from 'path';
 
 export function generateUpgrades(upgrades, format, height) {
 	return new Promise(async (resolve, reject) => {

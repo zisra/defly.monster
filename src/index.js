@@ -1,14 +1,19 @@
 // https://discord.com/api/oauth2/authorize?client_id=883125551139799070&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2F&response_type=code&scope=identify
 
 import fs from 'node:fs';
-
 import util from 'node:util';
-import path from 'node:path';
+
 import Sentry from '@sentry/node';
-import Discord from 'discord.js';
+import {
+	GatewayIntentBits,
+	Partials,
+	AttachmentBuilder,
+	EmbedBuilder,
+	Client,
+	escapeMarkdown,
+} from 'discord.js';
 import express from 'express';
 import cors from 'cors';
-import axios from 'axios';
 import session from 'express-session';
 import memoryStore from 'memorystore';
 import config from './config.js';
@@ -22,12 +27,6 @@ String.prototype.capitalize = function () {
 	return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
-String.prototype.escapeMarkdown = function () {
-	return Discord.escapeMarkdown(this);
-};
-
-const { GatewayIntentBits, Partials, AttachmentBuilder, EmbedBuilder } =
-	Discord;
 
 if (process.env.NODE_ENV !== 'production') {
 	dotenv.config();
@@ -41,7 +40,7 @@ Sentry.init({
 
 const app = express();
 
-const client = new Discord.Client({
+const client = new Client({
 	intents: [
 		GatewayIntentBits.Guilds,
 		GatewayIntentBits.GuildMessages,

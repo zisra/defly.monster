@@ -4,7 +4,6 @@ import {
 	EmbedBuilder,
 	PermissionsBitField,
 	ButtonStyle,
-	SlashCommandBuilder,
 } from 'discord.js';
 
 import config from '../config.js';
