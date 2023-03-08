@@ -4,6 +4,10 @@ import { WebhookClient, EmbedBuilder } from 'discord.js';
 import deepDiff from 'deep-diff-pizza';
 import fs from 'node:fs';
 
+function capitalize(str) {
+	return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 function convertTeams(teams) {
 	let output = {};
 	for (let team in teams) {
@@ -48,11 +52,11 @@ export default async (req, res) => {
 		const embeds = changes.map((change) => {
 			return new EmbedBuilder()
 				.setColor(config.EMBED.MAIN)
-				.setTitle(`Player ${change.operation.capitalize()}`)
+				.setTitle(`Player ${capitalize(change.operation)}`)
 				.setDescription(
 					`**${change.player}** was **${change.operation}** ${
 						change.operation == 'added' ? 'to' : 'from'
-					} **${change.team.replace('-', ' ').capitalize()}**`
+					} **${config.ELITE_TEAMS[change.team].name}**`
 				)
 				.setTimestamp();
 		});

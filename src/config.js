@@ -33,6 +33,8 @@ const EXCUSES = [
 
 const MAX_SKINS = 136;
 
+const MAX_BADGES = 47;
+
 const REGION_LIST = [
 	{ region: 'USE1', ws: 'use4', alias: 'use', name: 'US East', working: true },
 	{ region: 'USW1', ws: 'usw4', alias: 'usw', name: 'US West', working: true },
@@ -78,31 +80,37 @@ const ELITE_TEAMS = {
 		spreadsheetId: 1,
 		color: '93fe00',
 		emoji: '735889328160374876',
+		name: 'Lemon Lime',
 	},
 	'dark-green': {
 		spreadsheetId: 3,
 		color: '008037',
 		emoji: '884904846887649291',
+		name: 'The Darkness',
 	},
 	red: {
 		spreadsheetId: 5,
 		color: 'fd3535',
 		emoji: '884904847160246332',
+		name: 'Team Red',
 	},
 	orange: {
 		spreadsheetId: 7,
 		color: 'ff8a2a',
 		emoji: '884904847067979837',
+		name: 'Bloody Orange',
 	},
 	purple: {
 		spreadsheetId: 9,
 		color: '924bff',
 		emoji: '735889328479404034',
+		name: 'Casa Morada',
 	},
 	'sky-blue': {
 		spreadsheetId: 11,
 		color: '55d5ff',
 		emoji: '884904847038615592',
+		name: 'Smurfs',
 	},
 };
 
@@ -127,7 +135,7 @@ const SPREADSHEET_RANGE = 'FUTURE Season 08!A5:L20';
 const SPREADSHEET_ID = '1b2z_lTIPEVhabnP73Mir3ttOZlqgEoLV9mLE1T-m1Y4';
 const INVITE_URL =
 	'https://discord.com/api/oauth2/authorize?client_id=883125551139799070&permissions=8858758209&scope=bot%20applications.commands';
-const ELITE_CHANGES_CHANNEL = 1055715651311915008;
+const ELITE_CHANGES_CHANNEL = '1055715651311915008';
 const CLOUDFLARE_WORKER_URL = 'https://defly-websocket.isra.workers.dev/';
 
 export default {
@@ -135,6 +143,7 @@ export default {
 	UPGRADES,
 	EXCUSES,
 	MAX_SKINS,
+	MAX_BADGES,
 	REGION_LIST,
 	PORT_LIST,
 	TEAM_COLORS,

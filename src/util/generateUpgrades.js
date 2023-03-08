@@ -126,7 +126,7 @@ export function generateUpgrades(upgrades, format, height) {
 		if (format === 'png') {
 			const resvg = new Resvg(SVG.map((i) => i.replace('\n', '')).join(''), {
 				font: {
-					fontFiles: ['./Arial.ttf'],
+					fontFiles: ['./src/Arial.ttf'],
 					loadSystemFonts: false,
 					defaultFontFamily: 'Arial',
 				},

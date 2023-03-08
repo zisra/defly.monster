@@ -37,7 +37,7 @@ export default {
 		}
 		try {
 			const res = await axios.get('https://deflyio.fandom.com/wiki/' + name);
-			if (res.status == 200) {
+			if (res.status === 200) {
 				await message.reply('https://deflyio.fandom.com/wiki/' + name);
 			} else {
 				await message.reply({

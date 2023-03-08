@@ -10,7 +10,6 @@ import {
 	AttachmentBuilder,
 	EmbedBuilder,
 	Client,
-	escapeMarkdown,
 } from 'discord.js';
 import express from 'express';
 import cors from 'cors';
@@ -22,11 +21,6 @@ import generateArticles from './articles.js';
 import dotenv from 'dotenv';
 
 generateArticles();
-
-String.prototype.capitalize = function () {
-	return this.charAt(0).toUpperCase() + this.slice(1);
-};
-
 
 if (process.env.NODE_ENV !== 'production') {
 	dotenv.config();
@@ -81,7 +75,10 @@ client.on('warn', (warning) => {
 });
 
 client.on('messageCreate', async (message) => {
-	if (message.channel.id == config.ELITE_CHANGES_CHANNEL && message.webhookId) {
+	if (
+		message.channel.id === config.ELITE_CHANGES_CHANNEL &&
+		message.webhookId
+	) {
 		message.crosspost();
 	}
 
@@ -211,7 +208,7 @@ client.on('interactionCreate', async (interaction) => {
 
 client.login(process.env.DISCORD_TOKEN);
 
-if (process.env.NODE_ENV == 'production') {
+if (process.env.NODE_ENV === 'production') {
 	app.set('trust proxy', 1);
 }
 

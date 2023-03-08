@@ -30,14 +30,10 @@ export async function eliteTeams() {
 					});
 				});
 
-				let output = {
-					lime: [],
-					'dark-green': [],
-					red: [],
-					orange: [],
-					purple: [],
-					'sky-blue': [],
-				};
+				let output = Object.keys(config.ELITE_TEAMS).reduce((acc, key) => {
+					acc[key] = [];
+					return acc;
+				}, {});
 
 				sheetData.forEach((row) => {
 					for (let cell in row) {

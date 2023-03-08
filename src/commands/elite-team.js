@@ -24,7 +24,7 @@ export default {
 				.setRequired(true)
 				.addChoices(
 					...Object.keys(config.ELITE_TEAMS).map((team) => ({
-						name: team.replace('-', ' ').capitalize(),
+						name: config.ELITE_TEAMS[team].name,
 						value: team,
 					}))
 				)
@@ -56,7 +56,7 @@ export default {
 			.setThumbnail(
 				`https://cdn.discordapp.com/emojis/${config.ELITE_TEAMS[team].emoji}.png`
 			)
-			.setTitle(`${team.replace('-', ' ').capitalize()}`)
+			.setTitle(config.ELITE_TEAMS[team].name)
 			.setDescription(
 				`**Captain:** [${escapeEmojis(
 					escapeMarkdown(teamList[team][0]?.value ?? 'N/A')

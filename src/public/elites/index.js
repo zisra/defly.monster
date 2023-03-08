@@ -1,6 +1,7 @@
-String.prototype.capitalize = function () {
-	return this.charAt(0).toUpperCase() + this.slice(1);
-};
+function normalizeTeamName(str) {
+	str = str.replaceAll('-', ' ');
+	return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 const container = document.getElementById('container');
 
@@ -11,7 +12,7 @@ window.onload = async () => {
 
 	for (team in res) {
 		teamBoxes.push(`<div class="team-box ${team}">
-			<div class="team-name">${team.replace('-', ' ').capitalize()}</div>
+			<div class="team-name">${normalizeTeamName(team)}</div>
 	 		<div><b>Captain:</b> <a href="https://discord.com/users/${
 				res[team][0]?.note ?? ''
 			}">${res[team][0]?.value ?? 'N/A'}</a></div>

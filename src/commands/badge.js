@@ -13,7 +13,7 @@ export default {
 				.setDescription('The badge to search for')
 				.setRequired(true)
 				.setMinValue(1)
-				.setMaxValue(47)
+				.setMaxValue(config.MAX_BADGES)
 		),
 	command: async (message, args, client) => {
 		const badge = message.interaction ? args.badge : args[0];
@@ -21,11 +21,11 @@ export default {
 		if (
 			!badge ||
 			parseInt(badge) < 1 ||
-			parseInt(badge) > 47 ||
+			parseInt(badge) > config.MAX_BADGES ||
 			!parseInt(badge)
 		) {
 			return message.reply({
-				content: 'Please select a badge number: 1 - 47',
+				content: `Please select a badge number: 1 - ${config.MAX_BADGES}`,
 				ephemeral: true,
 			});
 		}

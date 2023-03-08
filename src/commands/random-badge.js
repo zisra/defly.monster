@@ -8,7 +8,7 @@ export default {
 		.setName('random-badge')
 		.setDescription('Gets a random badge for premium users'),
 	command: async (message, args, client) => {
-		const badgeNumber = Math.floor(Math.random() * 47) + 1;
+		const badgeNumber = Math.floor(Math.random() * config.MAX_BADGES) + 1;
 		const embed = new EmbedBuilder()
 			.setTitle(`Defly.io badge ${badgeNumber}`)
 			.setImage(`https://defly.io/img/badges/${badgeNumber}.png`)
