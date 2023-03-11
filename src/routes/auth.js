@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Response from '../util/apiResponse.js';
+import config from '../config.js';
 
 export default async (req, res) => {
 	const code = req.query.code;
@@ -37,11 +38,9 @@ export default async (req, res) => {
 			});
 			const user = userData.data;
 
-			const isAdmin = config.SECRETS.ADMINS.split(',').find(
+			const isAdmin = !!config.SECRETS.ADMINS.split(',').find(
 				(usr) => usr === user.id
-			)
-				? true
-				: false;
+			);
 
 			req.session.accessToken = auth.access_token;
 			req.session.refreshToken = auth.refresh_token;

@@ -15,7 +15,7 @@ export default {
 				.setMinValue(1)
 				.setMaxValue(config.MAX_BADGES)
 		),
-	command: async (message, args, client) => {
+	command: async (message, args) => {
 		const badge = message.interaction ? args.badge : args[0];
 
 		if (

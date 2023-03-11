@@ -25,7 +25,7 @@ export default {
 				.setDescription('The time to use')
 				.setRequired(true)
 		),
-	command: async (message, args, client) => {
+	command: async (message, args) => {
 		const date = message.interaction ? args.input : args.join(' ');
 		const row = new ActionRowBuilder().addComponents(
 			new ButtonBuilder()

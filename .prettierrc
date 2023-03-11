@@ -1,6 +1,8 @@
 {
-  "useTabs": true,
-  "semi": true,
-  "singleQuote": true,
-  "bracketSpacing": true
+	"useTabs": true,
+	"semi": true,
+	"singleQuote": true,
+	"bracketSpacing": true,
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true
 }

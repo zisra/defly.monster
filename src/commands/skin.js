@@ -21,7 +21,7 @@ export default {
 				.setMinValue(1)
 				.setMaxValue(config.MAX_SKINS)
 		),
-	command: async (message, args, client) => {
+	command: async (message, args) => {
 		const skin = message.interaction ? args.id : args[0];
 
 		if (

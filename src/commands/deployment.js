@@ -2,7 +2,6 @@ import {
 	ButtonBuilder,
 	ActionRowBuilder,
 	EmbedBuilder,
-	PermissionsBitField,
 	ButtonStyle,
 } from 'discord.js';
 
@@ -12,11 +11,7 @@ export default {
 	arguments: false,
 	description: 'Get deploy info',
 	adminOnly: true,
-	command: async (message, args, client) => {
-		const invite = client.generateInvite({
-			permissions: PermissionsBitField.Flags.Administrator,
-			scopes: ['bot'],
-		});
+	command: async (message) => {
 		const embed = new EmbedBuilder()
 			.setColor(config.EMBED.MAIN)
 			.setTitle('Deployment');

@@ -19,7 +19,7 @@ export default {
 			"Adds an upcoming defly.io tournament to the current server's events"
 		)
 		.setDMPermission(false),
-	command: async (message, args, client) => {
+	command: async (message) => {
 		if (!message.guild.features.includes(GuildFeature.Community)) {
 			return message.reply({
 				content:

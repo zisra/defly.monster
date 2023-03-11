@@ -1,9 +1,10 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "node": true
     },
-    "extends": "standard",
+    "extends": ["eslint:recommended", "prettier"],
     "overrides": [
     ],
     "parserOptions": {
@@ -11,7 +12,16 @@
         "sourceType": "module"
     },
     "rules": {
-        "indent": ["error", "tab"], 
-        "quotes": ["error", "single"],
+        "indent": 0,
+        "quotes": 0,
+        "prefer-const": "error",
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ]
     }
 }

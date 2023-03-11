@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 
-export async function commands(mode) {
+export async function commands() {
 	const commands = [];
 	const commandFiles = fs.readdirSync('./src/commands');
 

@@ -8,7 +8,7 @@ export default {
 	interaction: new SlashCommandBuilder()
 		.setName('event')
 		.setDescription('Find out what tournaments are coming up'),
-	command: async (message, args, client) => {
+	command: async (message) => {
 		const serverRes = await getServers(1);
 		if (!serverRes.event) {
 			await message.reply('There is no event at the moment.');

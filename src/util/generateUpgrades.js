@@ -1,15 +1,15 @@
 import { Resvg } from '@resvg/resvg-js';
 
 export function generateUpgrades(upgrades, format, height) {
-	return new Promise(async (resolve, reject) => {
-		let SVG = [];
+	return new Promise((resolve) => {
+		const SVG = [];
 
 		upgrades = upgrades.split('');
 
-		let upgradeStats = [];
+		const upgradeStats = [];
 
 		upgrades.forEach((line) => {
-			let upgradeLine = [
+			const upgradeLine = [
 				'808080',
 				'808080',
 				'808080',
@@ -26,29 +26,29 @@ export function generateUpgrades(upgrades, format, height) {
 		upgradeStats.reverse();
 
 		SVG.push(
-			`<svg width="228" height="180" viewBox="0 0 228 180" fill="none" xmlns="http://www.w3.org/2000/svg">`
+			'<svg width="228" height="180" viewBox="0 0 228 180" fill="none" xmlns="http://www.w3.org/2000/svg">'
 		);
 
 		SVG.push(
-			`<path d="M0 164C0 159.582 3.58172 156 8 156H220C224.418 156 228 159.582 228 164V172C228 176.418 224.418 180 220 180H8C3.58172 180 0 176.418 0 172V164Z" fill="#4c4c4c"/>`
+			'<path d="M0 164C0 159.582 3.58172 156 8 156H220C224.418 156 228 159.582 228 164V172C228 176.418 224.418 180 220 180H8C3.58172 180 0 176.418 0 172V164Z" fill="#4c4c4c"/>'
 		);
 		SVG.push(
-			`<path d="M0 138C0 133.582 3.58172 130 8 130H220C224.418 130 228 133.582 228 138V146C228 150.418 224.418 154 220 154H8C3.58172 154 0 150.418 0 146V138Z" fill="#4c4c4c"/>`
+			'<path d="M0 138C0 133.582 3.58172 130 8 130H220C224.418 130 228 133.582 228 138V146C228 150.418 224.418 154 220 154H8C3.58172 154 0 150.418 0 146V138Z" fill="#4c4c4c"/>'
 		);
 		SVG.push(
-			`<path d="M0 112C0 107.582 3.58172 104 8 104H220C224.418 104 228 107.582 228 112V120C228 124.418 224.418 128 220 128H8C3.58172 128 0 124.418 0 120V112Z" fill="#4c4c4c"/>`
+			'<path d="M0 112C0 107.582 3.58172 104 8 104H220C224.418 104 228 107.582 228 112V120C228 124.418 224.418 128 220 128H8C3.58172 128 0 124.418 0 120V112Z" fill="#4c4c4c"/>'
 		);
 		SVG.push(
-			`<path d="M0 86C0 81.5817 3.58172 78 8 78H220C224.418 78 228 81.5817 228 86V94C228 98.4183 224.418 102 220 102H8C3.58172 102 0 98.4183 0 94V86Z" fill="#4c4c4c"/>`
+			'<path d="M0 86C0 81.5817 3.58172 78 8 78H220C224.418 78 228 81.5817 228 86V94C228 98.4183 224.418 102 220 102H8C3.58172 102 0 98.4183 0 94V86Z" fill="#4c4c4c"/>'
 		);
 		SVG.push(
-			`<path d="M0 60C0 55.5817 3.58172 52 8 52H220C224.418 52 228 55.5817 228 60V68C228 72.4183 224.418 76 220 76H8C3.58172 76 0 72.4183 0 68V60Z" fill="#4c4c4c"/>`
+			'<path d="M0 60C0 55.5817 3.58172 52 8 52H220C224.418 52 228 55.5817 228 60V68C228 72.4183 224.418 76 220 76H8C3.58172 76 0 72.4183 0 68V60Z" fill="#4c4c4c"/>'
 		);
 		SVG.push(
-			`<path d="M0 34C0 29.5817 3.58172 26 8 26H220C224.418 26 228 29.5817 228 34V42C228 46.4183 224.418 50 220 50H8C3.58172 50 0 46.4183 0 42V34Z" fill="#4c4c4c"/>`
+			'<path d="M0 34C0 29.5817 3.58172 26 8 26H220C224.418 26 228 29.5817 228 34V42C228 46.4183 224.418 50 220 50H8C3.58172 50 0 46.4183 0 42V34Z" fill="#4c4c4c"/>'
 		);
 		SVG.push(
-			`<path d="M0 8C0 3.58172 3.58172 0 8 0H220C224.418 0 228 3.58172 228 8V16C228 20.4183 224.418 24 220 24H8C3.58172 24 0 20.4183 0 16V8Z" fill="#4c4c4c"/>`
+			'<path d="M0 8C0 3.58172 3.58172 0 8 0H220C224.418 0 228 3.58172 228 8V16C228 20.4183 224.418 24 220 24H8C3.58172 24 0 20.4183 0 16V8Z" fill="#4c4c4c"/>'
 		);
 
 		SVG.push(
@@ -80,48 +80,48 @@ export function generateUpgrades(upgrades, format, height) {
 		);
 
 		SVG.push(
-			`<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="13" letter-spacing="0em"><tspan x="65.6138" y="172.007">Tower health</tspan></text>`
+			'<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="13" letter-spacing="0em"><tspan x="65.6138" y="172.007">Tower health</tspan></text>'
 		);
 		SVG.push(
-			`<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="204.207" y="172.854">[7]</tspan></text>`
+			'<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="204.207" y="172.854">[7]</tspan></text>'
 		);
 		SVG.push(
-			`<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="63.0625" y="146.854">Tower shield</tspan></text>`
+			'<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="63.0625" y="146.854">Tower shield</tspan></text>'
 		);
 		SVG.push(
-			`<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="204.207" y="146.854">[6]</tspan></text>`
+			'<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="204.207" y="146.854">[6]</tspan></text>'
 		);
 		SVG.push(
-			`<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="67.0557" y="120.854">Build range</tspan></text>`
+			'<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="67.0557" y="120.854">Build range</tspan></text>'
 		);
 		SVG.push(
-			`<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="204.207" y="120.854">[5]</tspan></text>`
+			'<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="204.207" y="120.854">[5]</tspan></text>'
 		);
 		SVG.push(
-			`<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="13" letter-spacing="0em"><tspan x="61.8511" y="94.0068">Reload speed</tspan></text>`
+			'<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="13" letter-spacing="0em"><tspan x="61.8511" y="94.0068">Reload speed</tspan></text>'
 		);
 		SVG.push(
-			`<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="204.207" y="94.8535">[4]</tspan></text>`
+			'<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="204.207" y="94.8535">[4]</tspan></text>'
 		);
 		SVG.push(
-			`<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="65.1074" y="68.8535">Bullet range</tspan></text>`
+			'<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="65.1074" y="68.8535">Bullet range</tspan></text>'
 		);
 		SVG.push(
-			`<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="204.207" y="68.8535">[3]</tspan></text>`
+			'<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="204.207" y="68.8535">[3]</tspan></text>'
 		);
 		SVG.push(
-			`<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="13" letter-spacing="0em"><tspan x="66.6929" y="42.0068">Bullet speed</tspan></text>`
+			'<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="13" letter-spacing="0em"><tspan x="66.6929" y="42.0068">Bullet speed</tspan></text>'
 		);
 		SVG.push(
-			`<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="204.207" y="42.8535">[2]</tspan></text>`
+			'<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="204.207" y="42.8535">[2]</tspan></text>'
 		);
 		SVG.push(
-			`<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="61.1143" y="16.8535">Player speed</tspan></text>`
+			'<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="61.1143" y="16.8535">Player speed</tspan></text>'
 		);
 		SVG.push(
-			`<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="204.207" y="16.8535">[1]</tspan></text>`
+			'<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Arial" font-size="14" letter-spacing="0em"><tspan x="204.207" y="16.8535">[1]</tspan></text>'
 		);
-		SVG.push(`</svg>`);
+		SVG.push('</svg>');
 
 		if (format === 'png') {
 			const resvg = new Resvg(SVG.map((i) => i.replace('\n', '')).join(''), {

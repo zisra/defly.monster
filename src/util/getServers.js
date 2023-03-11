@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export async function getServers(mode) {
-	let res = await axios.get('https://s.defly.io/servers?m=' + mode);
+	const res = await axios.get('https://s.defly.io/servers?m=' + mode);
 	if (typeof res.data === 'string') {
 		const servers = res.data.split('event=');
 		return {

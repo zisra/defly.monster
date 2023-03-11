@@ -20,10 +20,10 @@ export default {
 				.setMaxLength(7)
 				.setMinLength(7)
 		),
-	command: async (message, args, client) => {
+	command: async (message, args) => {
 		const build = message.interaction ? args.build : args[0];
 
-		let added = build.split('');
+		const added = build.split('');
 
 		if (
 			build.length !== 7 ||

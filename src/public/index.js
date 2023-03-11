@@ -8,20 +8,20 @@ shareLink.onclick = () => {
 	if ('share' in navigator) {
 		navigator.share({ url: 'https://defly.monster' });
 	} else {
-		shareLink.outerHTML = `<span>You can't share links</span>`;
+		shareLink.outerHTML = "<span>You can't share links</span>";
 	}
 };
 
-document.getElementById('feedback-link').onclick = (e) => {
+document.getElementById('feedback-link').onclick = () => {
 	feedback.showModal();
 };
 
-cancelFeedback.onclick = (e) => {
+cancelFeedback.onclick = () => {
 	feedback.close();
 	feedbackInput.value = '';
 };
 
-submitFeedback.onclick = async (e) => {
+submitFeedback.onclick = async () => {
 	if (feedbackInput.value.length >= 20) {
 		submitFeedback.innerHTML = 'Loading...';
 		const data = await fetch('/api/feedback', {

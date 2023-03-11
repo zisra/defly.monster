@@ -29,7 +29,7 @@ export default {
 					}))
 				)
 		),
-	command: async (message, args, client) => {
+	command: async (message, args) => {
 		const row = new ActionRowBuilder().addComponents(
 			new ButtonBuilder()
 				.setURL(

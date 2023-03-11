@@ -2,9 +2,9 @@ import Response from '../util/apiResponse.js';
 import { eliteTeams } from '../util/eliteTeams.js';
 
 function convertTeams(teams) {
-	let output = {};
-	for (let team in teams) {
-		let players = {};
+	const output = {};
+	for (const team in teams) {
+		const players = {};
 		teams[team].forEach((t) => {
 			players[t.value] = t.note;
 		});

@@ -12,7 +12,7 @@ const container = document.getElementById('container');
 window.onload = async () => {
 	const data = await fetch('/api/eliteTeams/');
 	const res = await data.json();
-	let teamBoxes = [];
+	const teamBoxes = [];
 
 	for (const team in res) {
 		teamBoxes.push(`<div class="team-box ${team}">

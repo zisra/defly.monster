@@ -37,6 +37,7 @@ function checkHash() {
 checkHash();
 window.onhashchange = checkHash;
 
+// eslint-disable-next-line no-unused-vars
 function goHome() {
 	window.location.hash = '';
 }

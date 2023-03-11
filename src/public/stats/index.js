@@ -20,9 +20,10 @@ const replaceCharacters = {
 let fileData;
 let submittedFileName;
 
+// eslint-disable-next-line no-unused-vars
 function search(e) {
 	e.preventDefault();
-	let { stats } = parseCSV(fileData);
+	const { stats } = parseCSV(fileData);
 	const filterCount = filterField.value;
 	const searchData = searchField.value;
 	statsChart.innerHTML = generateTable(
@@ -32,7 +33,7 @@ function search(e) {
 			})
 			.slice(0, filterCount || 1e6)
 	);
-	sorttable.makeSortable(document.getElementById('table'));
+	sorttable.makeSortable(document.getElementById('table')); // eslint-disable-line no-undef
 }
 
 function showAlert(message) {
@@ -49,15 +50,16 @@ function showAlert(message) {
 }
 
 function downloadURI(uri, name) {
-	let link = document.createElement('a');
+	const link = document.createElement('a');
 	link.download = name;
 	link.href = uri;
 	link.rel = 'noopener';
 	link.click();
-	delete link;
 }
 
+// eslint-disable-next-line no-unused-vars
 function saveFile() {
+	// eslint-disable-next-line no-undef
 	html2canvas(document.getElementById('table')).then((canvas) => {
 		const dataUrl = canvas.toDataURL('png');
 		downloadURI(dataUrl, `${submittedFileName.replace('.csv', '.png')}`);
@@ -76,10 +78,10 @@ function generateTable(stats) {
 			.map((row) => {
 				const nickname = row[0];
 				row.shift();
-				return `<tr tabindex="0"><th>${nickname}</th>${row
+				return `<tr tabindex="0"><th>${sanitize(nickname)}</th>${row
 					.map((cell) => {
 						cell = cell.includes(':') ? cell : parseFloat(cell);
-						return `<td>${cell}</td>`;
+						return `<td>${sanitize(cell)}</td>`;
 					})
 					.join('')}</tr>`;
 			})
@@ -122,12 +124,12 @@ function generateStatistics(stats) {
 }
 
 function parseCSV(fileData) {
-	let stats = fileData.split('\n').map((line) => {
+	const stats = fileData.split('\n').map((line) => {
 		if (line.length) {
 			return line
 				.replace('\r', '')
 				.match(/"[^"]*"|[^,]+/gm)
-				.map((i) => i.replaceAll(`"`, ''));
+				.map((i) => i.replaceAll('"', ''));
 		} else {
 			return null;
 		}
@@ -158,11 +160,11 @@ function parseCSV(fileData) {
 }
 
 function parseFile(fileData) {
-	let stats = parseCSV(fileData);
+	const stats = parseCSV(fileData);
 	statsChart.innerHTML = generateTable(stats.stats);
 	statistics.innerHTML = generateStatistics(stats);
 
-	sorttable.makeSortable(document.getElementById('table'));
+	sorttable.makeSortable(document.getElementById('table')); // eslint-disable-line no-undef
 	searchContainer.classList.remove('is-hidden');
 	searchField.focus();
 }

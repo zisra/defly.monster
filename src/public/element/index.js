@@ -127,7 +127,7 @@ window.onload = async () => {
 	generateButton.onclick = () => {
 		outputContainer.classList.remove('hidden');
 		const name = document.getElementById('element').value;
-		const atomicNumber = res.find((el) => el.name == name).atomicNumber;
+		const atomicNumber = res.find((el) => el.name === name).atomicNumber;
 
 		output.value =
 			name

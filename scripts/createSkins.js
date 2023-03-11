@@ -1,10 +1,10 @@
 import config from '../src/config.js';
 import fs from 'node:fs';
 
-const skinData = JSON.parse(fs.readFileSync('./src/allskins.txt', 'utf8'));
+const skinData = JSON.parse(fs.readFileSync('./src/allSkins.txt', 'utf8'));
 function getSkin(skin) {
 	if (skin === 80) return;
-	let finalSkin = {};
+	const finalSkin = {};
 	finalSkin.spec = skinData.specs[skin];
 	finalSkin.images = {};
 	if (skinData.specs[skin].base) {
@@ -500,7 +500,7 @@ const originalSkins = {
 
 function getOGskin(skin) {
 	const file = originalSkins[skin];
-	let final = {
+	const final = {
 		spec: {
 			base: '',
 			notint: '',
@@ -532,18 +532,18 @@ function getOGskin(skin) {
 		});
 	});
 
-	try {
+	if (file.base) {
 		const base =
 			fs.readFileSync(`./src/images/${file.base}.png`, 'base64url') ?? '';
 		file.images[file.base] = base;
 		final.images.base = file.base;
-	} catch {}
-	try {
+	}
+	if (file.notint) {
 		const notint =
 			fs.readFileSync(`./src/images/${file.notint}.png`, 'base64url') ?? '';
 		file.images[file.notint] = notint;
 		final.images.notint = file.notint;
-	} catch {}
+	}
 	fs.writeFileSync(`./src/skins/skin${skin}.txt`, JSON.stringify(final));
 }
 

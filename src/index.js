@@ -21,7 +21,6 @@ import generateArticles from './articles.js';
 
 generateArticles();
 
-
 Sentry.init({
 	dsn: config.SECRETS.SENTRY_DSN,
 	tracesSampleRate: 1.0,
@@ -80,7 +79,7 @@ client.on(Events.MessageCreate, async (message) => {
 				if (config.SECRETS.BOT_OWNER === message.author.id) {
 					selectedCommand.command(message, args, client);
 				} else {
-					message.react('\u274C');
+					message.react(config.ERROR_EMOJI);
 				}
 			} else {
 				selectedCommand.command(message, args, client);
@@ -88,14 +87,14 @@ client.on(Events.MessageCreate, async (message) => {
 		} catch (err) {
 			console.error(err);
 			Sentry.captureException(err);
-			await message.react('\u274C');
+			await message.react(config.ERROR_EMOJI);
 			await message.reply(
 				'Something went wrong with this command. Please try again soon. If you need a list of commands, run `d?help`'
 			);
 		}
 	} else if (
 		command === 'eval' &&
-		message.author.id == config.SECRETS.BOT_OWNER
+		message.author.id === config.SECRETS.BOT_OWNER
 	) {
 		try {
 			const code = args.join(' ');
@@ -122,8 +121,6 @@ client.on(Events.MessageCreate, async (message) => {
 				.setColor(config.EMBED.ERROR);
 			message.channel.send({ embeds: [errEmbed] });
 		}
-	} else {
-		return;
 	}
 });
 
@@ -131,7 +128,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
 	if (interaction.isChatInputCommand()) {
 		const command = interaction.commandName;
 		const commandFolder = fs.readdirSync('./src/commands');
-		let args = {};
+		const args = {};
 		interaction.options.data.forEach((arg) => {
 			args[arg.name] = arg.value.toString();
 		});

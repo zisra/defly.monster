@@ -18,7 +18,7 @@ export default {
 				.setDescription('The name of the article to send')
 				.setRequired(true)
 		),
-	command: async (message, args, client) => {
+	command: async (message, args) => {
 		const name = message.interaction ? args.name : args.join(' ');
 
 		const row = new ActionRowBuilder().addComponents(

@@ -9,9 +9,9 @@ function capitalize(str) {
 }
 
 function convertTeams(teams) {
-	let output = {};
-	for (let team in teams) {
-		let players = {};
+	const output = {};
+	for (const team in teams) {
+		const players = {};
 		teams[team].forEach((t) => {
 			players[t.value] = t.note;
 		});
@@ -28,9 +28,10 @@ export default async (req, res) => {
 	);
 
 	if (JSON.stringify(teamList) !== JSON.stringify(previousTeamList)) {
-		let changes = deepDiff(previousTeamList, teamList)
+		const changes = deepDiff(previousTeamList, teamList)
 			.filter(
-				(change) => change.operation == 'ADDED' || change.operation == 'REMOVED'
+				(change) =>
+					change.operation === 'ADDED' || change.operation === 'REMOVED'
 			)
 			.map((change) => ({
 				operation: change.operation.toLowerCase(),
@@ -39,7 +40,7 @@ export default async (req, res) => {
 				discordId: change.is || change.was,
 			}));
 
-		if (changes.length == 0) {
+		if (changes.length === 0) {
 			return res.json({
 				message: 'No changes',
 			});

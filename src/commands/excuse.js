@@ -7,7 +7,7 @@ export default {
 	interaction: new SlashCommandBuilder()
 		.setName('excuse')
 		.setDescription('Make an excuse for your embarrassing death'),
-	command: async (message, args, client) => {
+	command: async (message) => {
 		const excuse =
 			config.EXCUSES[Math.floor(Math.random() * config.EXCUSES.length)];
 		const embed = new EmbedBuilder()

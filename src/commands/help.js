@@ -48,7 +48,7 @@ export default {
 		}
 		const row = new ActionRowBuilder().addComponents(
 			new ButtonBuilder()
-				.setURL(`https://defly.monster/`)
+				.setURL('https://defly.monster/')
 				.setLabel('Visit website')
 				.setStyle(ButtonStyle.Link),
 			new ButtonBuilder()

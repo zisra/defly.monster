@@ -8,7 +8,7 @@ function getAllSkins() {
 			responseType: 'stream',
 		})
 		.then((response) => {
-			response.data.pipe(fs.createWriteStream('./src/allskins.txt'));
+			response.data.pipe(fs.createWriteStream('./src/allSkins.txt'));
 		});
 }
 

@@ -1,7 +1,6 @@
 const login = document.getElementById('login');
 const logout = document.getElementById('logout');
 const userData = document.getElementById('user-data');
-const textarea = document.getElementById('editor');
 const dashboard = document.getElementById('dashboard');
 
 window.onload = async () => {
@@ -17,7 +16,7 @@ window.onload = async () => {
 		if (res.isAdmin) {
 			const data = await fetch('/api/stats');
 			const stats = await data.json();
-			let output = [];
+			const output = [];
 
 			output.push(
 				'<b>Bot status:</b> ' + (stats.isReady ? 'Online' : 'Offline')

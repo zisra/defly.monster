@@ -1,9 +1,6 @@
 import { REST, Routes } from 'discord.js';
 import fs from 'node:fs';
-
-String.prototype.capitalize = function () {
-	return this.charAt(0).toUpperCase() + this.slice(1);
-};
+import config from './config.js';
 
 const commands = [];
 

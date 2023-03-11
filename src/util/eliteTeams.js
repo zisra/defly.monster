@@ -15,35 +15,35 @@ export async function eliteTeams() {
 				includeGridData: true,
 			},
 			(err, res) => {
-				if (err) return reject(`The API returned an error: ${err}`);
+				if (err) return reject(new Error(`The API returned an error: ${err}`));
 
 				const { data } = res;
 				const sheetData = data.sheets[0].data[0].rowData.map((row) => {
 					return row.values.map((cell) => {
-						let note = undefined;
+						let note;
 						if (cell.note) note = cell.note.replace(' ', '').split('\n')[0];
 
 						return {
 							value: cell.formattedValue,
-							note: note,
+							note,
 						};
 					});
 				});
 
-				let output = Object.keys(config.ELITE_TEAMS).reduce((acc, key) => {
+				const output = Object.keys(config.ELITE_TEAMS).reduce((acc, key) => {
 					acc[key] = [];
 					return acc;
 				}, {});
 
 				sheetData.forEach((row) => {
-					for (let cell in row) {
+					for (const cell in row) {
 						if (config.ELITE_TEAM_IDS[cell]) {
 							output[config.ELITE_TEAM_IDS[cell]].push(row[cell]);
 						}
 					}
 				});
 
-				for (let team in output) {
+				for (const team in output) {
 					output[team] = output[team].filter((cell) => {
 						return cell.value !== undefined;
 					});

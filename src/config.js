@@ -1,12 +1,10 @@
 import fs from 'node:fs';
 
 const PREFIX = 'd?';
-
 const UPGRADES = {
 	ON: '<:upg_on:948707185716772874>',
 	OFF: '<:upg_off:948707185771294771>',
 };
-
 const EXCUSES = [
 	'I swear it was lag!',
 	'Dang, why is my ping so high?',
@@ -32,11 +30,8 @@ const EXCUSES = [
 	"Not to make any excuses, but I'm pretty sure I got killed by a hacker.",
 	'Oof, that was my clone.',
 ];
-
 const MAX_SKINS = 136;
-
 const MAX_BADGES = 47;
-
 const REGION_LIST = [
 	{ region: 'USE1', ws: 'use4', alias: 'use', name: 'US East', working: true },
 	{ region: 'USW1', ws: 'usw4', alias: 'usw', name: 'US West', working: true },
@@ -51,7 +46,6 @@ const REGION_LIST = [
 	},
 	{ region: 'TR', ws: 'use5', alias: 'tr', name: 'Tournament', working: true },
 ];
-
 const PORT_LIST = [
 	{ port: 3005, mode: 'Teams' },
 	{ port: 3015, mode: 'Teams' },
@@ -65,7 +59,6 @@ const PORT_LIST = [
 	{ port: 3042, mode: 'Defuse' },
 	{ port: 3009, mode: 'Tournament' },
 ];
-
 const TEAM_COLORS = {
 	2: { color: 'Blue', hex: '3d5dff' },
 	3: { color: 'Red', hex: 'fd3535' },
@@ -76,7 +69,6 @@ const TEAM_COLORS = {
 	8: { color: 'Green', hex: '18e21f' },
 	9: { color: 'Pink', hex: 'f659ff' },
 };
-
 const ELITE_TEAMS = {
 	lime: {
 		spreadsheetId: 1,
@@ -115,30 +107,25 @@ const ELITE_TEAMS = {
 		name: 'Smurfs',
 	},
 };
-
-// get the team ids from the spreadsheet ids
 const ELITE_TEAM_IDS = Object.keys(ELITE_TEAMS).reduce((acc, key) => {
 	acc[ELITE_TEAMS[key].spreadsheetId] = key;
 	return acc;
 }, {});
-
 const SUPPORT_GUILD = 'AMyahUvd4Q';
-
 const EMBED = {
 	SUCCESS: '3fa577',
 	WARNING: 'fbab18',
 	ERROR: 'f04747',
 	MAIN: 'f659ff',
 };
-
 const TIME_FORMATS = ['t', 'T', 'd', 'D', 'f', 'F', 'R'];
-
 const SPREADSHEET_RANGE = 'FUTURE Season 08!A5:L20';
 const SPREADSHEET_ID = '1b2z_lTIPEVhabnP73Mir3ttOZlqgEoLV9mLE1T-m1Y4';
 const INVITE_URL =
 	'https://discord.com/api/oauth2/authorize?client_id=883125551139799070&permissions=8858758209&scope=bot%20applications.commands';
 const ELITE_CHANGES_CHANNEL = '1055715651311915008';
 const CLOUDFLARE_WORKER_URL = 'https://defly-websocket.isra.workers.dev/';
+const ERROR_EMOJI = '\u274C';
 
 let SECRETS;
 
@@ -176,4 +163,5 @@ export default {
 	ELITE_CHANGES_CHANNEL,
 	CLOUDFLARE_WORKER_URL,
 	SECRETS,
+	ERROR_EMOJI,
 };

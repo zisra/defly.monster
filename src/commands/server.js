@@ -42,13 +42,13 @@ export default {
 
 		if (!serverPort || !serverRegion) {
 			return message.reply({
-				content: `Something went wrong getting teams`,
+				content: 'Something went wrong getting teams',
 				ephemeral: true,
 			});
 		}
 
 		try {
-			let { data } = await axios.get(config.CLOUDFLARE_WORKER_URL, {
+			const { data } = await axios.get(config.CLOUDFLARE_WORKER_URL, {
 				params: {
 					region: serverRegion,
 					port: serverPort,
@@ -60,7 +60,7 @@ export default {
 			console.error(err);
 			Sentry.captureException(err);
 			return message.reply({
-				content: `Something went wrong getting teams`,
+				content: 'Something went wrong getting teams',
 				ephemeral: true,
 			});
 		}
