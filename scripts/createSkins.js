@@ -1,5 +1,6 @@
-import config from '../src/config.js';
 import fs from 'node:fs';
+
+import config from '../src/config.js';
 
 const skinData = JSON.parse(fs.readFileSync('./src/allSkins.txt', 'utf8'));
 function getSkin(skin) {

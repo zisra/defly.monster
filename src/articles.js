@@ -1,7 +1,8 @@
-import { parse } from 'marked';
+import fs from 'node:fs';
+
 import grayMatter from 'gray-matter';
 import handlebars from 'handlebars';
-import fs from 'node:fs';
+import { parse } from 'marked';
 
 function generateArticles() {
 	const articleTemplate = handlebars.compile(

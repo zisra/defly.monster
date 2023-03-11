@@ -1,5 +1,6 @@
-import axios from 'axios';
 import fs from 'node:fs';
+
+import axios from 'axios';
 import sharp from 'sharp';
 
 function getAllSkins() {

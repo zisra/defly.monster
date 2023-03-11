@@ -1,6 +1,7 @@
 import axios from 'axios';
-import Response from '../util/apiResponse.js';
+
 import config from '../config.js';
+import Response from '../util/apiResponse.js';
 
 export default async (req, res) => {
 	const code = req.query.code;

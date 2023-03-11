@@ -1,8 +1,10 @@
-import { eliteTeams } from '../util/eliteTeams.js';
-import config from '../config.js';
-import { WebhookClient, EmbedBuilder } from 'discord.js';
-import deepDiff from 'deep-diff-pizza';
 import fs from 'node:fs';
+
+import deepDiff from 'deep-diff-pizza';
+import { EmbedBuilder, WebhookClient } from 'discord.js';
+
+import config from '../config.js';
+import { eliteTeams } from '../util/eliteTeams.js';
 
 function capitalize(str) {
 	return str.charAt(0).toUpperCase() + str.slice(1);

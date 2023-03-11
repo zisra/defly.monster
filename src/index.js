@@ -2,22 +2,22 @@ import fs from 'node:fs';
 import util from 'node:util';
 
 import Sentry from '@sentry/node';
+import cors from 'cors';
 import {
+	AttachmentBuilder,
+	Client,
+	EmbedBuilder,
+	Events,
 	GatewayIntentBits,
 	Partials,
-	AttachmentBuilder,
-	EmbedBuilder,
-	Client,
-	Events,
 } from 'discord.js';
 import express from 'express';
-import cors from 'cors';
 import session from 'express-session';
 import memoryStore from 'memorystore';
 
+import generateArticles from './articles.js';
 import config from './config.js';
 import router from './router.js';
-import generateArticles from './articles.js';
 
 generateArticles();
 

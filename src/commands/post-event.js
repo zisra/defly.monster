@@ -1,7 +1,7 @@
 import {
+	GuildFeature,
 	GuildScheduledEventEntityType,
 	GuildScheduledEventPrivacyLevel,
-	GuildFeature,
 	PermissionsBitField,
 	SlashCommandBuilder,
 } from 'discord.js';

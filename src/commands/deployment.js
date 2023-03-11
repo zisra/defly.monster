@@ -1,8 +1,8 @@
 import {
-	ButtonBuilder,
 	ActionRowBuilder,
-	EmbedBuilder,
+	ButtonBuilder,
 	ButtonStyle,
+	EmbedBuilder,
 } from 'discord.js';
 
 import config from '../config.js';

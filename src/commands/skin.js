@@ -1,10 +1,11 @@
+import Sentry from '@sentry/node';
 import {
 	ActionRowBuilder,
 	ButtonBuilder,
 	ButtonStyle,
 	SlashCommandBuilder,
 } from 'discord.js';
-import Sentry from '@sentry/node';
+
 import config from '../config.js';
 
 export default {

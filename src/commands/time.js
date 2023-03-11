@@ -1,14 +1,14 @@
+import dateParser from 'any-date-parser';
 import {
-	EmbedBuilder,
-	time,
-	SlashCommandBuilder,
 	ActionRowBuilder,
 	ButtonBuilder,
 	ButtonStyle,
+	EmbedBuilder,
+	SlashCommandBuilder,
+	time,
 } from 'discord.js';
 
 import config from '../config.js';
-import dateParser from 'any-date-parser';
 
 export default {
 	arguments: false,

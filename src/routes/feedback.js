@@ -1,6 +1,7 @@
-import Response from '../util/apiResponse.js';
+import { EmbedBuilder, WebhookClient, escapeMarkdown } from 'discord.js';
+
 import config from '../config.js';
-import { WebhookClient, EmbedBuilder, escapeMarkdown } from 'discord.js';
+import Response from '../util/apiResponse.js';
 
 export default async (req, res) => {
 	try {

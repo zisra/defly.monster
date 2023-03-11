@@ -1,5 +1,6 @@
-import config from '../config.js';
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+
+import config from '../config.js';
 
 export default {
 	arguments: false,

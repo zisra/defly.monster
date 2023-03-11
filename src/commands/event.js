@@ -1,4 +1,5 @@
 import { EmbedBuilder, SlashCommandBuilder, time } from 'discord.js';
+
 import config from '../config.js';
 import { getServers } from '../util/getServers.js';
 

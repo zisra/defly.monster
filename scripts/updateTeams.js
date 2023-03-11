@@ -1,5 +1,6 @@
-import axios from 'axios';
 import fs from 'node:fs';
+
+import axios from 'axios';
 
 (async () => {
 	const res = await axios.get('https://defly.monster/api/eliteTeams?version=2');

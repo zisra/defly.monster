@@ -1,5 +1,5 @@
-import { generateUpgrades } from '../util/generateUpgrades.js';
 import Response from '../util/apiResponse.js';
+import { generateUpgrades } from '../util/generateUpgrades.js';
 
 export default async (req, res) => {
 	try {

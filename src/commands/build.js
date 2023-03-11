@@ -1,10 +1,11 @@
 import {
-	EmbedBuilder,
 	AttachmentBuilder,
+	EmbedBuilder,
 	SlashCommandBuilder,
 } from 'discord.js';
-import { generateUpgrades } from '../util/generateUpgrades.js';
+
 import config from '../config.js';
+import { generateUpgrades } from '../util/generateUpgrades.js';
 
 export default {
 	arguments: ['build'],

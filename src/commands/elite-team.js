@@ -1,15 +1,15 @@
 import {
-	EmbedBuilder,
-	SlashCommandBuilder,
 	ActionRowBuilder,
 	ButtonBuilder,
 	ButtonStyle,
+	EmbedBuilder,
+	SlashCommandBuilder,
 	escapeMarkdown,
 } from 'discord.js';
 
+import config from '../config.js';
 import { eliteTeams } from '../util/eliteTeams.js';
 import { escapeEmojis } from '../util/escapeEmojis.js';
-import config from '../config.js';
 
 export default {
 	arguments: ['team'],

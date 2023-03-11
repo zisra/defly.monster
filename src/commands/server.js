@@ -1,9 +1,9 @@
-import { EmbedBuilder, SlashCommandBuilder, escapeMarkdown } from 'discord.js';
 import Sentry from '@sentry/node';
 import axios from 'axios';
+import { EmbedBuilder, SlashCommandBuilder, escapeMarkdown } from 'discord.js';
 
-import { escapeEmojis } from '../util/escapeEmojis.js';
 import config from '../config.js';
+import { escapeEmojis } from '../util/escapeEmojis.js';
 
 export default {
 	arguments: ['region (use, usw, eu)', 'port (3005,3015,3025)'],

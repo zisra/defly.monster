@@ -1,5 +1,7 @@
-import { REST, Routes } from 'discord.js';
 import fs from 'node:fs';
+
+import { REST, Routes } from 'discord.js';
+
 import config from './config.js';
 
 const commands = [];
