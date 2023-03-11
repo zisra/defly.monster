@@ -1,10 +1,5 @@
 import { REST, Routes } from 'discord.js';
 import fs from 'node:fs';
-import dotenv from 'dotenv';
-
-if (process.env.NODE_ENV !== 'production') {
-	dotenv.config();
-}
 
 String.prototype.capitalize = function () {
 	return this.charAt(0).toUpperCase() + this.slice(1);
@@ -23,7 +18,7 @@ for (const file of commandFiles) {
 	}
 }
 
-const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
+const rest = new REST({ version: '10' }).setToken(config.SECRETS.DISCORD_TOKEN);
 
 (async () => {
 	try {
@@ -32,7 +27,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 		);
 
 		const data = await rest.put(
-			Routes.applicationCommands(process.env.APP_ID),
+			Routes.applicationCommands(config.SECRETS.APP_ID),
 			{ body: commands }
 		);
 

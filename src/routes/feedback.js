@@ -16,7 +16,7 @@ export default async (req, res) => {
 				data: 'Feedback parameter must be at least 20 characters',
 			});
 
-		const webhook = new WebhookClient({ url: process.env.FEEDBACK_WEBHOOK });
+		const webhook = new WebhookClient({ url: config.SECRETS.FEEDBACK_WEBHOOK });
 
 		const embed = new EmbedBuilder()
 			.setColor(config.EMBED.MAIN)

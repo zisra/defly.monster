@@ -23,26 +23,28 @@ export default {
 
 		const row = new ActionRowBuilder().addComponents(
 			new ButtonBuilder()
-				.setURL('https://railway.app/project/' + process.env.RAILWAY_PROJECT_ID)
+				.setURL(
+					'https://railway.app/project/' + config.SECRETS.RAILWAY_PROJECT_ID
+				)
 				.setLabel('Railway Project')
 				.setStyle(ButtonStyle.Link),
 			new ButtonBuilder()
 				.setURL(
 					'https://railway.app/project/' +
-						process.env.RAILWAY_PROJECT_ID +
+						config.SECRETS.RAILWAY_PROJECT_ID +
 						'/service/' +
-						process.env.RAILWAY_SERVICE_ID
+						config.SECRETS.RAILWAY_SERVICE_ID
 				)
 				.setLabel('Railway Service')
 				.setStyle(ButtonStyle.Link),
 			new ButtonBuilder()
 				.setURL(
 					'https://railway.app/project/' +
-						process.env.RAILWAY_PROJECT_ID +
+						config.SECRETS.RAILWAY_PROJECT_ID +
 						'/service/' +
-						process.env.RAILWAY_SERVICE_ID +
+						config.SECRETS.RAILWAY_SERVICE_ID +
 						'?id=' +
-						process.env.RAILWAY_DEPLOYMENT_ID
+						config.SECRETS.RAILWAY_DEPLOYMENT_ID
 				)
 				.setLabel('Preview Deployment')
 				.setStyle(ButtonStyle.Link)
@@ -51,7 +53,7 @@ export default {
 		const row2 = new ActionRowBuilder().addComponents(
 			new ButtonBuilder()
 				.setURL(
-					`https://github.com/${process.env.RAILWAY_GIT_REPO_OWNER}/${process.env.RAILWAY_GIT_REPO_NAME}/commit/${process.env.RAILWAY_GIT_COMMIT_SHA}`
+					`https://github.com/${config.SECRETS.RAILWAY_GIT_REPO_OWNER}/${config.SECRETS.RAILWAY_GIT_REPO_NAME}/commit/${config.SECRETS.RAILWAY_GIT_COMMIT_SHA}`
 				)
 				.setLabel('Current commit')
 				.setStyle(ButtonStyle.Link)

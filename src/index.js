@@ -1,5 +1,3 @@
-// https://discord.com/api/oauth2/authorize?client_id=883125551139799070&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2F&response_type=code&scope=identify
-
 import fs from 'node:fs';
 import util from 'node:util';
 
@@ -10,29 +8,28 @@ import {
 	AttachmentBuilder,
 	EmbedBuilder,
 	Client,
+	Events,
 } from 'discord.js';
 import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
 import memoryStore from 'memorystore';
+
 import config from './config.js';
 import router from './router.js';
 import generateArticles from './articles.js';
-import dotenv from 'dotenv';
 
 generateArticles();
 
-if (process.env.NODE_ENV !== 'production') {
-	dotenv.config();
-}
 
 Sentry.init({
-	dsn: process.env.SENTRY_DSN,
+	dsn: config.SECRETS.SENTRY_DSN,
 	tracesSampleRate: 1.0,
-	environment: process.env.NODE_ENV,
+	environment: config.SECRETS.NODE_ENV,
 });
 
 const app = express();
+const MemoryStore = memoryStore(session);
 
 const client = new Client({
 	intents: [
@@ -46,35 +43,21 @@ const client = new Client({
 	partials: [Partials.Channel],
 });
 
-Sentry.configureScope((scope) => {
-	scope.setExtra('discord.js connection', client.isReady());
-});
-
-client.on('ready', async (client) => {
-	client.user.setActivity('defly.io');
+client.on(Events.ClientReady, async (client) => {
 	console.log('Bot working');
-	Sentry.configureScope((scope) => {
-		scope.setExtra('discord.js connection', true);
-	});
+	client.user.setActivity('defly.io');
 	client.application.commands.fetch();
 });
 
-client.on('rateLimit', (rateLimit) => {
-	Sentry.captureEvent({ message: 'Ratelimit', rateLimit });
+client.on(Events.ShardError, (error, id) => {
+	Sentry.captureEvent({ message: 'Shard Error', event, id });
 });
 
-client.on('shardError', (error, id) => {
-	Sentry.captureEvent({ message: 'shard error', event, id });
-	Sentry.configureScope((scope) => {
-		scope.setExtra('discord.js connection', client.isReady());
-	});
-});
-
-client.on('warn', (warning) => {
+client.on(Events.Warn, (warning) => {
 	Sentry.captureEvent({ message: 'Warning', warning });
 });
 
-client.on('messageCreate', async (message) => {
+client.on(Events.MessageCreate, async (message) => {
 	if (
 		message.channel.id === config.ELITE_CHANGES_CHANNEL &&
 		message.webhookId
@@ -94,7 +77,7 @@ client.on('messageCreate', async (message) => {
 		try {
 			if (selectedCommand.guildOnly && !message.guild) return;
 			if (selectedCommand?.adminOnly) {
-				if (process.env.BOT_OWNER === message.author.id) {
+				if (config.SECRETS.BOT_OWNER === message.author.id) {
 					selectedCommand.command(message, args, client);
 				} else {
 					message.react('\u274C');
@@ -110,7 +93,10 @@ client.on('messageCreate', async (message) => {
 				'Something went wrong with this command. Please try again soon. If you need a list of commands, run `d?help`'
 			);
 		}
-	} else if (command === 'eval' && message.author.id == process.env.BOT_OWNER) {
+	} else if (
+		command === 'eval' &&
+		message.author.id == config.SECRETS.BOT_OWNER
+	) {
 		try {
 			const code = args.join(' ');
 			let evaled = eval(code);
@@ -141,7 +127,7 @@ client.on('messageCreate', async (message) => {
 	}
 });
 
-client.on('interactionCreate', async (interaction) => {
+client.on(Events.InteractionCreate, async (interaction) => {
 	if (interaction.isChatInputCommand()) {
 		const command = interaction.commandName;
 		const commandFolder = fs.readdirSync('./src/commands');
@@ -206,25 +192,23 @@ client.on('interactionCreate', async (interaction) => {
 	}
 });
 
-client.login(process.env.DISCORD_TOKEN);
+client.login(config.SECRETS.DISCORD_TOKEN);
 
-if (process.env.NODE_ENV === 'production') {
+if (config.SECRETS.NODE_ENV === 'production') {
 	app.set('trust proxy', 1);
 }
 
-const MemoryStore = memoryStore(session);
-
 app.use(
 	session({
-		secret: process.env.CLIENT_SECRET,
+		secret: config.SECRETS.CLIENT_SECRET,
 		resave: false,
 		saveUninitialized: true,
 		store: new MemoryStore({
 			checkPeriod: 86400000,
 		}),
 		cookie: {
-			secure: process.env.NODE_ENV === 'production',
-			domain: process.env.NODE_ENV === 'production' ? 'defly.monster' : null,
+			secure: config.SECRETS.NODE_ENV === 'production',
+			domain: config.SECRETS.NODE_ENV === 'production' ? 'defly.monster' : null,
 			maxAge: 1000 * 60 * 60 * 24, // One day
 		},
 	})
@@ -276,6 +260,6 @@ app.get('*', (req, res) => {
 	});
 });
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(config.SECRETS.PORT || 3000, () => {
 	console.log('Server working');
 });

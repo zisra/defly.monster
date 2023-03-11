@@ -21,6 +21,16 @@ body {
 	justify-content: center;
 }
 
+@media screen and (max-width: 600px) {
+	.container {
+		grid-template-columns: 250px;
+	}
+	.box {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+}
+
 .box {
 	background-color: #333;
 	color: white;
@@ -63,25 +73,25 @@ body {
 }
 
 .close-tag {
-    height: 25px;
-    width: 25px;
-    background-color: #bbb;
-    border-radius: 50%;
-    cursor: pointer;
+	height: 25px;
+	width: 25px;
+	background-color: #bbb;
+	border-radius: 50%;
+	cursor: pointer;
 	appearance: auto;
 	margin-left: 2px;
 }
 .close-tag::after {
-    content: "\2715";
+	content: '\2715';
 }
 
 .link {
-    color: white;
-    text-decoration: none;
+	color: white;
+	text-decoration: none;
 }
 
 .link:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 .hidden {
@@ -89,6 +99,6 @@ body {
 }
 
 .tag > a {
-	color:black;
+	color: black;
 	text-decoration: none;
 }

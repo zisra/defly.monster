@@ -89,14 +89,6 @@ function generateTable(stats) {
 }
 
 function generateStatistics(stats) {
-	/*
-		totalDotsDestroyed,
-		totalKills,
-		totalDeaths,
-		totalArea,
-		totalScore,
-		playerCount
-	*/
 	return `<div class="columns is-centered has-text-centered">
 	<div class="column is-one-third box has-background-info m-2 has-text-white">
 	  <div class="has-text-weight-bold">Total dots destroyed</div>

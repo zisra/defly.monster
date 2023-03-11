@@ -7,13 +7,13 @@ export default async (req, res) => {
 	if (code) {
 		try {
 			const parameters = new URLSearchParams();
-			parameters.append('client_id', process.env.APP_ID);
-			parameters.append('client_secret', process.env.CLIENT_SECRET);
+			parameters.append('client_id', config.SECRETS.APP_ID);
+			parameters.append('client_secret', config.SECRETS.CLIENT_SECRET);
 			parameters.append('grant_type', 'authorization_code');
 			parameters.append('code', code);
 			parameters.append(
 				'redirect_uri',
-				process.env.NODE_ENV === 'production'
+				config.SECRETS.NODE_ENV === 'production'
 					? 'https://defly.monster/api/auth/'
 					: 'http://localhost:3000/api/auth/'
 			);
@@ -37,7 +37,7 @@ export default async (req, res) => {
 			});
 			const user = userData.data;
 
-			const isAdmin = process.env.ADMINS.split(',').find(
+			const isAdmin = config.SECRETS.ADMINS.split(',').find(
 				(usr) => usr === user.id
 			)
 				? true

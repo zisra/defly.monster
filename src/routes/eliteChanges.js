@@ -46,7 +46,7 @@ export default async (req, res) => {
 		}
 
 		const webhook = new WebhookClient({
-			url: process.env.ELITE_CHANGES_WEBHOOK,
+			url: config.SECRETS.ELITE_CHANGES_WEBHOOK,
 		});
 
 		const embeds = changes.map((change) => {

@@ -1,7 +1,7 @@
-import config from './src/config.js';
+import config from '../src/config.js';
 import fs from 'node:fs';
 
-const skinData = JSON.parse(fs.readFileSync('./allskins.txt', 'utf8'));
+const skinData = JSON.parse(fs.readFileSync('./src/allskins.txt', 'utf8'));
 function getSkin(skin) {
 	if (skin === 80) return;
 	let finalSkin = {};
@@ -497,6 +497,7 @@ const originalSkins = {
 		size: 0.6412750926835914,
 	},
 };
+
 function getOGskin(skin) {
 	const file = originalSkins[skin];
 	let final = {
@@ -508,13 +509,14 @@ function getOGskin(skin) {
 		},
 		images: {},
 	};
+	console.log(file.base);
 	final.spec.base = file.base;
 	final.images[file.base] =
 		'data:image/png;base64,' +
 		fs.readFileSync(`./src/images/${file.base}.png`, 'base64');
 	final.spec.notint = file.notint;
 	final.images[file.notint] =
-		'data:image/png;base64,' +
+		'data:image/png;=base64,' +
 		fs.readFileSync(`./src/images/${file.notint}.png`, 'base64');
 	file.rotors.forEach((i) => {
 		final.images[i.img] =
@@ -546,7 +548,7 @@ function getOGskin(skin) {
 }
 
 Array.from({ length: config.MAX_SKINS }, (_, i) => i + 1).forEach((skin) => {
-	if (skin <= 26) {
+	if (skin <= 25) {
 		getOGskin(skin);
 	} else {
 		getSkin(skin);

@@ -1,7 +1,11 @@
-function normalizeTeamName(str) {
-	str = str.replaceAll('-', ' ');
-	return str.charAt(0).toUpperCase() + str.slice(1);
-}
+const teams = {
+	lime: 'Lemon Lime',
+	'dark-green': 'The Darkness',
+	red: 'Team Red',
+	orange: 'Bloody Orange',
+	purple: 'Casa Morada',
+	'sky-blue': 'Smurfs',
+};
 
 const container = document.getElementById('container');
 
@@ -10,9 +14,9 @@ window.onload = async () => {
 	const res = await data.json();
 	let teamBoxes = [];
 
-	for (team in res) {
+	for (const team in res) {
 		teamBoxes.push(`<div class="team-box ${team}">
-			<div class="team-name">${normalizeTeamName(team)}</div>
+			<div class="team-name">${teams[team]}</div>
 	 		<div><b>Captain:</b> <a href="https://discord.com/users/${
 				res[team][0]?.note ?? ''
 			}">${res[team][0]?.value ?? 'N/A'}</a></div>
