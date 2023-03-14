@@ -2,7 +2,7 @@ import fs from 'node:fs';
 
 import { REST, Routes } from 'discord.js';
 
-import config from './config.js';
+import config from '../src/config.js';
 
 const commands = [];
 

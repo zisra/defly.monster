@@ -30,7 +30,7 @@ const EXCUSES = [
 	"Not to make any excuses, but I'm pretty sure I got killed by a hacker.",
 	'Oof, that was my clone.',
 ];
-const MAX_SKINS = 136;
+const MAX_SKINS = 137;
 const MAX_BADGES = 47;
 const REGION_LIST = [
 	{ region: 'USE1', ws: 'use4', alias: 'use', name: 'US East', working: true },
