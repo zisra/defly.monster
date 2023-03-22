@@ -7,45 +7,24 @@ import {
 } from 'discord.js';
 
 import config from '../config.js';
-import { commands } from '../util/commands.js';
 
 export default {
-	arguments: false,
-	description: 'Gets a list of all commands',
 	interaction: new SlashCommandBuilder()
 		.setName('help')
 		.setDescription('Gets a list of all commands'),
-	command: async (message, args, client) => {
-		const botCommands = await commands();
-		let embed;
+	command: async (interaction, args, client) => {
+		const embed = new EmbedBuilder()
+			.setTitle('Defly.io Monster | Commands')
+			.setDescription(
+				client.application.commands.cache
+					.map(
+						(command) =>
+							`</${command.name}:${command.id}>: ${command.description}`
+					)
+					.join('\n')
+			)
+			.setColor(config.EMBED.MAIN);
 
-		if (!message.interaction) {
-			embed = new EmbedBuilder()
-				.setTitle('Defly.io Monster | Commands')
-				.setDescription(
-					botCommands
-						.filter((i) => !i.adminOnly)
-						.map(
-							(i) =>
-								`\`d?${i.name}${
-									i.arguments
-										? ' ' + i.arguments.map((i) => `<${i}>`).join(' ')
-										: ''
-								}\`: ${i.description}`
-						)
-						.join('\n')
-				)
-				.setColor(config.EMBED.MAIN);
-		} else {
-			embed = new EmbedBuilder()
-				.setTitle('Defly.io Monster | Commands')
-				.setDescription(
-					client.application.commands.cache
-						.map((i) => `</${i.name}:${i.id}>: ${i.description}`)
-						.join('\n')
-				)
-				.setColor(config.EMBED.MAIN);
-		}
 		const row = new ActionRowBuilder().addComponents(
 			new ButtonBuilder()
 				.setURL('https://defly.monster/')
@@ -60,6 +39,6 @@ export default {
 				.setLabel('Join support')
 				.setStyle(ButtonStyle.Link)
 		);
-		await message.reply({ embeds: [embed], components: [row] });
+		await interaction.reply({ embeds: [embed], components: [row] });
 	},
 };

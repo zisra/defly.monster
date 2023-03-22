@@ -8,12 +8,8 @@ window.onload = async () => {
 		'<ul id="commands-list">' +
 		res
 			.map(
-				(i) =>
-					`<li class="command"><div class="command-title">d?${i.name} ${
-						i.arguments == false
-							? ''
-							: i.arguments.map((i) => `&lt;${i}&gt;`).join(' ')
-					}</div><div id="">${i.description}</div></li>`
+				(command) =>
+					`<li class="command"><div class="command-title">/${command.name}</div><div id="">${command.description}</div></li>`
 			)
 			.join('') +
 		'</ul>';

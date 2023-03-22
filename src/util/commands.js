@@ -9,8 +9,7 @@ export async function commands() {
 
 		commands.push({
 			name: file.replace('.js', ''),
-			arguments: commandData?.arguments ?? null,
-			description: commandData.description,
+			description: commandData.interaction.toJSON().description,
 			adminOnly: commandData?.adminOnly ?? false,
 		});
 	}

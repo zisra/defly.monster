@@ -3,12 +3,10 @@ import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import config from '../config.js';
 
 export default {
-	arguments: false,
-	description: 'Gets a list of all badges for premium user',
 	interaction: new SlashCommandBuilder()
 		.setName('badges')
 		.setDescription('Gets a list of all badges for premium user'),
-	command: async (message, args, client) => {
+	command: async (interaction, args, client) => {
 		const embed = new EmbedBuilder()
 			.setTitle('Defly.io badges')
 			.setDescription(
@@ -20,6 +18,6 @@ export default {
 			)
 			.setColor(config.EMBED.MAIN);
 
-		await message.reply({ embeds: [embed] });
+		await interaction.reply({ embeds: [embed] });
 	},
 };

@@ -126,6 +126,8 @@ const INVITE_URL =
 const ELITE_CHANGES_CHANNEL = '1055715651311915008';
 const CLOUDFLARE_WORKER_URL = 'https://defly-websocket.isra.workers.dev/';
 const ERROR_EMOJI = '\u274C';
+const ACTIVITY = 'defly.io';
+const HELP_COMMAND_ID = '1053166812231123051';
 
 let SECRETS;
 
@@ -164,4 +166,6 @@ export default {
 	CLOUDFLARE_WORKER_URL,
 	SECRETS,
 	ERROR_EMOJI,
+	ACTIVITY,
+	HELP_COMMAND_ID,
 };

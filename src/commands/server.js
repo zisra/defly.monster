@@ -1,4 +1,3 @@
-import Sentry from '@sentry/node';
 import axios from 'axios';
 import { EmbedBuilder, SlashCommandBuilder, escapeMarkdown } from 'discord.js';
 
@@ -6,8 +5,6 @@ import config from '../config.js';
 import { escapeEmojis } from '../util/escapeEmojis.js';
 
 export default {
-	arguments: ['region (use, usw, eu)', 'port (3005,3015,3025)'],
-	description: 'Get the teams and their players for the specified server',
 	interaction: new SlashCommandBuilder()
 		.setName('server')
 		.setDescription('Get the teams and thesir players for the specified server')
@@ -35,13 +32,13 @@ export default {
 					}))
 				)
 		),
-	command: async (message, args, client) => {
-		const serverRegion = message.interaction ? args.region : args[0];
-		const serverPort = message.interaction ? args.port : args[1];
+	command: async (interaction, args, client) => {
+		const serverRegion = interaction.interaction ? args.region : args[0];
+		const serverPort = interaction.interaction ? args.port : args[1];
 		let serverRes;
 
 		if (!serverPort || !serverRegion) {
-			return message.reply({
+			return interaction.reply({
 				content: 'Something went wrong getting teams',
 				ephemeral: true,
 			});
@@ -57,10 +54,9 @@ export default {
 
 			serverRes = data;
 		} catch (err) {
-			console.error(err);
-			Sentry.captureException(err);
-			return message.reply({
-				content: 'Something went wrong getting teams',
+			return interaction.reply({
+				content:
+					'Something went wrong getting teams - This server could possibly have a team that is closing the map',
 				ephemeral: true,
 			});
 		}
@@ -108,6 +104,6 @@ export default {
 				})
 			);
 
-		await message.reply({ embeds: [embed] });
+		await interaction.reply({ embeds: [embed] });
 	},
 };

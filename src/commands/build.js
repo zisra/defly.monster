@@ -8,8 +8,6 @@ import config from '../config.js';
 import { generateUpgrades } from '../util/generateUpgrades.js';
 
 export default {
-	arguments: ['build'],
-	description: 'Sends a graphic for any chosen build',
 	interaction: new SlashCommandBuilder()
 		.setName('build')
 		.setDescription('Gets a list of all badges for premium user')
@@ -21,8 +19,8 @@ export default {
 				.setMaxLength(7)
 				.setMinLength(7)
 		),
-	command: async (message, args) => {
-		const build = message.interaction ? args.build : args[0];
+	command: async (interaction, args) => {
+		const build = args.build;
 
 		const added = build.split('');
 
@@ -31,7 +29,7 @@ export default {
 			added.reduce((a, b) => parseInt(a) + parseInt(b), 0) !== 32 ||
 			!build
 		) {
-			return message.reply({
+			return interaction.reply({
 				content:
 					'Please enter a valid build that adds up to 32. Example: 8888000',
 				ephemeral: true,
@@ -49,6 +47,6 @@ export default {
 			.setImage('attachment://upgrades.png')
 			.setColor(config.EMBED.MAIN);
 
-		message.reply({ embeds: [embed], files: [file] });
+		interaction.reply({ embeds: [embed], files: [file] });
 	},
 };

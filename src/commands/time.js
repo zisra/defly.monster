@@ -11,9 +11,6 @@ import {
 import config from '../config.js';
 
 export default {
-	arguments: false,
-	description:
-		'Sends the Discord timestamp for any given date. Useful for tournament dates. Defaults UTC.',
 	interaction: new SlashCommandBuilder()
 		.setName('time')
 		.setDescription(
@@ -25,8 +22,8 @@ export default {
 				.setDescription('The time to use')
 				.setRequired(true)
 		),
-	command: async (message, args) => {
-		const date = message.interaction ? args.input : args.join(' ');
+	command: async (interaction, args) => {
+		const date = args.input;
 		const row = new ActionRowBuilder().addComponents(
 			new ButtonBuilder()
 				.setLabel('Supported formats')
@@ -36,7 +33,7 @@ export default {
 				)
 		);
 		if (!date) {
-			return await message.reply({
+			return await interaction.reply({
 				content: 'Date could not be parsed',
 				ephemeral: true,
 				components: [row],
@@ -55,9 +52,9 @@ export default {
 				.setTitle('Discord timestamp')
 				.setColor(config.EMBED.MAIN);
 
-			await message.reply({ embeds: [embed] });
+			await interaction.reply({ embeds: [embed] });
 		} catch (err) {
-			await message.reply({
+			await interaction.reply({
 				content: 'Date could not be parsed',
 				ephemeral: true,
 				components: [row],

@@ -4,15 +4,13 @@ import config from '../config.js';
 import { getServers } from '../util/getServers.js';
 
 export default {
-	arguments: false,
-	description: 'Find out what tournaments are coming up',
 	interaction: new SlashCommandBuilder()
 		.setName('event')
 		.setDescription('Find out what tournaments are coming up'),
-	command: async (message) => {
+	command: async (interaction) => {
 		const serverRes = await getServers(1);
 		if (!serverRes.event) {
-			await message.reply('There is no event at the moment.');
+			await interaction.reply('There is no event at the moment.');
 		} else {
 			const embed = new EmbedBuilder()
 				.setDescription(serverRes.event.details)
@@ -24,7 +22,7 @@ export default {
 				)
 				.setTimestamp(new Date(serverRes.event.date))
 				.setColor(config.EMBED.MAIN);
-			await message.reply({ embeds: [embed] });
+			await interaction.reply({ embeds: [embed] });
 		}
 	},
 };

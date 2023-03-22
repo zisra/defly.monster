@@ -44,7 +44,7 @@ const client = new Client({
 
 client.on(Events.ClientReady, async (client) => {
 	console.log('Bot working');
-	client.user.setActivity('defly.io');
+	client.user.setActivity(config.ACTIVITY);
 	client.application.commands.fetch();
 });
 
@@ -56,6 +56,8 @@ client.on(Events.Warn, (warning) => {
 	Sentry.captureEvent({ message: 'Warning', warning });
 });
 
+const assetFiles = fs.readdirSync('./src/images');
+
 client.on(Events.MessageCreate, async (message) => {
 	if (
 		message.channel.id === config.ELITE_CHANGES_CHANNEL &&
@@ -64,38 +66,20 @@ client.on(Events.MessageCreate, async (message) => {
 		message.crosspost();
 	}
 
-	if (!message.content.startsWith(config.PREFIX)) return;
-	const args = message.content.slice(config.PREFIX.length).trim().split(' ');
+	let args;
+	if (message.content.startsWith(config.PREFIX)) {
+		args = message.content.slice(config.PREFIX.length).trim().split(' ');
+	} else if (message.content.includes(client.user.toString())) {
+		args = message.content
+			.slice(client.user.toString().length)
+			.trim()
+			.split(' ');
+	} else {
+		return;
+	}
 
 	const command = args.shift().toLowerCase();
-	const commandFolder = fs.readdirSync('./src/commands');
-	if (commandFolder.find((i) => i === `${command}.js`)) {
-		const { default: selectedCommand } = await import(
-			`./commands/${command}.js`
-		);
-		try {
-			if (selectedCommand.guildOnly && !message.guild) return;
-			if (selectedCommand?.adminOnly) {
-				if (config.SECRETS.BOT_OWNER === message.author.id) {
-					selectedCommand.command(message, args, client);
-				} else {
-					message.react(config.ERROR_EMOJI);
-				}
-			} else {
-				selectedCommand.command(message, args, client);
-			}
-		} catch (err) {
-			console.error(err);
-			Sentry.captureException(err);
-			await message.react(config.ERROR_EMOJI);
-			await message.reply(
-				'Something went wrong with this command. Please try again soon. If you need a list of commands, run `d?help`'
-			);
-		}
-	} else if (
-		command === 'eval' &&
-		message.author.id === config.SECRETS.BOT_OWNER
-	) {
+	if (command === 'eval' && message.author.id === config.SECRETS.BOT_OWNER) {
 		try {
 			const code = args.join(' ');
 			let evaled = eval(code);
@@ -111,7 +95,6 @@ client.on(Events.MessageCreate, async (message) => {
 			message.channel.send({ embeds: [evalEmbed] });
 		} catch (err) {
 			console.error(err);
-			message.react('858457517965180988');
 			const code = args.join(' ');
 			const errEmbed = new EmbedBuilder()
 				.setTitle('Error')
@@ -121,6 +104,10 @@ client.on(Events.MessageCreate, async (message) => {
 				.setColor(config.EMBED.ERROR);
 			message.channel.send({ embeds: [errEmbed] });
 		}
+	} else {
+		message.channel.send(
+			`Text commands will soon be deprecated. Please use slash commands instead. If you need a list of commands, run </help:${config.HELP_COMMAND_ID}>`
+		);
 	}
 });
 
@@ -149,8 +136,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
 				console.log(err);
 				Sentry.captureException(err);
 				await interaction.reply({
-					content:
-						'Something went wrong with this command. Please try again soon. If you need a list of commands, run </help:1053166812231123051>.',
+					content: `Something went wrong with this command. Please try again soon. If you need a list of commands, run </help:${config.HELP_COMMAND_ID}>`,
 					ephemeral: true,
 				});
 			}
@@ -185,6 +171,17 @@ client.on(Events.InteractionCreate, async (interaction) => {
 		} catch (err) {
 			console.error(err);
 			Sentry.captureException(err);
+		}
+	} else if (interaction.isAutocomplete()) {
+		if (interaction.commandName === 'asset') {
+			await interaction.respond(
+				assetFiles
+					.filter((choice) =>
+						choice.startsWith(interaction.options.getFocused())
+					)
+					.map((choice) => ({ name: choice, value: choice }))
+					.slice(0, 25)
+			);
 		}
 	}
 });

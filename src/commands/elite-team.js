@@ -12,8 +12,6 @@ import { eliteTeams } from '../util/eliteTeams.js';
 import { escapeEmojis } from '../util/escapeEmojis.js';
 
 export default {
-	arguments: ['team'],
-	description: 'Gets info on a given elite team',
 	interaction: new SlashCommandBuilder()
 		.setName('elite-team')
 		.setDescription('Gets info on a given elite team')
@@ -29,7 +27,9 @@ export default {
 					}))
 				)
 		),
-	command: async (message, args) => {
+	command: async (interaction, args) => {
+		const team = args.team;
+
 		const row = new ActionRowBuilder().addComponents(
 			new ButtonBuilder()
 				.setURL(
@@ -38,10 +38,9 @@ export default {
 				.setLabel('Source')
 				.setStyle(ButtonStyle.Link)
 		);
-		const team = message.interaction ? args.team : args[0];
 
 		if (!team || !config.ELITE_TEAMS[team]) {
-			return message.reply({
+			return interaction.reply({
 				content: `Please select an elite team: ${Object.keys(
 					config.ELITE_TEAMS
 				).join(', ')}.`,
@@ -74,6 +73,6 @@ export default {
 				)
 				.join('\n')}`
 			);
-		await message.reply({ embeds: [embed], components: [row] });
+		await interaction.reply({ embeds: [embed], components: [row] });
 	},
 };

@@ -9,8 +9,6 @@ import {
 import config from '../config.js';
 
 export default {
-	arguments: ['skin-id'],
-	description: 'Sends the file for any current in-game skin',
 	interaction: new SlashCommandBuilder()
 		.setName('skin')
 		.setDescription('Sends the file for any current in-game skin')
@@ -22,8 +20,8 @@ export default {
 				.setMinValue(1)
 				.setMaxValue(config.MAX_SKINS)
 		),
-	command: async (message, args) => {
-		const skin = message.interaction ? args.id : args[0];
+	command: async (interaction, args) => {
+		const skin = args.id;
 
 		if (
 			!parseInt(skin) ||
@@ -38,7 +36,7 @@ export default {
 						'https://docs.google.com/spreadsheets/d/1RWiaX_GJjaO9f9FyA78wD-ETSEL3_7Kbmexg5xBQ-ZA/edit#gid=757313197'
 					)
 			);
-			return message.reply({
+			return interaction.reply({
 				ephemeral: true,
 				content: `Please provide a valid skin ID: 26-${config.MAX_SKINS}.`,
 				components: [row],
@@ -57,7 +55,7 @@ export default {
 						'https://docs.google.com/spreadsheets/d/1RWiaX_GJjaO9f9FyA78wD-ETSEL3_7Kbmexg5xBQ-ZA/edit#gid=757313197'
 					)
 			);
-			message.reply({
+			interaction.reply({
 				content: `Defly.io skin ID: ${skin}`,
 				files: [
 					{
@@ -70,7 +68,7 @@ export default {
 			});
 		} catch (err) {
 			Sentry.captureException(err);
-			message.reply({
+			interaction.reply({
 				ephemeral: true,
 				content: `Please provide a valid skin ID: 26-${config.MAX_SKINS}\nYou can get the skin ID here:** <https://docs.google.com/spreadsheets/d/1RWiaX_GJjaO9f9FyA78wD-ETSEL3_7Kbmexg5xBQ-ZA/edit#gid=757313197> **`,
 			});

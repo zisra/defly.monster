@@ -3,8 +3,6 @@ import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import config from '../config.js';
 
 export default {
-	arguments: ['badge'],
-	description: 'Gets info on a specific badge',
 	interaction: new SlashCommandBuilder()
 		.setName('badge')
 		.setDescription('Gets info on a specific badge')
@@ -16,8 +14,8 @@ export default {
 				.setMinValue(1)
 				.setMaxValue(config.MAX_BADGES)
 		),
-	command: async (message, args) => {
-		const badge = message.interaction ? args.badge : args[0];
+	command: async (interaction, args) => {
+		const badge = args.badge;
 
 		if (
 			!badge ||
@@ -25,7 +23,7 @@ export default {
 			parseInt(badge) > config.MAX_BADGES ||
 			!parseInt(badge)
 		) {
-			return message.reply({
+			return interaction.reply({
 				content: `Please select a badge number: 1 - ${config.MAX_BADGES}`,
 				ephemeral: true,
 			});
@@ -35,6 +33,6 @@ export default {
 			.setImage(`https://defly.io/img/badges/${badge}.png`)
 			.setColor(config.EMBED.MAIN);
 
-		await message.reply({ embeds: [embed] });
+		await interaction.reply({ embeds: [embed] });
 	},
 };
