@@ -22,21 +22,16 @@ export default {
 	command: async (interaction, args) => {
 		const build = args.build;
 
-		const added = build.split('');
+		let upgrades;
 
-		if (
-			build.length !== 7 ||
-			added.reduce((a, b) => parseInt(a) + parseInt(b), 0) !== 32 ||
-			!build
-		) {
+		try {
+			upgrades = await generateUpgrades(build, 'png');
+		} catch (err) {
 			return interaction.reply({
-				content:
-					'Please enter a valid build that adds up to 32. Example: 8888000',
+				content: `${err.message}. Example: 8888000`,
 				ephemeral: true,
 			});
 		}
-
-		const upgrades = await generateUpgrades(build, 'png');
 
 		const file = new AttachmentBuilder(upgrades.data, {
 			name: 'upgrades.png',

@@ -19,16 +19,15 @@ import generateArticles from './articles.js';
 import config from './config.js';
 import router from './router.js';
 
-generateArticles();
-
+const app = express();
+const MemoryStore = memoryStore(session);
+const assetFiles = fs.readdirSync('./src/images');
 Sentry.init({
 	dsn: config.SECRETS.SENTRY_DSN,
 	tracesSampleRate: 1.0,
 	environment: config.SECRETS.NODE_ENV,
 });
-
-const app = express();
-const MemoryStore = memoryStore(session);
+generateArticles();
 
 const client = new Client({
 	intents: [
@@ -41,6 +40,7 @@ const client = new Client({
 	allowedMentions: { parse: ['users', 'roles'], repliedUser: false },
 	partials: [Partials.Channel],
 });
+
 
 client.on(Events.ClientReady, async (client) => {
 	console.log('Bot working');
@@ -55,8 +55,6 @@ client.on(Events.ShardError, (error, id) => {
 client.on(Events.Warn, (warning) => {
 	Sentry.captureEvent({ message: 'Warning', warning });
 });
-
-const assetFiles = fs.readdirSync('./src/images');
 
 client.on(Events.MessageCreate, async (message) => {
 	if (
@@ -203,7 +201,7 @@ app.use(
 		cookie: {
 			secure: config.SECRETS.NODE_ENV === 'production',
 			domain: config.SECRETS.NODE_ENV === 'production' ? 'defly.monster' : null,
-			maxAge: 1000 * 60 * 60 * 24, // One day
+			maxAge: 1000 * 60 * 60 * 24, // 1 day
 		},
 	})
 );

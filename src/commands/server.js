@@ -15,7 +15,7 @@ export default {
 				.setRequired(true)
 				.addChoices(
 					...config.REGION_LIST.map((region) => ({
-						name: `${region.name}${region.working ? '' : ' (not working)'}`,
+						name: region.name,
 						value: region.alias,
 					}))
 				)

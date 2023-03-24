@@ -6,6 +6,25 @@ export function generateUpgrades(upgrades, format, height) {
 
 		upgrades = upgrades.split('');
 
+		if (upgrades.length !== 7) {
+			throw new Error('Build must be 7 characters');
+		}
+
+		if (upgrades.reduce((a, b) => parseInt(a) + parseInt(b), 0) !== 32) {
+			throw new Error('Build must add up to 32');
+		}
+
+		if (
+			upgrades.find(
+				(upgrade) =>
+					parseInt(upgrade) > 8 ||
+					parseInt(upgrade) < 0 ||
+					isNaN(parseInt(upgrade))
+			)
+		) {
+			throw new Error('Each upgrade must be a number between 0 and 8');
+		}
+
 		const upgradeStats = [];
 
 		upgrades.forEach((line) => {

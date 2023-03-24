@@ -33,18 +33,17 @@ const EXCUSES = [
 const MAX_SKINS = 137;
 const MAX_BADGES = 47;
 const REGION_LIST = [
-	{ region: 'USE1', ws: 'use4', alias: 'use', name: 'US East', working: true },
-	{ region: 'USW1', ws: 'usw4', alias: 'usw', name: 'US West', working: true },
-	{ region: 'EU1', ws: 'eu1-1', alias: 'eu', name: 'Europe', working: true },
-	// { region: 'TOK1', ws: 'tok2', alias: 'asia', name: 'Asia East', working: true },
+	{ region: 'USE1', ws: 'use4', alias: 'use', name: 'US East' },
+	{ region: 'USW1', ws: 'usw4', alias: 'usw', name: 'US West' },
+	{ region: 'EU1', ws: 'eu1-1', alias: 'eu', name: 'Europe' },
+	// { region: 'TOK1', ws: 'tok2', alias: 'asia', name: 'Asia East' },
 	{
 		region: 'AU',
 		ws: 'au2',
 		alias: 'au',
 		name: 'Australia',
-		working: true,
 	},
-	{ region: 'TR', ws: 'use5', alias: 'tr', name: 'Tournament', working: true },
+	{ region: 'TR', ws: 'use5', alias: 'tr', name: 'Tournament' },
 ];
 const PORT_LIST = [
 	{ port: 3005, mode: 'Teams' },

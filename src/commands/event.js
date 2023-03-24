@@ -17,7 +17,7 @@ export default {
 				.setTitle(
 					`${serverRes.event.title} | ${time(
 						new Date(serverRes.event.date),
-						'R'
+						config.TIME_FORMATS[6]
 					)}`
 				)
 				.setTimestamp(new Date(serverRes.event.date))
