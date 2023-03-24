@@ -92,7 +92,7 @@ client.on(Events.MessageCreate, async (message) => {
 					`**Input:**\`\`\`js\n${code}\`\`\`\n**Output:**\`\`\`xl\n${evaled}\`\`\``
 				)
 				.setColor(config.EMBED.SUCCESS);
-			message.channel.send({ embeds: [evalEmbed] });
+			message.reply({ embeds: [evalEmbed] });
 		} catch (err) {
 			console.error(err);
 			const code = args.join(' ');
@@ -102,10 +102,10 @@ client.on(Events.MessageCreate, async (message) => {
 					`**Input:**\`\`\`js\n${code}\`\`\`\n**Output:**\`\`\`xl\n${err}\`\`\``
 				)
 				.setColor(config.EMBED.ERROR);
-			message.channel.send({ embeds: [errEmbed] });
+			message.reply({ embeds: [errEmbed] });
 		}
 	} else {
-		message.channel.send(
+		message.reply(
 			`Text commands will soon be deprecated. Please use slash commands instead. If you need a list of commands, run </help:${config.HELP_COMMAND_ID}>`
 		);
 	}
