@@ -33,10 +33,6 @@ export async function eliteDefuse() {
 						if (cell.formattedValue === 'Complex') debugger;
 						if (cell.note) note = cell.note.match(/\d+/)?.[0] || '';
 
-						console.log({
-							value: cell.formattedValue,
-							note,
-						});
 						return {
 							value: cell.formattedValue,
 							note,
