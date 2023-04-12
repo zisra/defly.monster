@@ -77,7 +77,7 @@ const EMBED = {
 };
 const TIME_FORMATS = ['t', 'T', 'd', 'D', 'f', 'F', 'R'];
 const ELITE_TEAMS_MODE = {
-	SPREADSHEET_RANGE: 'FUTURE Season 08!A5:L20',
+	SPREADSHEET_RANGE: 'FUTURE Season 08!A5:N20',
 	SPREADSHEET_ID: '1b2z_lTIPEVhabnP73Mir3ttOZlqgEoLV9mLE1T-m1Y4',
 	TEAMS: {
 		lime: {
@@ -119,38 +119,43 @@ const ELITE_TEAMS_MODE = {
 	},
 };
 const ELITE_DEFUSE_MODE = {
-	SPREADSHEET_RANGE: 'Season01!A5:L16',
+	SPREADSHEET_RANGE: 'Season01!A5:P16',
 	SPREADSHEET_ID: '1Hk59f4nKzRZ8tkben35mUOj_ltLgLj_lZxcjQPry5Tk',
 	TEAMS: {
 		teamOne: {
 			spreadsheetId: 1,
-			color: '19E691',
+			color: '19e691',
 			name: 'Black Sky',
 		},
 		teamTwo: {
 			spreadsheetId: 3,
-			color: '19E6D5',
+			color: '19e6d5',
 			name: 'Bomb Squad',
 		},
 		teamThree: {
 			spreadsheetId: 5,
-			color: 'D419E6',
+			color: 'd419e6',
 			name: 'Legends',
 		},
 		teamFour: {
 			spreadsheetId: 7,
-			color: '19D5E6',
+			color: '19d5e6',
 			name: 'Team Indecisive',
 		},
 		teamFive: {
 			spreadsheetId: 9,
-			color: 'E619D5',
+			color: 'e619d5',
 			name: 'Lollipopsicles',
 		},
 		teamSix: {
 			spreadsheetId: 11,
 			color: '2a19e6',
 			name: 'Sin City',
+		},
+		teamSeven: {
+			spreadsheetId: 13,
+			color: 'e61919',
+			name: 'Red Allies',
 		},
 	},
 };

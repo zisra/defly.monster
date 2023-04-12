@@ -30,7 +30,6 @@ export async function eliteDefuse() {
 				const sheetData = data.sheets[0].data[0].rowData.map((row) => {
 					return row.values.map((cell) => {
 						let note;
-						if (cell.formattedValue === 'Complex') debugger;
 						if (cell.note) note = cell.note.match(/\d+/)?.[0] || '';
 
 						return {

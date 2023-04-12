@@ -30,6 +30,34 @@ body {
 	border-color: #924bff;
 }
 
+.teamOne {
+	border-color: #19e691;
+}
+
+.teamTwo {
+	border-color: #19e6d5;
+}
+
+.teamThree {
+	border-color: #d419e6;
+}
+
+.teamFour {
+	border-color: #19d5e6;
+}
+
+.teamFive {
+	border-color: #e619d5;
+}
+
+.teamSix {
+	border-color: #2a19e6;
+}
+
+.teamSeven {
+	border-color: #e61919;
+}
+
 .team-box {
 	min-width: 200px;
 	border-radius: 5px;
