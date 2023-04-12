@@ -7,7 +7,7 @@ import { escapeEmojis } from '../util/escapeEmojis.js';
 export default {
 	interaction: new SlashCommandBuilder()
 		.setName('server')
-		.setDescription('Get the teams and thesir players for the specified server')
+		.setDescription('Get the teams and their players for the specified server')
 		.addStringOption((option) =>
 			option
 				.setName('region')

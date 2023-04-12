@@ -68,48 +68,6 @@ const TEAM_COLORS = {
 	8: { color: 'Green', hex: '18e21f' },
 	9: { color: 'Pink', hex: 'f659ff' },
 };
-const ELITE_TEAMS = {
-	lime: {
-		spreadsheetId: 1,
-		color: '93fe00',
-		emoji: '735889328160374876',
-		name: 'Lemon Lime',
-	},
-	'dark-green': {
-		spreadsheetId: 3,
-		color: '008037',
-		emoji: '884904846887649291',
-		name: 'The Darkness',
-	},
-	red: {
-		spreadsheetId: 5,
-		color: 'fd3535',
-		emoji: '884904847160246332',
-		name: 'Team Red',
-	},
-	orange: {
-		spreadsheetId: 7,
-		color: 'ff8a2a',
-		emoji: '884904847067979837',
-		name: 'Bloody Orange',
-	},
-	purple: {
-		spreadsheetId: 9,
-		color: '924bff',
-		emoji: '735889328479404034',
-		name: 'Casa Morada',
-	},
-	'sky-blue': {
-		spreadsheetId: 11,
-		color: '55d5ff',
-		emoji: '884904847038615592',
-		name: 'Smurfs',
-	},
-};
-const ELITE_TEAM_IDS = Object.keys(ELITE_TEAMS).reduce((acc, key) => {
-	acc[ELITE_TEAMS[key].spreadsheetId] = key;
-	return acc;
-}, {});
 const SUPPORT_GUILD = 'AMyahUvd4Q';
 const EMBED = {
 	SUCCESS: '3fa577',
@@ -118,8 +76,84 @@ const EMBED = {
 	MAIN: 'f659ff',
 };
 const TIME_FORMATS = ['t', 'T', 'd', 'D', 'f', 'F', 'R'];
-const SPREADSHEET_RANGE = 'FUTURE Season 08!A5:L20';
-const SPREADSHEET_ID = '1b2z_lTIPEVhabnP73Mir3ttOZlqgEoLV9mLE1T-m1Y4';
+const ELITE_TEAMS_MODE = {
+	SPREADSHEET_RANGE: 'FUTURE Season 08!A5:L20',
+	SPREADSHEET_ID: '1b2z_lTIPEVhabnP73Mir3ttOZlqgEoLV9mLE1T-m1Y4',
+	TEAMS: {
+		lime: {
+			spreadsheetId: 1,
+			color: '93fe00',
+			emoji: '735889328160374876',
+			name: 'Lemon Lime',
+		},
+		'dark-green': {
+			spreadsheetId: 3,
+			color: '008037',
+			emoji: '884904846887649291',
+			name: 'The Darkness',
+		},
+		red: {
+			spreadsheetId: 5,
+			color: 'fd3535',
+			emoji: '884904847160246332',
+			name: 'Team Red',
+		},
+		orange: {
+			spreadsheetId: 7,
+			color: 'ff8a2a',
+			emoji: '884904847067979837',
+			name: 'Bloody Orange',
+		},
+		purple: {
+			spreadsheetId: 9,
+			color: '924bff',
+			emoji: '735889328479404034',
+			name: 'Casa Morada',
+		},
+		'sky-blue': {
+			spreadsheetId: 11,
+			color: '55d5ff',
+			emoji: '884904847038615592',
+			name: 'Smurfs',
+		},
+	},
+};
+const ELITE_DEFUSE_MODE = {
+	SPREADSHEET_RANGE: 'Season01!A5:L16',
+	SPREADSHEET_ID: '1Hk59f4nKzRZ8tkben35mUOj_ltLgLj_lZxcjQPry5Tk',
+	TEAMS: {
+		teamOne: {
+			spreadsheetId: 1,
+			color: '19E691',
+			name: 'Black Sky',
+		},
+		teamTwo: {
+			spreadsheetId: 3,
+			color: '19E6D5',
+			name: 'Bomb Squad',
+		},
+		teamThree: {
+			spreadsheetId: 5,
+			color: 'D419E6',
+			name: 'Legends',
+		},
+		teamFour: {
+			spreadsheetId: 7,
+			color: '19D5E6',
+			name: 'Team Indecisive',
+		},
+		teamFive: {
+			spreadsheetId: 9,
+			color: 'E619D5',
+			name: 'Lollipopsicles',
+		},
+		teamSix: {
+			spreadsheetId: 11,
+			color: '2a19e6',
+			name: 'Sin City',
+		},
+	},
+};
 const INVITE_URL =
 	'https://discord.com/api/oauth2/authorize?client_id=883125551139799070&permissions=8858758209&scope=bot%20applications.commands';
 const ELITE_CHANGES_CHANNEL = '1055715651311915008';
@@ -153,13 +187,11 @@ export default {
 	REGION_LIST,
 	PORT_LIST,
 	TEAM_COLORS,
-	ELITE_TEAMS,
-	ELITE_TEAM_IDS,
 	SUPPORT_GUILD,
 	EMBED,
 	TIME_FORMATS,
-	SPREADSHEET_RANGE,
-	SPREADSHEET_ID,
+	ELITE_DEFUSE_MODE,
+	ELITE_TEAMS_MODE,
 	INVITE_URL,
 	ELITE_CHANGES_CHANNEL,
 	CLOUDFLARE_WORKER_URL,

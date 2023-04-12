@@ -41,7 +41,6 @@ const client = new Client({
 	partials: [Partials.Channel],
 });
 
-
 client.on(Events.ClientReady, async (client) => {
 	console.log('Bot working');
 	client.user.setActivity(config.ACTIVITY);
@@ -49,10 +48,12 @@ client.on(Events.ClientReady, async (client) => {
 });
 
 client.on(Events.ShardError, (error, id) => {
-	Sentry.captureEvent({ message: 'Shard Error', event, id });
+	console.warn(error);
+	Sentry.captureEvent({ message: 'Shard Error', id });
 });
 
 client.on(Events.Warn, (warning) => {
+	console.warn(warning);
 	Sentry.captureEvent({ message: 'Warning', warning });
 });
 

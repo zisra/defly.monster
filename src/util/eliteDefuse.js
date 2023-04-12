@@ -2,11 +2,11 @@ import { google } from 'googleapis';
 
 import config from '../config.js';
 
-export async function eliteTeams() {
+export async function eliteDefuse() {
 	return new Promise(function (resolve, reject) {
-		const teamIDs = Object.keys(config.ELITE_TEAMS_MODE.TEAMS).reduce(
+		const teamIDs = Object.keys(config.ELITE_DEFUSE_MODE.TEAMS).reduce(
 			(acc, key) => {
-				acc[config.ELITE_TEAMS_MODE.TEAMS[key].spreadsheetId] = key;
+				acc[config.ELITE_DEFUSE_MODE.TEAMS[key].spreadsheetId] = key;
 				return acc;
 			},
 			{}
@@ -19,8 +19,8 @@ export async function eliteTeams() {
 
 		sheets.spreadsheets.get(
 			{
-				spreadsheetId: config.ELITE_TEAMS_MODE.SPREADSHEET_ID,
-				ranges: [config.ELITE_TEAMS_MODE.SPREADSHEET_RANGE],
+				spreadsheetId: config.ELITE_DEFUSE_MODE.SPREADSHEET_ID,
+				ranges: [config.ELITE_DEFUSE_MODE.SPREADSHEET_RANGE],
 				includeGridData: true,
 			},
 			(err, res) => {
@@ -30,8 +30,13 @@ export async function eliteTeams() {
 				const sheetData = data.sheets[0].data[0].rowData.map((row) => {
 					return row.values.map((cell) => {
 						let note;
+						if (cell.formattedValue === 'Complex') debugger;
 						if (cell.note) note = cell.note.match(/\d+/)?.[0] || '';
 
+						console.log({
+							value: cell.formattedValue,
+							note,
+						});
 						return {
 							value: cell.formattedValue,
 							note,
@@ -39,7 +44,7 @@ export async function eliteTeams() {
 					});
 				});
 
-				const output = Object.keys(config.ELITE_TEAMS_MODE.TEAMS).reduce(
+				const output = Object.keys(config.ELITE_DEFUSE_MODE.TEAMS).reduce(
 					(acc, key) => {
 						acc[key] = [];
 						return acc;

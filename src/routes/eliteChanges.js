@@ -59,7 +59,7 @@ export default async (req, res) => {
 				.setDescription(
 					`**${change.player}** was **${change.operation}** ${
 						change.operation == 'added' ? 'to' : 'from'
-					} **${config.ELITE_TEAMS[change.team].name}**`
+					} **${config.ELITE_TEAMS_MODE.TEAMS[change.team].name}**`
 				)
 				.setTimestamp();
 		});
