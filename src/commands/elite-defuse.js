@@ -53,6 +53,11 @@ export default {
 		const embed = new EmbedBuilder()
 			.setColor(config.ELITE_DEFUSE_MODE.TEAMS[team].color)
 			.setTitle(config.ELITE_DEFUSE_MODE.TEAMS[team].name)
+			.setThumbnail(
+				`https://defly.monster/api/heart?color=${encodeURIComponent(
+					'#' + config.ELITE_DEFUSE_MODE.TEAMS[team].color
+				)})`
+			)
 			.setDescription(
 				`**Captain:** [${escapeEmojis(
 					escapeMarkdown(teamList[team][0]?.value ?? 'N/A')

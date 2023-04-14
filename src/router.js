@@ -4,9 +4,10 @@ import articles from './routes/articles.js';
 import auth from './routes/auth.js';
 import commands from './routes/commands.js';
 import eliteChanges from './routes/eliteChanges.js';
-import eliteTeams from './routes/eliteTeams.js';
 import eliteDefuse from './routes/eliteDefuse.js';
+import eliteTeams from './routes/eliteTeams.js';
 import feedback from './routes/feedback.js';
+import heart from './routes/heart.js';
 import logout from './routes/logout.js';
 import session from './routes/session.js';
 import skin from './routes/skin.js';
@@ -25,6 +26,7 @@ api.get('/skin', skin);
 api.get('/articles', articles);
 api.get('/stats', stats);
 api.get('/eliteChanges', eliteChanges);
+api.get('/heart', heart);
 
 // Session routes
 api.get('/auth', auth);

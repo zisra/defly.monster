@@ -83,37 +83,31 @@ const ELITE_TEAMS_MODE = {
 		lime: {
 			spreadsheetId: 1,
 			color: '93fe00',
-			emoji: '735889328160374876',
 			name: 'Lemon Lime',
 		},
 		'dark-green': {
 			spreadsheetId: 3,
 			color: '008037',
-			emoji: '884904846887649291',
 			name: 'The Darkness',
 		},
 		red: {
 			spreadsheetId: 5,
 			color: 'fd3535',
-			emoji: '884904847160246332',
 			name: 'Team Red',
 		},
 		orange: {
 			spreadsheetId: 7,
 			color: 'ff8a2a',
-			emoji: '884904847067979837',
 			name: 'Bloody Orange',
 		},
 		purple: {
 			spreadsheetId: 9,
 			color: '924bff',
-			emoji: '735889328479404034',
 			name: 'Casa Morada',
 		},
 		'sky-blue': {
 			spreadsheetId: 11,
 			color: '55d5ff',
-			emoji: '884904847038615592',
 			name: 'Smurfs',
 		},
 	},

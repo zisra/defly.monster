@@ -53,7 +53,9 @@ export default {
 		const embed = new EmbedBuilder()
 			.setColor(config.ELITE_TEAMS_MODE.TEAMS[team].color)
 			.setThumbnail(
-				`https://cdn.discordapp.com/emojis/${config.ELITE_TEAMS_MODE.TEAMS[team].emoji}.png`
+				`https://defly.monster/api/heart?color=${encodeURIComponent(
+					'#' + config.ELITE_TEAMS_MODE.TEAMS[team].color
+				)})`
 			)
 			.setTitle(config.ELITE_TEAMS_MODE.TEAMS[team].name)
 			.setDescription(

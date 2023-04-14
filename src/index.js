@@ -58,13 +58,6 @@ client.on(Events.Warn, (warning) => {
 });
 
 client.on(Events.MessageCreate, async (message) => {
-	if (
-		message.channel.id === config.ELITE_CHANGES_CHANNEL &&
-		message.webhookId
-	) {
-		message.crosspost();
-	}
-
 	let args;
 	if (message.content.startsWith(config.PREFIX)) {
 		args = message.content.slice(config.PREFIX.length).trim().split(' ');
