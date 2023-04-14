@@ -55,7 +55,7 @@ export default {
 			.setThumbnail(
 				`https://defly.monster/api/heart?color=${encodeURIComponent(
 					'#' + config.ELITE_TEAMS_MODE.TEAMS[team].color
-				)})`
+				)}&format=png`
 			)
 			.setTitle(config.ELITE_TEAMS_MODE.TEAMS[team].name)
 			.setDescription(
