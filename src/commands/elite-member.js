@@ -32,13 +32,13 @@ export default {
 	command: async (interaction, args) => {
 		const user = args.user;
 
-		const defuseMembers = await eliteDefuse();
 		const teamMembers = await eliteTeams();
+		const defuseMembers = await eliteDefuse();
 
-		const defuse = searchPlayer(defuseMembers, user);
 		const team = searchPlayer(teamMembers, user);
+		const defuse = searchPlayer(defuseMembers, user);
 
-		if (!defuse && !team) {
+		if (!team && !defuse) {
 			return interaction.reply({
 				content: `<@${user}> is not an elite member.`,
 				ephemeral: true,
@@ -49,19 +49,21 @@ export default {
 		embed.setColor(config.EMBED.MAIN);
 		embed.setDescription(`<@${user}> is on the following elite teams:`);
 
+		if (team) {
+			embed.addFields({
+				name: 'Teams elites',
+				value: `${
+					config.ELITE_TEAMS_MODE.TEAMS[team.team].name
+				} - ${escapeMarkdown(team.value)}`,
+			});
+		}
+
 		if (defuse) {
 			embed.addFields({
 				name: 'Defuse elites',
 				value: `${
 					config.ELITE_DEFUSE_MODE.TEAMS[defuse.team].name
 				} - ${escapeMarkdown(defuse.value)}`,
-			});
-		}
-
-		if (team) {
-			embed.addFields({
-				name: 'Teams elites',
-				value: `${config.ELITE_TEAMS_MODE.TEAMS[team.team].name} - ${escapeMarkdown(team.value)}`,
 			});
 		}
 
