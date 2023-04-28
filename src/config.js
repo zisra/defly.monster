@@ -149,7 +149,12 @@ const ELITE_DEFUSE_MODE = {
 		teamSeven: {
 			spreadsheetId: 13,
 			color: 'e61919',
-			name: 'Red Allies',
+			name: 'Phoenix Reds',
+		},
+		teamEight: {
+			spreadsheetId: 15,
+			color: 'f7ff2a',
+			name: 'eezy;Peezy',
 		},
 	},
 };
