@@ -1,3 +1,5 @@
+// Local URL: https://discord.com/api/oauth2/authorize?client_id=883125551139799070&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2F&response_type=code&scope=identify
+
 const login = document.getElementById('login');
 const logout = document.getElementById('logout');
 const userData = document.getElementById('user-data');
@@ -31,7 +33,7 @@ window.onload = async () => {
 			${stats.guilds
 				.sort((a, b) => b.memberCount - a.memberCount)
 				.map((guild) => {
-					return `<tr><td><img src="${
+					return `<tr id="${guild.id}"><td><img src="${
 						guild.icon
 							? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`
 							: 'https://cdn.discordapp.com/embed/avatars/1.png'
@@ -50,6 +52,37 @@ window.onload = async () => {
 				.join('')}
 		  </table>`);
 
+			const ownerData = [];
+
+			stats.guilds.forEach((guild) => {
+				const ownerIndex = ownerData.findIndex(
+					(owner) => owner.id === guild.owner
+				);
+				if (ownerIndex === -1) {
+					ownerData.push({
+						id: guild.owner,
+						guildCount: 1,
+						guilds: [guild],
+					});
+				} else {
+					ownerData[ownerIndex].guildCount++;
+					ownerData[ownerIndex].guilds.push(guild);
+				}
+			});
+
+			output.push(`<table><tr><th>Owner ID</td><th>Server count</td><th>Server names</td></tr>
+			${ownerData
+				.sort((a, b) => b.guildCount - a.guildCount)
+				.filter((owner) => owner.guildCount > 1)
+				.map(
+					(owner) =>
+						`<tr><td><a href="https://discord.com/users/${owner.id}">${
+							owner.id
+						}</a></td><td>${owner.guildCount}</td><td>${owner.guilds
+							.map((guild) => `<a href="#${guild.id}">${guild.name}</a>`)
+							.join(', ')}</td></tr>`
+				)}
+		  </table>`);
 			dashboard.innerHTML = output.join('<br />');
 		} else {
 			dashboard.innerHTML = 'Dashboard (WIP)';
