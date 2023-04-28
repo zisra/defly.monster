@@ -1,8 +1,8 @@
-import fs from 'node:fs';
-
 import axios from 'axios';
+
+import database from '../src/database.js';
 
 (async () => {
 	const res = await axios.get('https://defly.monster/api/eliteTeams?version=2');
-	fs.writeFileSync('./src/eliteTeams.json', JSON.stringify(res.data));
+	database.set('elite-teams', res.data);
 })();

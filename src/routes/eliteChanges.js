@@ -1,9 +1,8 @@
-import fs from 'node:fs';
-
 import deepDiff from 'deep-diff-pizza';
 import { EmbedBuilder, WebhookClient } from 'discord.js';
 
 import config from '../config.js';
+import database from '../database.js';
 import { eliteTeams } from '../util/eliteTeams.js';
 
 function capitalize(str) {
@@ -25,9 +24,7 @@ function convertTeams(teams) {
 export default async (req, res) => {
 	const teamList = convertTeams(await eliteTeams());
 
-	const previousTeamList = JSON.parse(
-		fs.readFileSync('./src/eliteTeams.json', 'utf8')
-	);
+	const previousTeamList = await database.get('elite-teams');
 
 	if (JSON.stringify(teamList) !== JSON.stringify(previousTeamList)) {
 		const changes = deepDiff(previousTeamList, teamList)
@@ -75,5 +72,5 @@ export default async (req, res) => {
 		});
 	}
 
-	fs.writeFileSync('./src/eliteTeams.json', JSON.stringify(teamList));
+	database.set('elite-teams', teamList);
 };
