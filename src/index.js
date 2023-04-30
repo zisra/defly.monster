@@ -111,7 +111,6 @@ client.on(Events.InteractionCreate, async (interaction) => {
 	if (interaction.isChatInputCommand()) {
 		const command = interaction.commandName;
 		const commandFolder = fs.readdirSync('./src/commands');
-		const args = {};
 
 		if (commandFolder.find((i) => i === `${command}.js`)) {
 			const { default: commandFile } = await import(`./commands/${command}.js`);
@@ -121,7 +120,6 @@ client.on(Events.InteractionCreate, async (interaction) => {
 				if (commandFile.subcommands) {
 					commandFile.subcommands[interaction.options.getSubcommand()](
 						interaction,
-						args,
 						client
 					);
 				} else {

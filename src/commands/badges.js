@@ -47,6 +47,15 @@ export default {
 
 			await interaction.reply({ embeds: [embed] });
 		},
+		random: async (interaction) => {
+			const badgeNumber = Math.floor(Math.random() * config.MAX_BADGES) + 1;
+			const embed = new EmbedBuilder()
+				.setTitle(`Defly.io badge ${badgeNumber}`)
+				.setImage(`https://defly.io/img/badges/${badgeNumber}.png`)
+				.setColor(config.EMBED.MAIN);
+
+			await interaction.reply({ embeds: [embed] });
+		},
 		all: async (interaction, client) => {
 			const embed = new EmbedBuilder()
 				.setTitle('Defly.io badges')
@@ -57,15 +66,6 @@ export default {
 						.sort()
 						.join(' ')
 				)
-				.setColor(config.EMBED.MAIN);
-
-			await interaction.reply({ embeds: [embed] });
-		},
-		random: async (interaction) => {
-			const badgeNumber = Math.floor(Math.random() * config.MAX_BADGES) + 1;
-			const embed = new EmbedBuilder()
-				.setTitle(`Defly.io badge ${badgeNumber}`)
-				.setImage(`https://defly.io/img/badges/${badgeNumber}.png`)
 				.setColor(config.EMBED.MAIN);
 
 			await interaction.reply({ embeds: [embed] });
