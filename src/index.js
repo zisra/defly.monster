@@ -22,11 +22,13 @@ import router from './router.js';
 const app = express();
 const MemoryStore = memoryStore(session);
 const assetFiles = fs.readdirSync('./src/images');
+
 Sentry.init({
 	dsn: config.SECRETS.SENTRY_DSN,
 	tracesSampleRate: 1.0,
 	environment: config.SECRETS.NODE_ENV,
 });
+
 generateArticles();
 
 const client = new Client({
@@ -58,7 +60,9 @@ client.on(Events.Warn, (warning) => {
 });
 
 client.on(Events.MessageCreate, async (message) => {
+	if (message.author.id === client.user.id) return;
 	let args;
+
 	if (message.content.startsWith(config.PREFIX)) {
 		args = message.content.slice(config.PREFIX.length).trim().split(' ');
 	} else if (message.content.includes(client.user.toString())) {
@@ -108,21 +112,20 @@ client.on(Events.InteractionCreate, async (interaction) => {
 		const command = interaction.commandName;
 		const commandFolder = fs.readdirSync('./src/commands');
 		const args = {};
-		interaction.options.data.forEach((arg) => {
-			args[arg.name] = arg.value.toString();
-		});
 
 		if (commandFolder.find((i) => i === `${command}.js`)) {
-			const { default: selectedCommand } = await import(
-				`./commands/${command}.js`
-			);
+			const { default: commandFile } = await import(`./commands/${command}.js`);
 			try {
 				interaction.interaction = true;
-				if (selectedCommand.adminOnly) return;
-				if (selectedCommand.seperateCommandTypes) {
-					selectedCommand.interactionCommand(interaction, client);
+				if (commandFile.adminOnly) return;
+				if (commandFile.subcommands) {
+					commandFile.subcommands[interaction.options.getSubcommand()](
+						interaction,
+						args,
+						client
+					);
 				} else {
-					selectedCommand.command(interaction, args, client);
+					commandFile.command(interaction, client);
 				}
 			} catch (err) {
 				console.log(err);

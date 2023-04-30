@@ -19,8 +19,8 @@ export default {
 				.setMaxLength(7)
 				.setMinLength(7)
 		),
-	command: async (interaction, args) => {
-		const build = args.build;
+	command: async (interaction) => {
+		const build = interaction.options.getString('build');
 
 		let upgrades;
 

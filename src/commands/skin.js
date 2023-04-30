@@ -20,8 +20,8 @@ export default {
 				.setMinValue(1)
 				.setMaxValue(config.MAX_SKINS)
 		),
-	command: async (interaction, args) => {
-		const skin = args.id;
+	command: async (interaction) => {
+		const skin = interaction.options.getInteger('id');
 
 		if (
 			!parseInt(skin) ||

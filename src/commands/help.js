@@ -12,7 +12,7 @@ export default {
 	interaction: new SlashCommandBuilder()
 		.setName('help')
 		.setDescription('Gets a list of all commands'),
-	command: async (interaction, args, client) => {
+	command: async (interaction, client) => {
 		const embed = new EmbedBuilder()
 			.setTitle('Defly.io Monster | Commands')
 			.setDescription(
