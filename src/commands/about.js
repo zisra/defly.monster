@@ -12,7 +12,7 @@ export default {
 	interaction: new SlashCommandBuilder()
 		.setName('about')
 		.setDescription('Basic information & credits regarding the bot'),
-	command: async (interaction, args, client) => {
+	command: async (interaction, client) => {
 		const embed = new EmbedBuilder()
 			.setColor(config.EMBED.MAIN)
 			.setTitle('About')

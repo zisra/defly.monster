@@ -16,8 +16,8 @@ export default {
 				.setDescription('The name of the article to send')
 				.setRequired(true)
 		),
-	command: async (interaction, args) => {
-		const name = args.name;
+	command: async (interaction) => {
+		const name = interaction.options.getString('name');
 		const row = new ActionRowBuilder().addComponents(
 			new ButtonBuilder()
 				.setLabel('Wiki fandom')

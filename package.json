@@ -19,6 +19,7 @@
 	"author": "Isra",
 	"license": "ISC",
 	"dependencies": {
+		"@keyv/redis": "^2.5.7",
 		"@resvg/resvg-js": "^2.2.0",
 		"@sentry/node": "^7.26.0",
 		"any-date-parser": "^1.5.3",
@@ -31,6 +32,7 @@
 		"googleapis": "^110.0.0",
 		"gray-matter": "^4.0.3",
 		"handlebars": "^4.7.7",
+		"keyv": "^4.5.2",
 		"marked": "^4.2.4",
 		"memorystore": "^1.6.7",
 		"ws": "^8.11.0"

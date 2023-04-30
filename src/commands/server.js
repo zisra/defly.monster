@@ -32,9 +32,9 @@ export default {
 					}))
 				)
 		),
-	command: async (interaction, args, client) => {
-		const serverRegion = interaction.interaction ? args.region : args[0];
-		const serverPort = interaction.interaction ? args.port : args[1];
+	command: async (interaction, client) => {
+		const serverRegion = interaction.options.getString('region');
+		const serverPort = interaction.options.getInteger('port');
 		let serverRes;
 
 		if (!serverPort || !serverRegion) {
@@ -60,7 +60,7 @@ export default {
 				ephemeral: true,
 			});
 		}
-		const defuseMode = serverPort.endsWith('2');
+		const defuseMode = serverPort.toString().endsWith('2');
 
 		const embed = new EmbedBuilder()
 			.setColor(config.EMBED.MAIN)

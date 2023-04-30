@@ -17,8 +17,8 @@ export default {
 				.setAutocomplete(true)
 				.setRequired(true)
 		),
-	command: async (interaction, args) => {
-		const asset = args.asset;
+	command: async (interaction) => {
+		const asset = interaction.options.getString('asset');
 		const image = new AttachmentBuilder(`./src/images/${asset}`);
 		const embed = new EmbedBuilder()
 			.setTitle(`Defly.io asset`)

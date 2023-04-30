@@ -22,8 +22,9 @@ export default {
 				.setDescription('The time to use')
 				.setRequired(true)
 		),
-	command: async (interaction, args) => {
-		const date = args.input;
+	command: async (interaction) => {
+		const date = interaction.options.getString('input');
+
 		const row = new ActionRowBuilder().addComponents(
 			new ButtonBuilder()
 				.setLabel('Supported formats')
