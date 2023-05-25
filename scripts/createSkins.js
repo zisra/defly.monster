@@ -1,7 +1,10 @@
 import fs from 'node:fs';
 
 import config from '../src/config.js';
-import originalSkins from './originalSkins.json';
+
+const originalSkins = JSON.parse(
+	fs.readFileSync('./scripts/originalSkins.json', 'utf8')
+);
 
 const skinData = JSON.parse(fs.readFileSync('./src/allSkins.txt', 'utf8'));
 function getSkin(skin) {
@@ -11,6 +14,10 @@ function getSkin(skin) {
 	finalSkin.images = {};
 	if (skinData.specs[skin].base) {
 		const imageName = skinData.specs[skin].base;
+		finalSkin.images[imageName] = skinData.images[imageName];
+	}
+	if (skinData.specs[skin].notint) {
+		const imageName = skinData.specs[skin].notint;
 		finalSkin.images[imageName] = skinData.images[imageName];
 	}
 	const rotors = skinData.specs[skin].rotors.map((i) => i.img);
@@ -71,7 +78,7 @@ function getOGskin(skin) {
 
 Array.from({ length: config.MAX_SKINS }, (_, i) => i + 1).forEach((skin) => {
 	if (skin <= 25) {
-		getOGskin(skin);
+		// getOGskin(skin);
 	} else {
 		getSkin(skin);
 	}
