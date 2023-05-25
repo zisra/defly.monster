@@ -196,7 +196,7 @@ app.use(
 		cookie: {
 			secure: config.SECRETS.NODE_ENV === 'production',
 			domain: config.SECRETS.NODE_ENV === 'production' ? 'defly.monster' : null,
-			maxAge: 1000 * 60 * 60 * 24, // 1 day
+			maxAge: 7 * 1000 * 60 * 60 * 24, // 7 days
 		},
 	})
 );
