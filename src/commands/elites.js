@@ -4,13 +4,11 @@ import {
 	ButtonStyle,
 	EmbedBuilder,
 	SlashCommandBuilder,
-	escapeMarkdown,
 } from 'discord.js';
 
 import config from '../config.js';
 import { eliteDefuse } from '../util/eliteDefuse.js';
 import { eliteTeams } from '../util/eliteTeams.js';
-import { escapeEmojis } from '../util/escapeEmojis.js';
 
 function searchPlayer(data, id) {
 	for (const key of Object.keys(data)) {
@@ -109,19 +107,16 @@ export default {
 					)}&format=png`
 				)
 				.setDescription(
-					`**Captain:** [${escapeEmojis(
-						escapeMarkdown(teamList[team][0]?.value ?? 'N/A')
-					)}](https://discord.com/users/${teamList[team][0]?.note ?? ''})
-						**Vice Captain:** [${escapeEmojis(
-							escapeMarkdown(teamList[team][1]?.value ?? 'N/A')
-						)}](https://discord.com/users/${teamList[team][1]?.note ?? ''})
+					`**Captain:** [${
+						teamList[team][0]?.value ?? 'N/A'
+					}](https://discord.com/users/${teamList[team][0]?.note ?? ''})
+						**Vice Captain:** [${
+							teamList[team][1]?.value ?? 'N/A'
+						}](https://discord.com/users/${teamList[team][1]?.note ?? ''})
 			 ${teamList[team]
 					.slice(2)
 					.map(
-						(name) =>
-							`[${escapeEmojis(
-								escapeMarkdown(name.value)
-							)}](https://discord.com/users/${name.note})`
+						(name) => `[${name.value}](https://discord.com/users/${name.note})`
 					)
 					.join('\n')}`
 				);
@@ -159,19 +154,16 @@ export default {
 				)
 				.setTitle(config.ELITE_TEAMS_MODE.TEAMS[team].name)
 				.setDescription(
-					`**Captain:** [${escapeEmojis(
-						escapeMarkdown(teamList[team][0]?.value ?? 'N/A')
-					)}](https://discord.com/users/${teamList[team][0]?.note ?? ''})
-						**Vice Captain:** [${escapeEmojis(
-							escapeMarkdown(teamList[team][1]?.value ?? 'N/A')
-						)}](https://discord.com/users/${teamList[team][1]?.note ?? ''})
+					`**Captain:** [${
+						teamList[team][0]?.value ?? 'N/A'
+					}](https://discord.com/users/${teamList[team][0]?.note ?? ''})
+						**Vice Captain:** [${
+							teamList[team][1]?.value ?? 'N/A'
+						}](https://discord.com/users/${teamList[team][1]?.note ?? ''})
 			 ${teamList[team]
 					.slice(2)
 					.map(
-						(name) =>
-							`[${escapeEmojis(
-								escapeMarkdown(name.value)
-							)}](https://discord.com/users/${name.note})`
+						(name) => `[${name.value}](https://discord.com/users/${name.note})`
 					)
 					.join('\n')}`
 				);
@@ -201,18 +193,18 @@ export default {
 			if (team) {
 				embed.addFields({
 					name: 'Teams elites',
-					value: `${
-						config.ELITE_TEAMS_MODE.TEAMS[team.team].name
-					} - ${escapeMarkdown(team.value)}`,
+					value: `${config.ELITE_TEAMS_MODE.TEAMS[team.team].name} - ${
+						team.value
+					}`,
 				});
 			}
 
 			if (defuse) {
 				embed.addFields({
 					name: 'Defuse elites',
-					value: `${
-						config.ELITE_DEFUSE_MODE.TEAMS[defuse.team].name
-					} - ${escapeMarkdown(defuse.value)}`,
+					value: `${config.ELITE_DEFUSE_MODE.TEAMS[defuse.team].name} - ${
+						defuse.value
+					}`,
 				});
 			}
 

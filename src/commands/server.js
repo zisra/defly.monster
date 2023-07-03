@@ -2,7 +2,6 @@ import axios from 'axios';
 import { EmbedBuilder, SlashCommandBuilder, escapeMarkdown } from 'discord.js';
 
 import config from '../config.js';
-import { escapeEmojis } from '../util/escapeEmojis.js';
 
 export default {
 	interaction: new SlashCommandBuilder()
@@ -33,6 +32,7 @@ export default {
 				)
 		),
 	command: async (interaction, client) => {
+		interaction.deferReply({ ephemeral: true });
 		const serverRegion = interaction.options.getString('region');
 		const serverPort = interaction.options.getInteger('port');
 		let serverRes;
@@ -83,7 +83,7 @@ export default {
 								? u.players
 										.map(
 											(e) =>
-												escapeEmojis(escapeMarkdown(e.name)) +
+												escapeMarkdown(e.name) +
 												' ' +
 												(e.badge
 													? client.guilds.cache
