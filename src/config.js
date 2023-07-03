@@ -113,7 +113,7 @@ const ELITE_TEAMS_MODE = {
 	},
 };
 const ELITE_DEFUSE_MODE = {
-	SPREADSHEET_RANGE: 'Season01!A5:P16',
+	SPREADSHEET_RANGE: 'Season01!A4:P15',
 	SPREADSHEET_ID: '1Hk59f4nKzRZ8tkben35mUOj_ltLgLj_lZxcjQPry5Tk',
 	TEAMS: {
 		teamOne: {
@@ -124,12 +124,12 @@ const ELITE_DEFUSE_MODE = {
 		teamTwo: {
 			spreadsheetId: 3,
 			color: '19e6d5',
-			name: 'Bomb Squad',
+			name: 'The Bomb Squad',
 		},
 		teamThree: {
 			spreadsheetId: 5,
 			color: 'd419e6',
-			name: 'Legends',
+			name: 'Da Bois',
 		},
 		teamFour: {
 			spreadsheetId: 7,
@@ -149,7 +149,7 @@ const ELITE_DEFUSE_MODE = {
 		teamSeven: {
 			spreadsheetId: 13,
 			color: 'e61919',
-			name: 'Phoenix Reds',
+			name: 'Warrior Elites'
 		},
 		teamEight: {
 			spreadsheetId: 15,

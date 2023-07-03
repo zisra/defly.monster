@@ -15,6 +15,7 @@ const eliteDefuse = {
 	teamFive: 'Lollipopsicles',
 	teamSix: 'Sin City',
 	teamSeven: 'Red Allies',
+	teamEight: 'eezy;Peezy'
 };
 
 const container = document.getElementById('container');
