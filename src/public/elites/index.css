@@ -58,6 +58,10 @@ body {
 	border-color: #e61919;
 }
 
+.teamEight {
+	border-color: #f7ff2a;
+}
+
 .team-box {
 	min-width: 200px;
 	border-radius: 5px;
