@@ -38,7 +38,7 @@ export default {
 		let serverRes;
 
 		if (!serverPort || !serverRegion) {
-			return interaction.reply({
+			return interaction.followUp({
 				content: 'Something went wrong getting teams',
 				ephemeral: true,
 			});
@@ -54,7 +54,7 @@ export default {
 
 			serverRes = data;
 		} catch (err) {
-			return interaction.reply({
+			return interaction.followUp({
 				content:
 					'Something went wrong getting teams - This server could possibly have a team that is closing the map',
 				ephemeral: true,
@@ -66,44 +66,41 @@ export default {
 			.setColor(config.EMBED.MAIN)
 			.setTitle(`${serverRegion.toUpperCase()} ${serverPort}`)
 			.setURL(
-				`https://defly.io/#${defuseMode ? 2 : 1}-${
-					config.REGION_LIST.find((i) => serverRegion === i.alias).ws
+				`https://defly.io/#${defuseMode ? 2 : 1}-${config.REGION_LIST.find((i) => serverRegion === i.alias).ws
 				}:${serverPort}`
 			)
 			.addFields(
 				serverRes.map((u) => {
 					return {
 						name: !defuseMode
-							? `${u.team.color} - ${Math.round(u.mapPercent)}% ${
-									u.available ? '' : ':x:'
-							  }`
+							? `${u.team.color} - ${Math.round(u.mapPercent)}% ${u.available ? '' : ':x:'
+							}`
 							: `${u.team.color} ${u.available ? '' : ':x:'}`,
 						value:
 							u.players.length !== 0
 								? u.players
-										.map(
-											(e) =>
-												escapeMarkdown(e.name) +
-												' ' +
-												(e.badge
-													? client.guilds.cache
-															.get('877177181413994496')
-															.emojis.cache.find(
-																(badge) =>
-																	badge.name ===
-																	`badge${
-																		e.badge < 10 ? '0' + e.badge : e.badge
-																	}`
-															)
-															.toString()
-													: '')
-										)
-										.join(', ')
+									.map(
+										(e) =>
+											escapeMarkdown(e.name) +
+											' ' +
+											(e.badge
+												? client.guilds.cache
+													.get('877177181413994496')
+													.emojis.cache.find(
+														(badge) =>
+															badge.name ===
+															`badge${e.badge < 10 ? '0' + e.badge : e.badge
+															}`
+													)
+													.toString()
+												: '')
+									)
+									.join(', ')
 								: 'N/A',
 					};
 				})
 			);
 
-		await interaction.reply({ embeds: [embed] });
+		await interaction.followUp({ embeds: [embed] });
 	},
 };
