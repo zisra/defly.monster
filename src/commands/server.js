@@ -101,6 +101,6 @@ export default {
 				})
 			);
 
-		await interaction.followUp({ embeds: [embed] });
+		await interaction.followUp({ embeds: [embed], ephemeral: false });
 	},
 };
