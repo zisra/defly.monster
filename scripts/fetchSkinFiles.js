@@ -1,11 +1,12 @@
 import fs from 'node:fs';
 
-import axios from 'axios';
+import { ofetch } from 'ofetch';
+
 import sharp from 'sharp';
 
 function getAllSkins() {
-	axios
-		.get('https://defly.io/img/add-skins.js', {
+	ofetch
+		('https://defly.io/img/add-skins.js', {
 			responseType: 'stream',
 		})
 		.then((response) => {
@@ -27,7 +28,7 @@ function getOGskins() {
 
 	const requests = files.map((file) => {
 		const fileExtension = file.split('.')[1];
-		return axios.get(file, {
+		return ofetch(file, {
 			responseType: fileExtension === 'png' ? 'arraybuffer' : 'json',
 			baseURL,
 		});

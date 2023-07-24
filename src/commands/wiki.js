@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { ofetch } from 'ofetch';
 import {
 	ActionRowBuilder,
 	ButtonBuilder,
@@ -33,9 +33,9 @@ export default {
 			});
 		}
 		try {
-			const res = await axios.get('https://deflyio.fandom.com/wiki/' + name);
+			const res = await ofetch(`https://deflyio.fandom.com/wiki/${name}`);
 			if (res.status === 200) {
-				await interaction.reply('https://deflyio.fandom.com/wiki/' + name);
+				await interaction.reply(`https://deflyio.fandom.com/wiki/${name}`);
 			} else {
 				await interaction.reply({
 					content: 'Article not found.',

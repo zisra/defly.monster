@@ -13,7 +13,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/zIsra/defly-discord.git"
+		"url": "https://github.com/zisra/defly-discord.git"
 	},
 	"type": "module",
 	"author": "Isra",
@@ -23,7 +23,6 @@
 		"@resvg/resvg-js": "^2.2.0",
 		"@sentry/node": "^7.26.0",
 		"any-date-parser": "^1.5.3",
-		"axios": "^1.1.2",
 		"cors": "^2.8.5",
 		"deep-diff-pizza": "^1.0.2",
 		"discord.js": "^14.7.1",
@@ -35,7 +34,8 @@
 		"keyv": "^4.5.2",
 		"marked": "^4.2.4",
 		"memorystore": "^1.6.7",
-		"ws": "^8.11.0"
+		"ws": "^8.11.0", 
+		"ofetch": "^1.0.0"
 	},
 	"devDependencies": {
 		"@trivago/prettier-plugin-sort-imports": "^4.1.1",
