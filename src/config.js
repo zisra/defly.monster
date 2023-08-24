@@ -83,7 +83,7 @@ const ELITE_TEAMS_MODE = {
 		lime: {
 			spreadsheetId: 1,
 			color: '93fe00',
-			name: 'Lemon Lime',
+			name: 'Viridescent',
 		},
 		'dark-green': {
 			spreadsheetId: 3,
@@ -113,7 +113,7 @@ const ELITE_TEAMS_MODE = {
 	},
 };
 const ELITE_DEFUSE_MODE = {
-	SPREADSHEET_RANGE: 'Season01!A4:P15',
+	SPREADSHEET_RANGE: 'Season02!A4:P15',
 	SPREADSHEET_ID: '1Hk59f4nKzRZ8tkben35mUOj_ltLgLj_lZxcjQPry5Tk',
 	TEAMS: {
 		teamOne: {
@@ -144,17 +144,22 @@ const ELITE_DEFUSE_MODE = {
 		teamSix: {
 			spreadsheetId: 11,
 			color: '2a19e6',
-			name: 'Sin City',
+			name: 'The Slayers',
 		},
 		teamSeven: {
 			spreadsheetId: 13,
 			color: 'e61919',
-			name: 'Warrior Elites'
+			name: 'Fruitism'
 		},
 		teamEight: {
 			spreadsheetId: 15,
 			color: 'f7ff2a',
 			name: 'eezy;Peezy',
+		},
+		teamNine: {
+			spreadsheetId: 17,
+			color: 'f4bac5',
+			name: 'Maid Cafe',
 		},
 	},
 };

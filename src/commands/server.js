@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { ofetch } from 'ofetch';
 import { EmbedBuilder, SlashCommandBuilder, escapeMarkdown } from 'discord.js';
 
 import config from '../config.js';
@@ -45,7 +45,7 @@ export default {
 		}
 
 		try {
-			const { data } = await axios.get(config.CLOUDFLARE_WORKER_URL, {
+			const { data } = await ofetch(config.CLOUDFLARE_WORKER_URL, {
 				params: {
 					region: serverRegion,
 					port: serverPort,
@@ -101,6 +101,6 @@ export default {
 				})
 			);
 
-		await interaction.followUp({ embeds: [embed] });
+		await interaction.followUp({ embeds: [embed], ephemeral: false });
 	},
 };

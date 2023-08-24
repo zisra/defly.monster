@@ -6,7 +6,7 @@ const originalSkins = JSON.parse(
 	fs.readFileSync('./scripts/originalSkins.json', 'utf8')
 );
 
-const skinData = JSON.parse(fs.readFileSync('./src/allSkins.txt', 'utf8'));
+const skinData = JSON.parse(fs.readFileSync('./scripts/allSkins.txt', 'utf8'));
 function getSkin(skin) {
 	if (skin === 80) return;
 	const finalSkin = {};

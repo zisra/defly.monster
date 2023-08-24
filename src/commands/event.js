@@ -9,6 +9,7 @@ export default {
 		.setDescription('Find out what tournaments are coming up'),
 	command: async (interaction) => {
 		const serverRes = await getServers(1);
+
 		if (!serverRes.event) {
 			await interaction.reply('There is no event at the moment.');
 		} else {
@@ -22,6 +23,7 @@ export default {
 				)
 				.setTimestamp(new Date(serverRes.event.date))
 				.setColor(config.EMBED.MAIN);
+				
 			await interaction.reply({ embeds: [embed] });
 		}
 	},

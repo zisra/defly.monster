@@ -34,6 +34,7 @@ export default {
 				.setLabel('Join support')
 				.setStyle(ButtonStyle.Link)
 		);
+		
 		await interaction.reply({ embeds: [embed], components: [row] });
 	},
 };

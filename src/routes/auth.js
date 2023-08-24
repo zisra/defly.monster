@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { ofetch } from 'ofetch';
 
 import config from '../config.js';
 import Response from '../util/apiResponse.js';
@@ -21,18 +21,19 @@ export default async (req, res) => {
 			);
 			parameters.append('scope', 'identity');
 
-			const authData = await axios.post(
+			const authData = await ofetch(
 				'https://discord.com/api/oauth2/token',
-				parameters,
 				{
 					headers: {
 						'Content-Type': 'application/x-www-form-urlencoded',
 					},
+					method: 'post',
+					body: parameters.toString()
 				}
 			);
 			const auth = authData.data;
 
-			const userData = await axios.get('https://discord.com/api/users/@me', {
+			const userData = await ofetch('https://discord.com/api/users/@me', {
 				headers: {
 					Authorization: `Bearer ${auth.access_token}`,
 				},
