@@ -120,6 +120,7 @@ export default {
 					)
 					.join('\n')}`
 				);
+				
 			await interaction.reply({ embeds: [embed], components: [row] });
 		},
 		teams: async (interaction) => {
@@ -167,6 +168,7 @@ export default {
 					)
 					.join('\n')}`
 				);
+
 			await interaction.reply({ embeds: [embed], components: [row] });
 		},
 

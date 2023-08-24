@@ -32,6 +32,7 @@ export default {
 				components: [row],
 			});
 		}
+		
 		try {
 			const res = await ofetch(`https://deflyio.fandom.com/wiki/${name}`);
 			if (res.status === 200) {

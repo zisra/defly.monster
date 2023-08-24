@@ -37,7 +37,6 @@ const client = new Client({
 		GatewayIntentBits.GuildMessages,
 		GatewayIntentBits.GuildEmojisAndStickers,
 		GatewayIntentBits.DirectMessages,
-		GatewayIntentBits.MessageContent,
 	],
 	allowedMentions: { parse: ['users', 'roles'], repliedUser: false },
 	partials: [Partials.Channel],
@@ -128,6 +127,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
 			} catch (err) {
 				console.log(err);
 				Sentry.captureException(err);
+
 				await interaction.reply({
 					content: `Something went wrong with this command. Please try again soon. If you need a list of commands, run </help:${config.HELP_COMMAND_ID}>`,
 					ephemeral: true,
@@ -141,6 +141,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
 					'Defly.io skin ID: ',
 					''
 				);
+
 				const skinFile = JSON.parse(
 					fs.readFileSync(`./src/skins/skin${skinId}.txt`, 'utf8')
 				);
@@ -151,6 +152,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
 						name: key,
 					};
 				});
+
 				await interaction.reply({
 					ephemeral: true,
 					files: skin.map(
