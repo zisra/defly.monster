@@ -32,12 +32,11 @@ export default async (req, res) => {
 				}
 			);
 
-			const userData = await ofetch('https://discord.com/api/users/@me', {
+			const user = await ofetch('https://discord.com/api/users/@me', {
 				headers: {
 					Authorization: `Bearer ${auth.access_token}`,
 				},
 			});
-			const user = userData.data;
 
 			const isAdmin = !!config.SECRETS.ADMINS.split(',').find(
 				(usr) => usr === user.id

@@ -13,6 +13,7 @@ import session from './routes/session.js';
 import skin from './routes/skin.js';
 import stats from './routes/stats.js';
 import upgrades from './routes/upgrades.js';
+import leaveGuild from './routes/leaveGuild.js';
 
 const api = Router();
 
@@ -24,13 +25,14 @@ api.get('/eliteDefuse', eliteDefuse);
 api.get('/commands', commands);
 api.get('/skin', skin);
 api.get('/articles', articles);
-api.get('/stats', stats);
 api.get('/eliteChanges', eliteChanges);
 api.get('/heart', heart);
 
-// Session routes
+// Dashboard routes
 api.get('/auth', auth);
 api.get('/session', session);
 api.get('/logout', logout);
+api.get('/stats', stats);
+api.delete('/guilds/:id', leaveGuild);
 
 export default api;
