@@ -45,14 +45,7 @@ export default {
 		}
 
 		try {
-			const { data } = await ofetch(config.CLOUDFLARE_WORKER_URL, {
-				params: {
-					region: serverRegion,
-					port: serverPort,
-				},
-			});
-
-			serverRes = data;
+			serverRes = await ofetch(`${config.CLOUDFLARE_WORKER_URL}?region=${serverRegion}&port=${serverPort}`);
 		} catch (err) {
 			return interaction.followUp({
 				content:

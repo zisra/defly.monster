@@ -21,17 +21,16 @@ export default async (req, res) => {
 			);
 			parameters.append('scope', 'identity');
 
-			const authData = await ofetch(
+			const auth = await ofetch(
 				'https://discord.com/api/oauth2/token',
 				{
 					headers: {
 						'Content-Type': 'application/x-www-form-urlencoded',
 					},
 					method: 'post',
-					body: parameters.toString()
+					body: parameters,
 				}
 			);
-			const auth = authData.data;
 
 			const userData = await ofetch('https://discord.com/api/users/@me', {
 				headers: {
