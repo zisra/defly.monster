@@ -113,7 +113,7 @@ const ELITE_TEAMS_MODE = {
 	},
 };
 const ELITE_DEFUSE_MODE = {
-	SPREADSHEET_RANGE: 'Season02!A4:P15',
+	SPREADSHEET_RANGE: 'Season02!A4:T17',
 	SPREADSHEET_ID: '1Hk59f4nKzRZ8tkben35mUOj_ltLgLj_lZxcjQPry5Tk',
 	TEAMS: {
 		teamOne: {
@@ -161,6 +161,11 @@ const ELITE_DEFUSE_MODE = {
 			color: 'f4bac5',
 			name: 'Maid Cafe',
 		},
+		teamTen: {
+			spreadsheetId: 19,
+			color: '999999',
+			name: 'Withering Touch',
+		}
 	},
 };
 const INVITE_URL =

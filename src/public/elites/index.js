@@ -9,13 +9,15 @@ const eliteTeams = {
 
 const eliteDefuse = {
 	teamOne: 'Black Sky',
-	teamTwo: 'Bomb Squad',
-	teamThree: 'Legends',
+	teamTwo: 'The Bomb Squad',
+	teamThree: 'Da Bois',
 	teamFour: 'Team Indecisive',
 	teamFive: 'Lollipopsicles',
-	teamSix: 'Sin City',
-	teamSeven: 'Red Allies',
-	teamEight: 'eezy;Peezy'
+	teamSix: 'The Slayers',
+	teamSeven: 'Fruitism',
+	teamEight: 'eezy;Peezy',
+	teamNine: 'Maid Cafe',
+	teamTen: 'Withering Touch',
 };
 
 const container = document.getElementById('container');

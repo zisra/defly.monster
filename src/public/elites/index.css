@@ -62,6 +62,14 @@ body {
 	border-color: #f7ff2a;
 }
 
+.teamNine {
+	border-color: #f4bac5;
+}
+
+.teamTen {
+	border-color: #999999;
+}
+
 .team-box {
 	min-width: 200px;
 	border-radius: 5px;
