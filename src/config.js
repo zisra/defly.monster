@@ -77,7 +77,7 @@ const EMBED = {
 };
 const TIME_FORMATS = ['t', 'T', 'd', 'D', 'f', 'F', 'R'];
 const ELITE_TEAMS_MODE = {
-	SPREADSHEET_RANGE: 'FUTURE Season 08!A5:N20',
+	SPREADSHEET_RANGE: 'Season 08!A5:N20',
 	SPREADSHEET_ID: '1b2z_lTIPEVhabnP73Mir3ttOZlqgEoLV9mLE1T-m1Y4',
 	TEAMS: {
 		lime: {
