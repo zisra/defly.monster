@@ -1,7 +1,7 @@
 const eliteTeams = {
-	lime: 'Lemon Lime',
-	'dark-green': 'The Darkness',
-	red: 'Team Red',
+	lime: 'Viridescent',
+	'dark-green': 'Team Dark Green',
+	red: 'Akatsuki',
 	orange: 'Bloody Orange',
 	purple: 'Casa Morada',
 	'sky-blue': 'Smurfs',
